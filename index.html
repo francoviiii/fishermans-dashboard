@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard Marketing | Fishermans & Aristocrata</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#F4F5F7;color:#1A1A2E}
+.topbar{background:#1A1A2E;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.back-btn{background:rgba(255,255,255,.15);border:none;color:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;display:none;align-items:center;gap:5px}
+.back-btn:hover{background:rgba(255,255,255,.25)}
+.tb-title{color:#fff;font-size:13px;font-weight:700}
+.updated{color:rgba(255,255,255,.4);font-size:10px;margin-left:6px}
+.tog-grp{display:flex;gap:2px;background:rgba(255,255,255,.1);padding:3px;border-radius:8px}
+.tog{padding:4px 11px;border-radius:6px;border:none;font-size:11px;cursor:pointer;background:transparent;color:rgba(255,255,255,.65);font-weight:500}
+.tog.on{background:#fff;color:#1A1A2E}
+.content{padding:14px 16px;max-width:1060px;margin:0 auto}
+.screen{display:none}.screen.active{display:block}
+.area-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:16px}
+.area-card{background:#fff;border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s;border:1.5px solid #EBEBEB}
+.area-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.ac-hdr{padding:11px 14px;display:flex;justify-content:space-between;align-items:center}
+.ac-title{color:#fff;font-size:12px;font-weight:700}
+.ac-body{padding:10px 14px}
+.ac-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;border-bottom:.5px solid #F5F5F5}
+.ac-row:last-child{border:none}
+.ac-lbl{color:#999}.ac-val{font-weight:700}
+.ac-foot{padding:7px 14px;font-size:10px;font-weight:600;text-align:center;border-top:1px solid #F5F5F5}
+.det-hdr{background:#fff;border-radius:10px;padding:12px 15px;margin-bottom:12px;border:1px solid #EBEBEB}
+.det-top{display:flex;align-items:center;gap:10px}
+.det-accent{width:4px;border-radius:2px;height:28px;flex-shrink:0}
+.det-title{font-size:15px;font-weight:700}
+.det-sub{font-size:11px;color:#888;margin-top:2px}
+.lvl-sec{background:#fff;border-radius:10px;border:1px solid #EBEBEB;margin-bottom:10px;overflow:hidden}
+.lvl-hdr{padding:9px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.lvl-hdr-title{font-size:11px;font-weight:700;color:#fff;letter-spacing:.4px}
+.lvl-hdr-sub{font-size:10px;color:rgba(255,255,255,.65)}
+.lvl-body{padding:12px 14px;overflow-x:auto}
+.mt{width:100%;border-collapse:collapse;font-size:11px;min-width:340px}
+.mt th{background:#F8F8F8;padding:7px 10px;text-align:center;font-weight:600;color:#555;border-bottom:1.5px solid #E0E0E0}
+.mt th:first-child{text-align:left;min-width:150px}
+.mt td{padding:6px 10px;border-bottom:.5px solid #F5F5F5;text-align:center}
+.mt td:first-child{text-align:left;font-weight:500;color:#333}
+.mt tr:last-child td{border-bottom:none}
+.th-m{background:#1A1A2E!important;color:#fff!important}
+.th-av{background:#1B5E20!important;color:#fff!important}
+.td-m{font-weight:700;color:#1A1A2E}
+.td-av{font-weight:700;color:#1B5E20}
+.null-v{color:#CCC}
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.chart-card{background:#fff;border-radius:10px;padding:13px;border:1px solid #EBEBEB}
+.chart-lbl{font-size:11px;font-weight:600;color:#555;margin-bottom:8px}
+.ch-leg{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:7px;font-size:10px;color:#666}
+.ch-sq{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
+.sellers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.sc{background:#fff;border-radius:10px;padding:11px;border:1px solid #EBEBEB}
+.sc-av{width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;margin-bottom:7px}
+.sc-name{font-size:12px;font-weight:700}
+.sc-role{font-size:10px;color:#888;margin-bottom:7px}
+.sc-row{display:flex;justify-content:space-between;font-size:10px;padding:2px 0;border-bottom:.5px solid #F5F5F5}
+.sc-row:last-of-type{border:none}
+.sc-lbl{color:#888}.sc-val{font-weight:600}
+.prog-bg{background:#F0F0F0;border-radius:3px;height:5px;margin-top:7px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px}
+.prog-lbl{font-size:9px;text-align:right;margin-top:2px;font-weight:600}
+.na-box{padding:30px;text-align:center;color:#888;background:#fff;border-radius:10px;border:1px solid #EBEBEB}
+.tip{font-size:11px;color:#888;margin-bottom:10px;background:#FFF9E6;padding:7px 12px;border-radius:8px;border-left:3px solid #FBC02D}
+.ch-tab{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.ch-btn{padding:4px 12px;border-radius:20px;border:1.5px solid #ddd;font-size:11px;cursor:pointer;background:#fff;color:#555;font-weight:600}
+.ch-btn.on{background:#2E7D32;color:#fff;border-color:#2E7D32}
+@media(max-width:560px){.area-cards,.sellers-grid,.charts-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-left">
+    <button class="back-btn" id="back-btn" onclick="goHome()">&#8592; Visão Geral</button>
+    <div class="tb-title" id="tb-title">Dashboard Marketing <span class="updated" id="updated-lbl"></span></div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <div class="tog-grp" id="co-grp">
+      <button class="tog on" onclick="setCo('fish')">Fishermans</button>
+      <button class="tog" onclick="setCo('arist')">Aristocrata</button>
+    </div>
+    <div class="tog-grp" id="per-grp">
+      <button class="tog" onclick="setPer(1)">Sem 1</button>
+      <button class="tog" onclick="setPer(2)">Sem 2</button>
+      <button class="tog" onclick="setPer(3)">Sem 3</button>
+      <button class="tog" onclick="setPer(4)">Sem 4</button>
+      <button class="tog on" onclick="setPer(0)">Mensal</button>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="screen active" id="screen-home"></div>
+  <div class="screen" id="screen-creative"></div>
+  <div class="screen" id="screen-marketplace"></div>
+  <div class="screen" id="screen-trafego"></div>
+  <div class="screen" id="screen-vendas"></div>
+</div>
+<script>
+const D={"fish": {"creative": {"mensal": {"lancados": 23.0, "vencedores": 4.0, "win_rate": 17.4, "formatos": 0.0, "gasto_nov": null, "hook": 35.59, "hold": 6.9, "ctr": 1.26, "cpm": 15.56, "custo_hook": 43.720146108457435, "freq": 2.9}, "semanas": [{"lancados": 23.0, "vencedores": 4.0, "win_rate": 17.4, "hook": 35.59, "hold": 6.9, "ctr": 1.26, "cpm": 15.56, "custo_hook": 43.720146108457435, "freq": 2.9}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}], "media": {"lancados": 23.0, "vencedores": 4.0, "win_rate": 17.4, "hook": 35.59, "hold": 6.9, "ctr": 1.26, "cpm": 15.56, "custo_hook": 43.720146108457435, "freq": 2.9}}, "marketplace": {"ML": {"mensal": {"receita": 98808.0, "ads": 3878.61, "margem": 65391.98999999999, "tacos": 3.93, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 98808.0, "ads": 3878.61, "margem": 65391.98999999999, "tacos": 3.93, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 98808.0, "margem": 65391.98999999999, "tacos": 3.93}}, "Amazon": {"mensal": {"receita": 302.13, "ads": 0.0, "margem": 265.87, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 302.13, "ads": 0.0, "margem": 265.87, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 302.13, "margem": 265.87, "tacos": null}}, "Shopee": {"mensal": {"receita": 11368.47, "ads": 0.0, "margem": 8434.3, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 11368.47, "ads": 0.0, "margem": 8434.3, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 11368.47, "margem": 8434.3, "tacos": null}}, "TikTok": {"mensal": {"receita": 6853.46, "ads": 0.0, "margem": 6853.46, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 6853.46, "ads": 0.0, "margem": 6853.46, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 6853.46, "margem": 6853.46, "tacos": null}}, "Shein": {"mensal": {"receita": 495.12, "ads": 0.0, "margem": 495.12, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 495.12, "ads": 0.0, "margem": 495.12, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 495.12, "margem": 495.12, "tacos": null}}, "Magalu": {"mensal": {"receita": 0.0, "ads": 0.0, "margem": 0.0, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": null, "margem": null, "tacos": null}}, "GERAL": {"mensal": {"receita": 117827.18000000001, "ads": 3878.61, "margem": 81440.73999999999, "tacos": 3.29, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 117827.18, "ads": 3878.61, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}], "media": {"receita": 117827.18000000001, "margem": 81440.73999999999, "tacos": 3.29, "earned_pct": null}}}, "trafego": {"mensal": {"receita_novos": 0.0, "gasto": 0.0, "amer": null, "mc": 0.0, "nnc": 0.0, "cpm": 0.0, "ctr": null, "cvr": null}, "semanas": [{"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null, "cvr": null}], "media": {"amer": null, "mc": null, "nnc": null, "cpm": null, "ctr": null}}, "vendas": {"sellers": [{"nome": "Leandro", "mensal": {"fat": 20980.0, "vendas": 7.0, "leads": 75.0, "cvr": 9.3, "ticket": 2997.1428571428573, "nps": null, "margem": null, "cancel": null, "fat_meta": null, "pct_meta": null}, "semanas": [{"fat": 20980.0, "vendas": 7.0, "leads": 75.0, "cvr": 9.3, "ticket": 2997.1428571428573, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}], "media": {"fat": 20980.0, "vendas": 7.0, "cvr": 9.3, "ticket": 2997.1428571428573, "nps": null}}, {"nome": "Guilherme", "mensal": {"fat": 6174.0, "vendas": 3.0, "leads": 164.0, "cvr": 1.8, "ticket": 2058.0, "nps": null, "margem": null, "cancel": null, "fat_meta": null, "pct_meta": null}, "semanas": [{"fat": 6174.0, "vendas": 3.0, "leads": 164.0, "cvr": 1.8, "ticket": 2058.0, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}], "media": {"fat": 6174.0, "vendas": 3.0, "cvr": 1.8, "ticket": 2058.0, "nps": null}}, {"nome": "Vinicius", "mensal": {"fat": 0.0, "vendas": 0.0, "leads": 0.0, "cvr": null, "ticket": null, "nps": 0.0, "margem": null, "cancel": null, "fat_meta": null, "pct_meta": null}, "semanas": [{"fat": 0.0, "vendas": 0.0, "leads": 0.0, "cvr": null, "ticket": 0.0, "nps": 0.0}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}], "media": {"fat": null, "vendas": null, "cvr": null, "ticket": null, "nps": null}}], "equipe": {"mensal": {"fat": 27154.0, "vendas": 10.0, "leads": 239.0, "cvr": 4.18, "ticket": 2715.4, "nps": null}, "semanas": [{"fat": null, "vendas": null, "cvr": null, "ticket": null}, {"fat": null, "vendas": null, "cvr": null, "ticket": null}, {"fat": null, "vendas": null, "cvr": null, "ticket": null}, {"fat": null, "vendas": null, "cvr": null, "ticket": null}], "media": {"fat": 9051.333333333334, "vendas": 3.3333333333333335, "cvr": 4.18, "ticket": 2715.4}}}}, "arist": {"creative": {"mensal": {"lancados": 23.0, "vencedores": 1.0, "win_rate": 4.3, "formatos": 0.0, "gasto_nov": null, "hook": 14.02, "hold": 3.04, "ctr": 1.16, "cpm": 2.89, "custo_hook": 20.613409415121257, "freq": 1.89}, "semanas": [{"lancados": 23.0, "vencedores": 1.0, "win_rate": 4.3, "hook": 14.02, "hold": 3.04, "ctr": 1.16, "cpm": 2.89, "custo_hook": 20.613409415121257, "freq": 1.89}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}], "media": {"lancados": 23.0, "vencedores": 1.0, "win_rate": 4.3, "hook": 14.02, "hold": 3.04, "ctr": 1.16, "cpm": 2.89, "custo_hook": 20.613409415121257, "freq": 1.89}}, "marketplace": {"ML": {"mensal": {"receita": 44963.39, "ads": 760.0, "margem": 29138.01, "tacos": 1.69, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 44963.39, "ads": 760.0, "margem": 29138.01, "tacos": 1.69, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 44963.39, "margem": 29138.01, "tacos": 1.69}}, "Amazon": {"mensal": {"receita": 1659.21, "ads": 0.0, "margem": 1472.25, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 1659.21, "ads": 0.0, "margem": 1472.25, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 1659.21, "margem": 1472.25, "tacos": null}}, "Shopee": {"mensal": {"receita": 9898.62, "ads": 0.0, "margem": 5425.380000000001, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 9898.62, "ads": 0.0, "margem": 5425.380000000001, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 9898.62, "margem": 5425.380000000001, "tacos": null}}, "TikTok": {"mensal": {"receita": 987.85, "ads": 0.0, "margem": 987.85, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 987.85, "ads": 0.0, "margem": 987.85, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 987.85, "margem": 987.85, "tacos": null}}, "Shein": {"mensal": {"receita": 0.0, "ads": 0.0, "margem": 0.0, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 0.0, "ads": 0.0, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": null, "margem": null, "tacos": null}}, "Magalu": {"mensal": {"receita": 0.0, "ads": 0.0, "margem": 0.0, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": null, "margem": null, "tacos": null}}, "GERAL": {"mensal": {"receita": 57509.07, "ads": 760.0, "margem": 37023.49, "tacos": 1.32, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 57479.07, "ads": 760.0, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}], "media": {"receita": 57509.07, "margem": 37023.49, "tacos": 1.32, "earned_pct": null}}}, "trafego": {"mensal": {"receita_novos": 0.0, "gasto": 0.0, "amer": null, "mc": 0.0, "nnc": 0.0, "cpm": 0.0, "ctr": null, "cvr": null}, "semanas": [{"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null, "cvr": null}], "media": {"amer": null, "mc": null, "nnc": null, "cpm": null, "ctr": null}}, "vendas": null}};
+const TODAY='11/05/2026';
+document.getElementById('updated-lbl').textContent='atualizado '+TODAY;
+const WKS=['Sem 1','Sem 2','Sem 3','Sem 4'];
+const WKSF=['Semana 1','Semana 2','Semana 3','Semana 4'];
+const SI=[
+  {name:'Leandro',role:'Gestor',ini:'LE',col:'#4527A0',bg:'#EDE7F6'},
+  {name:'Guilherme',role:'Vendedor',ini:'GU',col:'#00695C',bg:'#E0F2F1'},
+  {name:'Vinicius',role:'Vendedor',ini:'VI',col:'#E65100',bg:'#FFF3E0'},
+];
+const CH_COLS={'ML':'#F9A825','Amazon':'#F57C00','Shopee':'#E53935','TikTok':'#7B1FA2','Shein':'#AD1457','Magalu':'#607D8B','GERAL':'#2E7D32'};
+
+let co='fish', per=0, cur='home', curCh='GERAL';
+let charts={};
+
+function dc(){Object.values(charts).forEach(c=>{try{c.destroy()}catch(e){}});charts={};}
+
+function fmtN(x,type){
+  if(x===null||x===undefined||x==='')return '<span class="null-v">—</span>';
+  const n=parseFloat(x);
+  if(isNaN(n))return '<span class="null-v">—</span>';
+  if(type==='brl'){
+    if(Math.abs(n)>=1e6)return 'R$ '+(n/1e6).toFixed(1)+'M';
+    if(Math.abs(n)>=1000)return 'R$ '+(n/1000).toFixed(0)+'k';
+    return 'R$ '+Math.round(n).toLocaleString('pt-BR');
+  }
+  if(type==='pct')return n.toFixed(1)+'%';
+  if(type==='x')return n.toFixed(1)+'x';
+  if(type==='dec')return n.toFixed(1);
+  if(type==='int')return Math.round(n).toString();
+  return n%1===0?n.toString():n.toFixed(1);
+}
+
+function semV(obj,key){
+  return (obj.semanas||[]).map(s=>{ const v=s?.[key]; return (v===null||v===undefined)?null:parseFloat(v)||null; });
+}
+
+function cht(id,cfg){
+  const el=document.getElementById(id);
+  if(!el)return;
+  try{charts[id]=new Chart(el,cfg);}catch(e){console.warn('chart err',id,e);}
+}
+
+function barOpts(yFmt,xLbls){
+  return{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{y:{ticks:{callback:yFmt,font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},
+            x:{ticks:{labels:xLbls,font:{size:10}},grid:{display:false}}}};
+}
+function lineOpts(yFmt){
+  return{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{y:{ticks:{callback:yFmt,font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},
+            x:{ticks:{font:{size:10}},grid:{display:false}}}};
+}
+
+function buildTable(metrics,dataObj){
+  const ms=dataObj.mensal||{}, sem=dataObj.semanas||[], md=dataObj.media||{};
+  let h='<tr><th>Métrica</th>';
+  h+=per===0?'<th class="th-m">Total Mês</th>':'<th class="th-m">'+WKSF[per-1]+'</th>';
+  h+='<th class="th-av">Média Semanal</th></tr>';
+  let b='';
+  for(const m of metrics){
+    const cv=per===0?ms[m.key]:(sem[per-1]||{})[m.key];
+    const av=md[m.key];
+    b+='<tr><td>'+m.label+'</td><td class="td-m">'+fmtN(cv,m.type)+'</td><td class="td-av">'+fmtN(av,m.type)+'</td></tr>';
+  }
+  return '<table class="mt"><thead>'+h+'</thead><tbody>'+b+'</tbody></table>';
+}
+
+// ── HOME ──────────────────────────────────────────────────
+function renderHome(){
+  const d=D[co];
+  const cr=d.creative?.mensal||{};
+  const geral=d.marketplace?.GERAL?.mensal||{};
+  const tr=d.trafego?.mensal||{};
+  const vd=d.vendas?.equipe?.mensal||{};
+  const areas=[
+    {id:'creative',label:'Creative Strategist',color:'#E65100',icon:'🎨',rows:[
+      {l:'Win Rate',v:fmtN(cr.win_rate,'pct')},{l:'Hook Rate',v:fmtN(cr.hook,'pct')},{l:'CPM',v:fmtN(cr.cpm,'brl')}],foot:'Clique para ver detalhes'},
+    {id:'marketplace',label:'Marketplace',color:'#2E7D32',icon:'🛒',rows:[
+      {l:'Receita Total',v:fmtN(geral.receita,'brl')},{l:'Margem Líq.',v:fmtN(geral.margem,'brl')},{l:'TACOS',v:fmtN(geral.tacos,'pct')}],foot:'ML · Amazon · Shopee · TikTok · Shein'},
+    {id:'trafego',label:'Tráfego Pago',color:'#1565C0',icon:'📈',rows:[
+      {l:'aMER',v:fmtN(tr.amer,'x')},{l:'Novos Clientes',v:fmtN(tr.nnc,'int')},{l:'MC Aquisição',v:fmtN(tr.mc,'brl')}],foot:'Clique para ver detalhes'},
+    {id:'vendas',label:'Vendas',color:'#C62828',icon:'💰',rows:co==='fish'?[
+      {l:'Faturamento',v:fmtN(vd.fat,'brl')},{l:'CVR Equipe',v:fmtN(vd.cvr,'pct')},{l:'Ticket Médio',v:fmtN(vd.ticket,'brl')}]:[{l:'',v:'Apenas Fishermans'}],
+      foot:co==='fish'?'Leandro · Guilherme · Vinicius':'Não se aplica'},
+  ];
+  const lbl=per===0?'mensal acumulado':WKSF[per-1];
+  document.getElementById('screen-home').innerHTML=
+    '<div class="tip">📌 Período: <b>'+lbl+'</b> — clique em uma área para ver todos os resultados, gráficos e médias</div>'+
+    '<div class="area-cards">'+areas.map(a=>
+      '<div class="area-card" onclick="goScreen(\''+a.id+'\')">'+
+      '<div class="ac-hdr" style="background:'+a.color+'"><div class="ac-title">'+a.icon+' '+a.label+'</div><div style="color:rgba(255,255,255,.8);font-size:18px">›</div></div>'+
+      '<div class="ac-body">'+a.rows.map(r=>'<div class="ac-row"><span class="ac-lbl">'+r.l+'</span><span class="ac-val">'+r.v+'</span></div>').join('')+'</div>'+
+      '<div class="ac-foot" style="color:'+a.color+'">'+a.foot+'</div></div>').join('')+'</div>';
+}
+
+// ── CREATIVE ──────────────────────────────────────────────
+function renderCreative(){
+  const d=D[co].creative;
+  const sub=co==='fish'?'Fishermans':'Aristocrata';
+  const m1=[{key:'lancados',label:'Criativos Lançados',type:'int'},{key:'vencedores',label:'Criativos Vencedores',type:'int'},
+    {key:'win_rate',label:'Win Rate %',type:'pct'},{key:'formatos',label:'Formatos Novos',type:'int'}];
+  const m2=[{key:'hook',label:'Hook Rate %',type:'pct'},{key:'hold',label:'Hold Rate %',type:'pct'},
+    {key:'ctr',label:'CTR Link %',type:'pct'},{key:'cpm',label:'CPM R$',type:'brl'},
+    {key:'custo_hook',label:'Custo por Hook R$',type:'brl'},{key:'freq',label:'Frequência',type:'dec'}];
+  document.getElementById('screen-creative').innerHTML=
+    '<div class="det-hdr"><div class="det-top"><div class="det-accent" style="background:#E65100"></div>'+
+    '<div><div class="det-title">Creative Strategist — '+sub+'</div>'+
+    '<div class="det-sub">'+(per===0?'Resultado mensal acumulado':WKSF[per-1])+'</div></div></div></div>'+
+    '<div class="charts-row">'+
+    '<div class="chart-card"><div class="chart-lbl">Hook Rate % — semanal</div><div style="position:relative;height:155px"><canvas id="cr-hk" role="img" aria-label="Hook Rate">Hook Rate</canvas></div></div>'+
+    '<div class="chart-card"><div class="chart-lbl">CPM R$ — semanal</div><div style="position:relative;height:155px"><canvas id="cr-cp" role="img" aria-label="CPM">CPM</canvas></div></div>'+
+    '</div><div class="charts-row">'+
+    '<div class="chart-card"><div class="chart-lbl">Hold Rate % — semanal</div><div style="position:relative;height:150px"><canvas id="cr-hd" role="img" aria-label="Hold Rate">Hold Rate</canvas></div></div>'+
+    '<div class="chart-card"><div class="chart-lbl">CTR % — semanal</div><div style="position:relative;height:150px"><canvas id="cr-ct" role="img" aria-label="CTR">CTR</canvas></div></div>'+
+    '</div>'+
+    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#E65100"><span class="lvl-hdr-title">📊 Produção de Criativos</span></div><div class="lvl-body">'+buildTable(m1,d)+'</div></div>'+
+    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#BF360C"><span class="lvl-hdr-title">📈 Performance dos Anúncios</span></div><div class="lvl-body">'+buildTable(m2,d)+'</div></div>';
+  setTimeout(function(){
+    const hkV=semV(d,'hook'),cpV=semV(d,'cpm'),hdV=semV(d,'hold'),ctV=semV(d,'ctr');
+    const hs=function(v){return v.some(function(x){return x!==null;});};
+    if(hs(hkV))cht('cr-hk',{type:'line',data:{labels:WKS,datasets:[{data:hkV,borderColor:'#E65100',backgroundColor:'rgba(230,81,0,.1)',pointRadius:5,tension:.3,fill:true}]},options:lineOpts(function(v){return v+'%';})});
+    if(hs(cpV))cht('cr-cp',{type:'bar',data:{labels:WKS,datasets:[{data:cpV,backgroundColor:'rgba(230,81,0,.65)',borderRadius:5}]},options:barOpts(function(v){return 'R$'+v;},WKS)});
+    if(hs(hdV))cht('cr-hd',{type:'line',data:{labels:WKS,datasets:[{data:hdV,borderColor:'#FF8F00',backgroundColor:'rgba(255,143,0,.1)',pointRadius:5,tension:.3,fill:true}]},options:lineOpts(function(v){return v+'%';})});
+    if(hs(ctV))cht('cr-ct',{type:'bar',data:{labels:WKS,datasets:[{data:ctV,backgroundColor:'rgba(255,183,77,.8)',borderRadius:5}]},options:barOpts(function(v){return v+'%';},WKS)});
+  },100);
+}
+
+// ── MARKETPLACE ───────────────────────────────────────────
+function renderMarketplace(){
+  const allCh=D[co].marketplace||{};
+  const chKeys=Object.keys(allCh);
+  const mktMs=[
+    {key:'receita',label:'Receita (GMV) R$',type:'brl'},{key:'margem',label:'Margem Líquida R$',type:'brl'},
+    {key:'ads',label:'Gasto em Ads R$',type:'brl'},{key:'tacos',label:'TACOS %',type:'pct'},
+    {key:'earned',label:'Receita Earned R$',type:'brl'},{key:'earned_pct',label:'% Receita Earned',type:'pct'},
+  ];
+
+  const tabs=chKeys.map(function(k){
+    const active=k===curCh?' on':'';
+    const col=CH_COLS[k]||'#555';
+    return '<button class="ch-btn'+active+'" style="'+(k===curCh?'background:'+col+';color:#fff;border-color:'+col:'border-color:'+col+';color:'+col)+'" onclick="setCh(\''+k+'\')">'+k+'</button>';
+  }).join('');
+
+  const d=allCh[curCh]||{};
+  const ch_col=CH_COLS[curCh]||'#2E7D32';
+  const sub=co==='fish'?'Fishermans':'Aristocrata';
+
+  document.getElementById('screen-marketplace').innerHTML=
+    '<div class="det-hdr"><div class="det-top"><div class="det-accent" style="background:#2E7D32"></div>'+
+    '<div><div class="det-title">Marketplace — '+sub+'</div>'+
+    '<div class="det-sub">Selecione um canal abaixo · '+(per===0?'Mensal acumulado':WKSF[per-1])+'</div></div></div>'+
+    '<div class="ch-tab" style="margin-top:10px">'+tabs+'</div></div>'+
+    '<div class="charts-row">'+
+    '<div class="chart-card"><div class="chart-lbl">Receita por canal — comparativo</div><div style="position:relative;height:155px"><canvas id="mkt-bar" role="img" aria-label="Receita por canal">Receita</canvas></div></div>'+
+    '<div class="chart-card"><div class="chart-lbl">Receita R$ — tendência semanal ('+curCh+')</div><div style="position:relative;height:155px"><canvas id="mkt-line" role="img" aria-label="Receita semanal">Receita</canvas></div></div>'+
+    '</div><div class="charts-row">'+
+    '<div class="chart-card"><div class="chart-lbl">Margem Líquida R$ — tendência semanal</div><div style="position:relative;height:150px"><canvas id="mkt-mg" role="img" aria-label="Margem">Margem</canvas></div></div>'+
+    '<div class="chart-card"><div class="chart-lbl">TACOS % por canal (semáforo)</div><div style="position:relative;height:150px"><canvas id="mkt-tc" role="img" aria-label="TACOS">TACOS</canvas></div></div>'+
+    '</div>'+
+    '<div class="lvl-sec"><div class="lvl-hdr" style="background:'+ch_col+'"><span class="lvl-hdr-title">🛒 Resultados — '+curCh+'</span><span class="lvl-hdr-sub">'+(per===0?'mensal':'semanal')+' + média</span></div><div class="lvl-body">'+buildTable(mktMs,d)+'</div></div>';
+
+  setTimeout(function(){
+    // Chart 1: bar comparativo receita por canal
+    const barLabels=[],barData=[],barColors=[];
+    chKeys.forEach(function(k){
+      if(k==='GERAL')return;
+      const v=per===0?(allCh[k]?.mensal?.receita||0):((allCh[k]?.semanas||[])[per-1]?.receita||0);
+      barLabels.push(k); barData.push(parseFloat(v)||0);
+      barColors.push(CH_COLS[k]||'#999');
+    });
+    cht('mkt-bar',{type:'bar',data:{labels:barLabels,datasets:[{data:barData,backgroundColor:barColors,borderRadius:5}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+    // Chart 2: receita semanal do canal selecionado
+    const recV=semV(d,'receita');
+    if(recV.some(function(x){return x!==null;}))
+      cht('mkt-line',{type:'bar',data:{labels:WKS,datasets:[{data:recV,backgroundColor:ch_col+'bb',borderRadius:5}]},
+        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+          scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+    // Chart 3: margem semanal
+    const mgV=semV(d,'margem');
+    if(mgV.some(function(x){return x!==null;}))
+      cht('mkt-mg',{type:'line',data:{labels:WKS,datasets:[{data:mgV,borderColor:'#2E7D32',backgroundColor:'rgba(46,125,50,.1)',pointRadius:5,tension:.3,fill:true}]},
+        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+          scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+    // Chart 4: TACOS por canal
+    const tcLabels=[],tcData=[],tcColors=[];
+    chKeys.forEach(function(k){
+      if(k==='GERAL')return;
+      const v=parseFloat(per===0?(allCh[k]?.mensal?.tacos||0):((allCh[k]?.semanas||[])[per-1]?.tacos||0))||0;
+      tcLabels.push(k); tcData.push(v);
+      tcColors.push(v>15?'#E53935':v>10?'#F9A825':'#43A047');
+    });
+    cht('mkt-tc',{type:'bar',data:{labels:tcLabels,datasets:[{data:tcData,backgroundColor:tcColors,borderRadius:5}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y.toFixed(1)+'%';}}}},
+        scales:{y:{ticks:{callback:function(v){return v+'%';},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+  },100);
+}
+
+function setCh(ch){
+  curCh=ch; dc(); renderMarketplace();
+}
+
+// ── TRÁFEGO ───────────────────────────────────────────────
+function renderTrafego(){
+  const d=D[co].trafego;
+  const sub=co==='fish'?'Fishermans':'Aristocrata';
+  const ms=[
+    {key:'amer',label:'aMER',type:'x'},{key:'receita_novos',label:'Receita Novos R$',type:'brl'},
+    {key:'gasto',label:'Gasto Mídia R$',type:'brl'},{key:'mc',label:'MC Aquisição R$',type:'brl'},
+    {key:'nnc',label:'NNC — Novos Clientes',type:'int'},{key:'cpm',label:'CPM R$',type:'brl'},
+    {key:'ctr',label:'CTR %',type:'pct'},{key:'cvr',label:'CVR Checkout %',type:'pct'},
+  ];
+  document.getElementById('screen-trafego').innerHTML=
+    '<div class="det-hdr"><div class="det-top"><div class="det-accent" style="background:#1565C0"></div>'+
+    '<div><div class="det-title">Tráfego Pago — '+sub+'</div>'+
+    '<div class="det-sub">Aquisição e eficiência · '+(per===0?'Mensal acumulado':WKSF[per-1])+'</div></div></div></div>'+
+    '<div class="charts-row">'+
+    '<div class="chart-card"><div class="chart-lbl">NNC — Novos clientes por semana</div><div style="position:relative;height:155px"><canvas id="tr-nn" role="img" aria-label="NNC">NNC</canvas></div></div>'+
+    '<div class="chart-card"><div class="chart-lbl">aMER — Eficiência de aquisição</div><div style="position:relative;height:155px"><canvas id="tr-am" role="img" aria-label="aMER">aMER</canvas></div></div>'+
+    '</div><div class="charts-row">'+
+    '<div class="chart-card"><div class="chart-lbl">MC Aquisição R$ — semanal</div><div style="position:relative;height:150px"><canvas id="tr-mc" role="img" aria-label="MC">MC</canvas></div></div>'+
+    '<div class="chart-card"><div class="chart-lbl">CPM R$ e CTR %</div>'+
+    '<div class="ch-leg"><span><span class="ch-sq" style="background:#1565C0"></span>CPM R$</span><span><span class="ch-sq" style="background:#42A5F5"></span>CTR %</span></div>'+
+    '<div style="position:relative;height:130px"><canvas id="tr-cc" role="img" aria-label="CPM CTR">CPM CTR</canvas></div></div>'+
+    '</div>'+
+    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#1565C0"><span class="lvl-hdr-title">📈 Métricas de Aquisição</span></div><div class="lvl-body">'+buildTable(ms,d)+'</div></div>';
+  setTimeout(function(){
+    const nn=semV(d,'nnc'),am=semV(d,'amer'),mc=semV(d,'mc'),cp=semV(d,'cpm'),ct=semV(d,'ctr');
+    const hs=function(v){return v.some(function(x){return x!==null;});};
+    if(hs(nn))cht('tr-nn',{type:'bar',data:{labels:WKS,datasets:[{data:nn,backgroundColor:'rgba(21,101,192,.75)',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+    if(hs(am))cht('tr-am',{type:'line',data:{labels:WKS,datasets:[{data:am,borderColor:'#1565C0',backgroundColor:'rgba(21,101,192,.1)',pointRadius:5,tension:.3,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y.toFixed(1)+'x';}}}},scales:{y:{ticks:{callback:function(v){return v+'x';},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+    if(hs(mc))cht('tr-mc',{type:'bar',data:{labels:WKS,datasets:[{data:mc,backgroundColor:'rgba(66,165,245,.75)',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+    if(hs(cp)||hs(ct))cht('tr-cc',{type:'bar',data:{labels:WKS,datasets:[{label:'CPM',data:cp,backgroundColor:'rgba(21,101,192,.7)',borderRadius:3,yAxisID:'y'},{label:'CTR',data:ct,backgroundColor:'rgba(66,165,245,.7)',borderRadius:3,yAxisID:'y2'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return 'R$'+v;},font:{size:9}},grid:{color:'rgba(0,0,0,.05)'}},y2:{position:'right',ticks:{callback:function(v){return v+'%';},font:{size:9}},grid:{display:false}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+  },100);
+}
+
+// ── VENDAS ────────────────────────────────────────────────
+function renderVendas(){
+  const el=document.getElementById('screen-vendas');
+  if(co!=='fish'||!D[co].vendas){
+    el.innerHTML='<div class="na-box"><div style="font-size:28px;margin-bottom:8px">💼</div><div style="font-weight:700;margin-bottom:6px">Área de Vendas</div>Exclusiva da Fishermans.</div>';
+    return;
+  }
+  const vd=D[co].vendas;
+  const eq_ms=[
+    {key:'fat',label:'Faturamento R$',type:'brl'},{key:'vendas',label:'Vendas Fechadas',type:'int'},
+    {key:'leads',label:'Leads Recebidos',type:'int'},{key:'cvr',label:'CVR %',type:'pct'},
+    {key:'ticket',label:'Ticket Médio R$',type:'brl'},{key:'nps',label:'NPS Médio',type:'dec'},
+  ];
+  const sel_ms=[
+    {key:'fat',label:'Faturamento R$',type:'brl'},{key:'vendas',label:'Vendas Fechadas',type:'int'},
+    {key:'leads',label:'Leads',type:'int'},{key:'cvr',label:'CVR %',type:'pct'},
+    {key:'ticket',label:'Ticket Médio R$',type:'brl'},{key:'nps',label:'NPS',type:'dec'},
+  ];
+
+  // Seller cards
+  const selCards=(vd.sellers||[]).map(function(s,i){
+    const si=SI[i]||SI[0];
+    const pct=s.mensal?s.mensal.pct_meta:null;
+    const cv=per===0?s.mensal:((s.semanas||[])[per-1]||{});
+    const bc=pct>=100?'#2E7D32':pct>=80?'#F57F17':'#C62828';
+    return '<div class="sc">'+
+      '<div class="sc-av" style="background:'+si.col+'">'+si.ini+'</div>'+
+      '<div class="sc-name" style="color:'+si.col+'">'+s.nome+'</div>'+
+      '<div class="sc-role">'+si.role+'</div>'+
+      '<div class="sc-row"><span class="sc-lbl">Faturamento</span><span class="sc-val">'+fmtN(cv?cv.fat:null,'brl')+'</span></div>'+
+      '<div class="sc-row"><span class="sc-lbl">Vendas</span><span class="sc-val">'+(cv&&cv.vendas!=null?Math.round(cv.vendas):'—')+'</span></div>'+
+      '<div class="sc-row"><span class="sc-lbl">CVR</span><span class="sc-val">'+fmtN(cv?cv.cvr:null,'pct')+'</span></div>'+
+      '<div class="sc-row"><span class="sc-lbl">Ticket</span><span class="sc-val">'+fmtN(cv?cv.ticket:null,'brl')+'</span></div>'+
+      (pct!==null?'<div class="prog-bg"><div class="prog-fill" style="width:'+Math.min(pct,100)+'%;background:'+bc+'"></div></div><div class="prog-lbl" style="color:'+bc+'">'+pct.toFixed(0)+'% da meta</div>':'')+
+    '</div>';
+  }).join('');
+
+  // Per-seller detailed tables
+  const selTables=(vd.sellers||[]).map(function(s,i){
+    const si=SI[i]||SI[0];
+    return '<div style="margin-bottom:14px">'+
+      '<div style="font-size:12px;font-weight:700;color:'+si.col+';margin-bottom:6px;display:flex;align-items:center;gap:6px">'+
+      '<div style="width:10px;height:10px;border-radius:50%;background:'+si.col+'"></div>'+s.nome+' — '+si.role+'</div>'+
+      buildTable(sel_ms,s)+'</div>';
+  }).join('');
+
+  el.innerHTML=
+    '<div class="det-hdr"><div class="det-top"><div class="det-accent" style="background:#C62828"></div>'+
+    '<div><div class="det-title">Vendas — Fishermans</div>'+
+    '<div class="det-sub">Equipe: Leandro · Guilherme · Vinicius · '+(per===0?'Mensal acumulado':WKSF[per-1])+'</div></div></div></div>'+
+    '<div class="charts-row">'+
+    '<div class="chart-card"><div class="chart-lbl">Faturamento por vendedor</div>'+
+    '<div class="ch-leg">'+SI.map(function(s){return '<span><span class="ch-sq" style="background:'+s.col+'"></span>'+s.name+'</span>';}).join('')+'</div>'+
+    '<div style="position:relative;height:145px"><canvas id="vd-fat" role="img" aria-label="Faturamento vendedor">Faturamento</canvas></div></div>'+
+    '<div class="chart-card"><div class="chart-lbl">CVR % por vendedor — semanal</div>'+
+    '<div class="ch-leg">'+SI.map(function(s){return '<span><span class="ch-sq" style="background:'+s.col+'"></span>'+s.name+'</span>';}).join('')+'</div>'+
+    '<div style="position:relative;height:145px"><canvas id="vd-cvr" role="img" aria-label="CVR vendedor">CVR</canvas></div></div>'+
+    '</div>'+
+    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#C62828"><span class="lvl-hdr-title">💰 Resultado da Equipe — Consolidado</span></div><div class="lvl-body">'+buildTable(eq_ms,vd.equipe)+'</div></div>'+
+    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#880E4F"><span class="lvl-hdr-title">👤 Resumo Individual</span></div><div class="lvl-body"><div class="sellers-grid">'+selCards+'</div></div></div>'+
+    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#AD1457"><span class="lvl-hdr-title">📊 Detalhe Individual — com Média Semanal</span></div><div class="lvl-body">'+selTables+'</div></div>';
+
+  setTimeout(function(){
+    // Faturamento por vendedor (bar comparativo)
+    const fatData=(vd.sellers||[]).map(function(s){
+      const v=per===0?(s.mensal?s.mensal.fat:null):((s.semanas||[])[per-1]?.fat||null);
+      return parseFloat(v)||0;
+    });
+    cht('vd-fat',{type:'bar',data:{labels:SI.map(function(s){return s.name;}),datasets:[{data:fatData,backgroundColor:SI.map(function(s){return s.col;}),borderRadius:6}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:11}},grid:{display:false}}}}});
+    // CVR semanal por vendedor (line)
+    const cvrDS=(vd.sellers||[]).map(function(s,i){
+      return{label:s.nome,data:semV(s,'cvr'),borderColor:SI[i].col,pointRadius:4,tension:.3,
+        borderDash:i===0?[]:i===1?[5,3]:[2,2]};
+    });
+    const hasCvr=cvrDS.some(function(ds){return ds.data.some(function(x){return x!==null;});});
+    if(hasCvr)cht('vd-cvr',{type:'line',data:{labels:WKS,datasets:cvrDS},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.parsed.y+'%';}}}},
+        scales:{y:{ticks:{callback:function(v){return v+'%';},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+  },100);
+}
+
+function renderScreen(){
+  if(cur==='home')renderHome();
+  else if(cur==='creative')renderCreative();
+  else if(cur==='marketplace')renderMarketplace();
+  else if(cur==='trafego')renderTrafego();
+  else if(cur==='vendas')renderVendas();
+}
+function goHome(){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('screen-home').classList.add('active');
+  document.getElementById('back-btn').style.display='none';
+  document.getElementById('tb-title').innerHTML='Dashboard Marketing <span class="updated" id="updated-lbl">atualizado '+TODAY+'</span>';
+  dc(); cur='home'; curCh='GERAL'; renderHome();
+}
+function goScreen(name){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('screen-'+name).classList.add('active');
+  document.getElementById('back-btn').style.display='flex';
+  const T={creative:'Creative Strategist',marketplace:'Marketplace',trafego:'Tráfego Pago',vendas:'Vendas'};
+  document.getElementById('tb-title').textContent=T[name];
+  dc(); cur=name; renderScreen();
+}
+function setCo(c){
+  co=c; curCh='GERAL';
+  document.querySelectorAll('#co-grp .tog').forEach(function(t,i){t.classList.toggle('on',i===(c==='fish'?0:1));});
+  dc(); renderScreen();
+}
+function setPer(p){
+  per=p;
+  document.querySelectorAll('#per-grp .tog').forEach(function(t,i){t.classList.toggle('on',i===(p===0?4:p-1));});
+  dc(); renderScreen();
+}
+renderHome();
+</script>
+</body>
+</html>
