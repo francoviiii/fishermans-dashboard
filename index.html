@@ -1,95 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dashboard Marketing | Fishermans & Aristocrata</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#F4F5F7;color:#1A1A2E}
-.topbar{background:#1A1A2E;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#F4F5F7;color:#1A1A2E;min-height:100vh}
+.topbar{background:#1A1A2E;padding:11px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
 .topbar-left{display:flex;align-items:center;gap:10px}
 .back-btn{background:rgba(255,255,255,.15);border:none;color:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;display:none;align-items:center;gap:5px}
 .back-btn:hover{background:rgba(255,255,255,.25)}
-.tb-title{color:#fff;font-size:13px;font-weight:700}
-.updated{color:rgba(255,255,255,.4);font-size:10px;margin-left:6px}
+.topbar-title{color:#fff;font-size:13px;font-weight:600}
+.updated{color:rgba(255,255,255,.4);font-size:10px;margin-left:8px}
 .tog-grp{display:flex;gap:2px;background:rgba(255,255,255,.1);padding:3px;border-radius:8px}
-.tog{padding:4px 11px;border-radius:6px;border:none;font-size:11px;cursor:pointer;background:transparent;color:rgba(255,255,255,.65);font-weight:500}
+.tog{padding:4px 13px;border-radius:6px;border:none;font-size:11px;cursor:pointer;background:transparent;color:rgba(255,255,255,.7);font-weight:500;transition:all .15s}
 .tog.on{background:#fff;color:#1A1A2E}
-.content{padding:14px 16px;max-width:1060px;margin:0 auto}
-.screen{display:none}.screen.active{display:block}
-.area-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:16px}
-.area-card{background:#fff;border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s;border:1.5px solid #EBEBEB}
+.content{padding:14px 18px;max-width:1080px;margin:0 auto}
+
+/* Area cards */
+.area-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:14px}
+.area-card{background:#fff;border-radius:12px;overflow:hidden;cursor:pointer;border:1.5px solid transparent;transition:transform .15s,box-shadow .15s}
 .area-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
-.ac-hdr{padding:11px 14px;display:flex;justify-content:space-between;align-items:center}
+.ac-hdr{padding:12px 14px;display:flex;align-items:center;justify-content:space-between}
 .ac-title{color:#fff;font-size:12px;font-weight:700}
 .ac-body{padding:10px 14px}
-.ac-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;border-bottom:.5px solid #F5F5F5}
+.ac-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;border-bottom:0.5px solid #F5F5F5}
 .ac-row:last-child{border:none}
-.ac-lbl{color:#999}.ac-val{font-weight:700}
-.ac-foot{padding:7px 14px;font-size:10px;font-weight:600;text-align:center;border-top:1px solid #F5F5F5}
-.det-hdr{background:#fff;border-radius:10px;padding:12px 15px;margin-bottom:12px;border:1px solid #EBEBEB}
-.det-top{display:flex;align-items:center;gap:10px}
-.det-accent{width:4px;border-radius:2px;height:28px;flex-shrink:0}
+.ac-lbl{color:#888}.ac-val{font-weight:700}
+.ac-footer{padding:7px 14px;font-size:10px;font-weight:600;text-align:center;border-top:1px solid #F5F5F5}
+
+/* KPI overview */
+.kpi-overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:14px}
+.kpi-ov{background:#fff;border-radius:10px;padding:11px 13px;border:1px solid #EBEBEB}
+.kpi-ov-lbl{font-size:10px;color:#888;margin-bottom:3px}
+.kpi-ov-val{font-size:20px;font-weight:700}
+.kpi-ov-sub{font-size:10px;margin-top:1px}
+.up{color:#2E7D32}.dn{color:#C62828}.neu{color:#888}
+
+/* DETAIL SCREEN */
+.screen{display:none}.screen.active{display:block}
+.det-header{background:#fff;border-radius:10px;padding:13px 16px;margin-bottom:12px;border:1px solid #EBEBEB}
+.det-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.det-accent{width:4px;border-radius:2px;height:30px;flex-shrink:0}
 .det-title{font-size:15px;font-weight:700}
-.det-sub{font-size:11px;color:#888;margin-top:2px}
-.lvl-sec{background:#fff;border-radius:10px;border:1px solid #EBEBEB;margin-bottom:10px;overflow:hidden}
-.lvl-hdr{padding:9px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.lvl-hdr-title{font-size:11px;font-weight:700;color:#fff;letter-spacing:.4px}
-.lvl-hdr-sub{font-size:10px;color:rgba(255,255,255,.65)}
-.lvl-body{padding:12px 14px;overflow-x:auto}
-.mt{width:100%;border-collapse:collapse;font-size:11px;min-width:340px}
-.mt th{background:#F8F8F8;padding:7px 10px;text-align:center;font-weight:600;color:#555;border-bottom:1.5px solid #E0E0E0}
-.mt th:first-child{text-align:left;min-width:150px}
-.mt td{padding:6px 10px;border-bottom:.5px solid #F5F5F5;text-align:center}
-.mt td:first-child{text-align:left;font-weight:500;color:#333}
-.mt tr:last-child td{border-bottom:none}
-.th-m{background:#1A1A2E!important;color:#fff!important}
-.th-av{background:#1B5E20!important;color:#fff!important}
-.td-m{font-weight:700;color:#1A1A2E}
-.td-av{font-weight:700;color:#1B5E20}
-.null-v{color:#CCC}
-.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.chart-card{background:#fff;border-radius:10px;padding:13px;border:1px solid #EBEBEB}
-.chart-lbl{font-size:11px;font-weight:600;color:#555;margin-bottom:8px}
-.ch-leg{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:7px;font-size:10px;color:#666}
-.ch-sq{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
-.sellers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.det-sub{font-size:11px;color:#888}
+
+/* 3-level result blocks */
+.level-section{background:#fff;border-radius:10px;border:1px solid #EBEBEB;margin-bottom:10px;overflow:hidden}
+.level-hdr{padding:9px 14px;display:flex;align-items:center;justify-content:space-between}
+.level-hdr-title{font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.5px}
+.level-hdr-sub{font-size:10px;color:rgba(255,255,255,.7)}
+.level-body{padding:12px 14px}
+
+/* Metrics table */
+.metrics-table{width:100%;border-collapse:collapse;font-size:11px}
+.metrics-table th{background:#F8F8F8;padding:6px 10px;text-align:center;font-weight:600;color:#555;border-bottom:1px solid #EBEBEB}
+.metrics-table th:first-child{text-align:left}
+.metrics-table td{padding:6px 10px;border-bottom:0.5px solid #F5F5F5;text-align:center}
+.metrics-table td:first-child{text-align:left;font-weight:500;color:#333}
+.metrics-table tr:last-child td{border-bottom:none}
+.metrics-table .media-row td{background:#F0FFF4;font-weight:700;color:#1B5E20}
+.metrics-table .media-row td:first-child{color:#1B5E20}
+.null-val{color:#CCC}
+
+/* Seller cards */
+.sellers-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
 .sc{background:#fff;border-radius:10px;padding:11px;border:1px solid #EBEBEB}
-.sc-av{width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;margin-bottom:7px}
-.sc-name{font-size:12px;font-weight:700}
+.sc-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;margin-bottom:7px}
+.sc-name{font-size:12px;font-weight:700;margin-bottom:1px}
 .sc-role{font-size:10px;color:#888;margin-bottom:7px}
-.sc-row{display:flex;justify-content:space-between;font-size:10px;padding:2px 0;border-bottom:.5px solid #F5F5F5}
+.sc-row{display:flex;justify-content:space-between;font-size:10px;padding:2px 0;border-bottom:0.5px solid #F5F5F5}
 .sc-row:last-of-type{border:none}
 .sc-lbl{color:#888}.sc-val{font-weight:600}
 .prog-bg{background:#F0F0F0;border-radius:3px;height:5px;margin-top:7px;overflow:hidden}
 .prog-fill{height:100%;border-radius:3px}
 .prog-lbl{font-size:9px;text-align:right;margin-top:2px;font-weight:600}
+
+.alert{padding:7px 11px;border-radius:8px;margin-bottom:6px;font-size:11px;border-left:3px solid;display:flex;gap:8px}
+.alert.warn{background:#FFF8E1;border-color:#F9A825;color:#5D4037}
+.alert.ok{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20}
 .na-box{padding:30px;text-align:center;color:#888;background:#fff;border-radius:10px;border:1px solid #EBEBEB}
-.tip{font-size:11px;color:#888;margin-bottom:10px;background:#FFF9E6;padding:7px 12px;border-radius:8px;border-left:3px solid #FBC02D}
-.ch-tab{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
-.ch-btn{padding:4px 12px;border-radius:20px;border:1.5px solid #ddd;font-size:11px;cursor:pointer;background:#fff;color:#555;font-weight:600}
-.ch-btn.on{background:#2E7D32;color:#fff;border-color:#2E7D32}
-@media(max-width:560px){.area-cards,.sellers-grid,.charts-row{grid-template-columns:1fr}}
+.c2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.chart-card{background:#fff;border-radius:10px;padding:12px;border:1px solid #EBEBEB}
+.chart-lbl{font-size:11px;font-weight:600;color:#555;margin-bottom:8px}
+@media(max-width:580px){.area-cards,.sellers-row,.c2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="topbar">
   <div class="topbar-left">
     <button class="back-btn" id="back-btn" onclick="goHome()">&#8592; Visão Geral</button>
-    <div class="tb-title" id="tb-title">Dashboard Marketing <span class="updated" id="updated-lbl"></span></div>
+    <div class="topbar-title" id="top-title">Dashboard Marketing <span class="updated">atualizado 26/05/2026</span></div>
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
-    <div class="tog-grp" id="co-grp">
+    <div class="tog-grp">
       <button class="tog on" onclick="setCo('fish')">Fishermans</button>
       <button class="tog" onclick="setCo('arist')">Aristocrata</button>
     </div>
-    <div class="tog-grp" id="per-grp">
-      <button class="tog" onclick="setPer(1)">Sem 1</button>
+    <div class="tog-grp">
+      <button class="tog on" onclick="setPer(1)">Sem 1</button>
       <button class="tog" onclick="setPer(2)">Sem 2</button>
       <button class="tog" onclick="setPer(3)">Sem 3</button>
       <button class="tog" onclick="setPer(4)">Sem 4</button>
-      <button class="tog on" onclick="setPer(0)">Mensal</button>
+      <button class="tog" onclick="setPer(0)">Mensal</button>
     </div>
   </div>
 </div>
@@ -100,359 +115,347 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;ba
   <div class="screen" id="screen-trafego"></div>
   <div class="screen" id="screen-vendas"></div>
 </div>
+
 <script>
-const D={"fish": {"creative": {"mensal": {"lancados": 23.0, "vencedores": 4.0, "win_rate": 17.4, "formatos": 0.0, "gasto_nov": null, "hook": 35.59, "hold": 6.9, "ctr": 1.26, "cpm": 15.56, "custo_hook": 43.720146108457435, "freq": 2.9}, "semanas": [{"lancados": 23.0, "vencedores": 4.0, "win_rate": 17.4, "hook": 35.59, "hold": 6.9, "ctr": 1.26, "cpm": 15.56, "custo_hook": 43.720146108457435, "freq": 2.9}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}], "media": {"lancados": 23.0, "vencedores": 4.0, "win_rate": 17.4, "hook": 35.59, "hold": 6.9, "ctr": 1.26, "cpm": 15.56, "custo_hook": 43.720146108457435, "freq": 2.9}}, "marketplace": {"ML": {"mensal": {"receita": 98808.0, "ads": 3878.61, "margem": 65391.98999999999, "tacos": 3.93, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 98808.0, "ads": 3878.61, "margem": 65391.98999999999, "tacos": 3.93, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 98808.0, "margem": 65391.98999999999, "tacos": 3.93}}, "Amazon": {"mensal": {"receita": 302.13, "ads": 0.0, "margem": 265.87, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 302.13, "ads": 0.0, "margem": 265.87, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 302.13, "margem": 265.87, "tacos": null}}, "Shopee": {"mensal": {"receita": 11368.47, "ads": 0.0, "margem": 8434.3, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 11368.47, "ads": 0.0, "margem": 8434.3, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 11368.47, "margem": 8434.3, "tacos": null}}, "TikTok": {"mensal": {"receita": 6853.46, "ads": 0.0, "margem": 6853.46, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 6853.46, "ads": 0.0, "margem": 6853.46, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 6853.46, "margem": 6853.46, "tacos": null}}, "Shein": {"mensal": {"receita": 495.12, "ads": 0.0, "margem": 495.12, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 495.12, "ads": 0.0, "margem": 495.12, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 495.12, "margem": 495.12, "tacos": null}}, "Magalu": {"mensal": {"receita": 0.0, "ads": 0.0, "margem": 0.0, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": null, "margem": null, "tacos": null}}, "GERAL": {"mensal": {"receita": 117827.18000000001, "ads": 3878.61, "margem": 81440.73999999999, "tacos": 3.29, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 117827.18, "ads": 3878.61, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}], "media": {"receita": 117827.18000000001, "margem": 81440.73999999999, "tacos": 3.29, "earned_pct": null}}}, "trafego": {"mensal": {"receita_novos": 183811.0, "gasto": 77964.0, "amer": 2.36, "mc": 105847.0, "nnc": null, "cpm": 15.44, "ctr": 1.43, "cvr": 7.33}, "semanas": [{"receita_novos": 183811.0, "gasto": 77964.0, "amer": 2.36, "mc": 105847.0, "nnc": null, "cpm": 15.44, "ctr": 1.43, "cvr": 7.33}, {"receita_novos": null, "gasto": null, "amer": null, "mc": null, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": null, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": null, "nnc": null, "cpm": null, "ctr": null, "cvr": null}], "media": {"amer": 2.36, "mc": 105847.0, "nnc": null, "cpm": 15.44, "ctr": 1.43}}, "vendas": {"sellers": [{"nome": "Leandro", "mensal": {"fat": 20980.0, "vendas": 7.0, "leads": 75.0, "cvr": 9.3, "ticket": 2997.1428571428573, "nps": null, "margem": null, "cancel": null, "fat_meta": null, "pct_meta": null}, "semanas": [{"fat": 20980.0, "vendas": 7.0, "leads": 75.0, "cvr": 9.3, "ticket": 2997.1428571428573, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}], "media": {"fat": 20980.0, "vendas": 7.0, "cvr": 9.3, "ticket": 2997.1428571428573, "nps": null}}, {"nome": "Guilherme", "mensal": {"fat": 6174.0, "vendas": 3.0, "leads": 164.0, "cvr": 1.8, "ticket": 2058.0, "nps": null, "margem": null, "cancel": null, "fat_meta": null, "pct_meta": null}, "semanas": [{"fat": 6174.0, "vendas": 3.0, "leads": 164.0, "cvr": 1.8, "ticket": 2058.0, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}], "media": {"fat": 6174.0, "vendas": 3.0, "cvr": 1.8, "ticket": 2058.0, "nps": null}}, {"nome": "Vinicius", "mensal": {"fat": 0.0, "vendas": 0.0, "leads": 0.0, "cvr": null, "ticket": null, "nps": 0.0, "margem": null, "cancel": null, "fat_meta": null, "pct_meta": null}, "semanas": [{"fat": 0.0, "vendas": 0.0, "leads": 0.0, "cvr": null, "ticket": 0.0, "nps": 0.0}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}], "media": {"fat": null, "vendas": null, "cvr": null, "ticket": null, "nps": null}}], "equipe": {"mensal": {"fat": 27154.0, "vendas": 10.0, "leads": 239.0, "cvr": 4.18, "ticket": 2715.4, "nps": null}, "semanas": [{"fat": null, "vendas": null, "cvr": null, "ticket": null}, {"fat": null, "vendas": null, "cvr": null, "ticket": null}, {"fat": null, "vendas": null, "cvr": null, "ticket": null}, {"fat": null, "vendas": null, "cvr": null, "ticket": null}], "media": {"fat": 9051.333333333334, "vendas": 3.3333333333333335, "cvr": 4.18, "ticket": 2715.4}}}}, "arist": {"creative": {"mensal": {"lancados": 23.0, "vencedores": 1.0, "win_rate": 4.3, "formatos": 0.0, "gasto_nov": null, "hook": 14.02, "hold": 3.04, "ctr": 1.16, "cpm": 2.89, "custo_hook": 20.613409415121257, "freq": 1.89}, "semanas": [{"lancados": 23.0, "vencedores": 1.0, "win_rate": 4.3, "hook": 14.02, "hold": 3.04, "ctr": 1.16, "cpm": 2.89, "custo_hook": 20.613409415121257, "freq": 1.89}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}], "media": {"lancados": 23.0, "vencedores": 1.0, "win_rate": 4.3, "hook": 14.02, "hold": 3.04, "ctr": 1.16, "cpm": 2.89, "custo_hook": 20.613409415121257, "freq": 1.89}}, "marketplace": {"ML": {"mensal": {"receita": 44963.39, "ads": 760.0, "margem": 29138.01, "tacos": 1.69, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 44963.39, "ads": 760.0, "margem": 29138.01, "tacos": 1.69, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 44963.39, "margem": 29138.01, "tacos": 1.69}}, "Amazon": {"mensal": {"receita": 1659.21, "ads": 0.0, "margem": 1472.25, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 1659.21, "ads": 0.0, "margem": 1472.25, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 1659.21, "margem": 1472.25, "tacos": null}}, "Shopee": {"mensal": {"receita": 9898.62, "ads": 0.0, "margem": 5425.380000000001, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 9898.62, "ads": 0.0, "margem": 5425.380000000001, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 9898.62, "margem": 5425.380000000001, "tacos": null}}, "TikTok": {"mensal": {"receita": 987.85, "ads": 0.0, "margem": 987.85, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 987.85, "ads": 0.0, "margem": 987.85, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": 987.85, "margem": 987.85, "tacos": null}}, "Shein": {"mensal": {"receita": 0.0, "ads": 0.0, "margem": 0.0, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 0.0, "ads": 0.0, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": null, "margem": null, "tacos": null}}, "Magalu": {"mensal": {"receita": 0.0, "ads": 0.0, "margem": 0.0, "tacos": null, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": 0.0, "tacos": null, "earned": null}], "media": {"receita": null, "margem": null, "tacos": null}}, "GERAL": {"mensal": {"receita": 57509.07, "ads": 760.0, "margem": 37023.49, "tacos": 1.32, "earned": 0.0, "earned_pct": null}, "semanas": [{"receita": 57479.07, "ads": 760.0, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": null, "earned": null}], "media": {"receita": 57509.07, "margem": 37023.49, "tacos": 1.32, "earned_pct": null}}}, "trafego": {"mensal": {"receita_novos": 230360.0, "gasto": 64199.0, "amer": 3.59, "mc": 166161.0, "nnc": null, "cpm": 24.32, "ctr": 1.78, "cvr": 9.95}, "semanas": [{"receita_novos": 230360.0, "gasto": 64199.0, "amer": 3.59, "mc": 166161.0, "nnc": null, "cpm": 24.32, "ctr": 1.78, "cvr": 9.95}, {"receita_novos": null, "gasto": null, "amer": null, "mc": null, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": null, "nnc": null, "cpm": null, "ctr": null, "cvr": null}, {"receita_novos": null, "gasto": null, "amer": null, "mc": null, "nnc": null, "cpm": null, "ctr": null, "cvr": null}], "media": {"amer": 3.59, "mc": 166161.0, "nnc": null, "cpm": 24.32, "ctr": 1.78}}, "vendas": null}};
-const TODAY='12/05/2026';
-document.getElementById('updated-lbl').textContent='atualizado '+TODAY;
-const WKS=['Sem 1','Sem 2','Sem 3','Sem 4'];
-const WKSF=['Semana 1','Semana 2','Semana 3','Semana 4'];
-const SI=[
+const D = {"fish": {"creative": {"mensal": {"lancados": 48.0, "vencedores": 8.0, "win_rate": 16.7, "formatos": 0.0, "gasto_novos": null, "hook": 29.21, "hold": 8.69, "ctr": 1.42, "cpm": 50.410000000000004, "custo_hook": 172.59758046108198, "freq": 2.763333333333333}, "semanas": [{"lancados": 23.0, "vencedores": 4.0, "win_rate": 17.4, "hook": 35.59, "hold": 6.9, "ctr": 1.26, "cpm": 15.56, "custo_hook": 43.720146108457435, "freq": 2.9}, {"lancados": 16.0, "vencedores": 4.0, "win_rate": 25.0, "hook": 15.76, "hold": 4.51, "ctr": 1.33, "cpm": 16.28, "custo_hook": 103.29949238578682, "freq": 3.82}, {"lancados": 9.0, "vencedores": 0.0, "win_rate": 0.0, "hook": 36.27, "hold": 14.67, "ctr": 1.68, "cpm": 18.57, "custo_hook": 51.19933829611249, "freq": 1.57}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}], "media": {"lancados": 16.0, "vencedores": 4.0, "win_rate": 25.0, "hook": 29.21, "hold": 8.69, "ctr": 1.42, "cpm": 16.803333333333335, "custo_hook": 66.07299226345225, "freq": 2.763333333333333}}, "marketplace": {"mensal": {"receita": 334442.9, "ads": 13085.51, "margem": 227112.53, "tacos": 3.91, "earned": 0.0, "earned_pct": 0}, "semanas": [{"receita": 117827.18, "ads": 3878.61, "margem": null, "tacos": 0, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": 0, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": 0, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": 0, "earned": null}], "media": {"receita": 334442.9, "margem": 227112.53, "tacos": 3.91, "earned_pct": 0}}, "trafego": {"mensal": {"receita_novos": 485876.0, "gasto": 200419.0, "amer": 2.42, "mc": 285457.0, "nnc": 2432, "cpm": 46.86, "ctr": 1.4, "cvr": 7.69}, "semanas": [{"receita_novos": 183811.0, "gasto": 77964.0, "amer": 2.36, "mc": 105847.0, "nnc": 927, "cpm": 15.44, "ctr": 1.43}, {"receita_novos": 166760.0, "gasto": 64423.0, "amer": 2.59, "mc": 102337.0, "nnc": 823, "cpm": 15.88, "ctr": 1.36}, {"receita_novos": 135305.0, "gasto": 58032.0, "amer": 2.33, "mc": 77273.0, "nnc": 682, "cpm": 15.54, "ctr": 1.42}, {"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null}], "media": {"amer": 2.425904799145156, "mc": 95152.33333333333, "nnc": 810.6666666666666, "cpm": 15.62, "ctr": 1.4}}, "vendas": {"sellers": [{"nome": "Leandro", "mensal": {"fat": 49882.030000000006, "vendas": 14, "leads": 239, "cvr": 5.9, "ticket": 3563.002142857143, "nps": 5.0, "margem": 3.0, "cancel": 13.0, "fat_meta": null, "pct_meta": null}, "semanas": [{"fat": 20980.0, "vendas": 7, "leads": 75, "cvr": 9.3, "ticket": 2997.1428571428573, "nps": 5.0}, {"fat": 18304.88, "vendas": 4, "leads": 72, "cvr": 5.6, "ticket": 4576.22, "nps": 5.0}, {"fat": 10597.15, "vendas": 3, "leads": 92, "cvr": 3.3, "ticket": 3532.383333333333, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}], "media": {"fat": 16627.343333333334, "vendas": 4.666666666666667, "cvr": 6.0, "ticket": 3701.9153968253972, "nps": 5.0}}, {"nome": "Guilherme", "mensal": {"fat": 13037.939999999999, "vendas": 6, "leads": 460, "cvr": 1.3, "ticket": 2172.99, "nps": null, "margem": null, "cancel": null, "fat_meta": null, "pct_meta": null}, "semanas": [{"fat": 6174.0, "vendas": 3, "leads": 164, "cvr": 1.8, "ticket": 2058.0, "nps": null}, {"fat": 0.0, "vendas": null, "leads": 172, "cvr": null, "ticket": null, "nps": null}, {"fat": 6863.94, "vendas": 3, "leads": 124, "cvr": 2.4, "ticket": 2287.98, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}], "media": {"fat": 6518.969999999999, "vendas": 3.0, "cvr": 2.1, "ticket": 2172.99, "nps": null}}, {"nome": "Vinicius", "mensal": {"fat": 26152.63, "vendas": 3, "leads": 82, "cvr": 3.7, "ticket": 8717.543333333333, "nps": 0.0, "margem": 0.0, "cancel": 0.0, "fat_meta": null, "pct_meta": null}, "semanas": [{"fat": 0.0, "vendas": null, "leads": null, "cvr": null, "ticket": 0.0, "nps": 0.0}, {"fat": 0.0, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}, {"fat": 26152.63, "vendas": 3, "leads": 82, "cvr": 3.7, "ticket": 8717.543333333333, "nps": null}, {"fat": null, "vendas": null, "leads": null, "cvr": null, "ticket": null, "nps": null}], "media": {"fat": 26152.63, "vendas": 3.0, "cvr": 3.7, "ticket": 8717.543333333333, "nps": null}}], "equipe": {"mensal": {"fat": 89072.6, "vendas": 23, "leads": 781, "cvr": 2.94, "ticket": 3872.7217391304353, "nps": null}, "semanas": [{"fat": null, "vendas": null, "cvr": 0, "ticket": null}, {"fat": null, "vendas": null, "cvr": 0, "ticket": null}, {"fat": 43613.72, "vendas": 9, "cvr": 0, "ticket": 14537.9}, {"fat": null, "vendas": null, "cvr": 0, "ticket": null}], "media": {"fat": 29690.86666666667, "vendas": 7.666666666666667, "cvr": 2.94, "ticket": 3872.7217391304353}}}}, "arist": {"creative": {"mensal": {"lancados": 60.0, "vencedores": 5.0, "win_rate": 8.3, "formatos": 0.0, "gasto_novos": null, "hook": 24.61, "hold": 5.53, "ctr": 1.53, "cpm": 73.11000000000001, "custo_hook": 297.1146030885939, "freq": 1.75}, "semanas": [{"lancados": 23.0, "vencedores": 1.0, "win_rate": 4.3, "hook": 14.02, "hold": 3.04, "ctr": 1.16, "cpm": 32.0, "custo_hook": 228.2453637660485, "freq": 1.89}, {"lancados": 19.0, "vencedores": 2.0, "win_rate": 10.5, "hook": 27.03, "hold": 6.23, "ctr": 1.69, "cpm": 16.76, "custo_hook": 62.00517943026268, "freq": 1.86}, {"lancados": 18.0, "vencedores": 2.0, "win_rate": 11.1, "hook": 32.77, "hold": 7.33, "ctr": 1.75, "cpm": 24.35, "custo_hook": 74.30576747024719, "freq": 1.5}, {"lancados": null, "vencedores": null, "win_rate": null, "hook": null, "hold": null, "ctr": null, "cpm": null, "custo_hook": null, "freq": null}], "media": {"lancados": 20.0, "vencedores": 1.6666666666666667, "win_rate": 8.3, "hook": 24.61, "hold": 5.53, "ctr": 1.53, "cpm": 24.370000000000005, "custo_hook": 121.51877022218612, "freq": 1.75}}, "marketplace": {"mensal": {"receita": 145296.2, "ads": 765.02, "margem": 96677.08000000002, "tacos": 0.53, "earned": 0.0, "earned_pct": 0}, "semanas": [{"receita": 57479.07, "ads": 760.0, "margem": null, "tacos": 0, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": 0, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": 0, "earned": null}, {"receita": null, "ads": null, "margem": null, "tacos": 0, "earned": null}], "media": {"receita": 145296.2, "margem": 96677.08000000002, "tacos": 0.53, "earned_pct": 0}}, "trafego": {"mensal": {"receita_novos": 612866.0, "gasto": 195095.0, "amer": 3.14, "mc": 417771.0, "nnc": 4085, "cpm": 73.6, "ctr": 1.93, "cvr": 9.34}, "semanas": [{"receita_novos": 230360.0, "gasto": 64199.0, "amer": 3.59, "mc": 166161.0, "nnc": 1527, "cpm": 24.32, "ctr": 1.78}, {"receita_novos": 198888.0, "gasto": 65297.0, "amer": 3.05, "mc": 133591.0, "nnc": 1344, "cpm": 24.11, "ctr": 1.85}, {"receita_novos": 183618.0, "gasto": 65599.0, "amer": 2.8, "mc": 118019.0, "nnc": 1214, "cpm": 25.17, "ctr": 2.17}, {"receita_novos": null, "gasto": null, "amer": null, "mc": 0.0, "nnc": null, "cpm": null, "ctr": null}], "media": {"amer": 3.144404468701906, "mc": 139257.0, "nnc": 1361.6666666666667, "cpm": 24.53333333333333, "ctr": 1.93}}, "vendas": null}};
+const WKS = ['Semana 1','Semana 2','Semana 3','Semana 4'];
+const SELLERS_INFO = [
   {name:'Leandro',role:'Gestor',ini:'LE',col:'#4527A0',bg:'#EDE7F6'},
   {name:'Guilherme',role:'Vendedor',ini:'GU',col:'#00695C',bg:'#E0F2F1'},
   {name:'Vinicius',role:'Vendedor',ini:'VI',col:'#E65100',bg:'#FFF3E0'},
 ];
-const CH_COLS={'ML':'#F9A825','Amazon':'#F57C00','Shopee':'#E53935','TikTok':'#7B1FA2','Shein':'#AD1457','Magalu':'#607D8B','GERAL':'#2E7D32'};
 
-let co='fish', per=0, cur='home', curCh='GERAL';
+let co='fish', per=0, curScreen='home';
 let charts={};
 
-function dc(){Object.values(charts).forEach(c=>{try{c.destroy()}catch(e){}});charts={};}
-
-function fmtN(x,type){
-  if(x===null||x===undefined||x==='')return '<span class="null-v">—</span>';
-  const n=parseFloat(x);
-  if(isNaN(n))return '<span class="null-v">—</span>';
+function dc(){Object.values(charts).forEach(c=>{if(c&&c.destroy)c.destroy()});charts={};}
+function v(x){return x!==null&&x!==undefined?x:null}
+function fmt(x,type='num'){
+  if(x===null||x===undefined)return'<span class="null-val">—</span>';
   if(type==='brl'){
-    if(Math.abs(n)>=1e6)return 'R$ '+(n/1e6).toFixed(1)+'M';
-    if(Math.abs(n)>=1000)return 'R$ '+(n/1000).toFixed(0)+'k';
-    return 'R$ '+Math.round(n).toLocaleString('pt-BR');
+    if(Math.abs(x)>=1e6)return'R$ '+( x/1e6).toFixed(1)+'M';
+    if(Math.abs(x)>=1000)return'R$ '+(x/1000).toFixed(0)+'k';
+    return'R$ '+x.toLocaleString('pt-BR',{maximumFractionDigits:0});
   }
-  if(type==='pct')return n.toFixed(1)+'%';
-  if(type==='x')return n.toFixed(1)+'x';
-  if(type==='dec')return n.toFixed(1);
-  if(type==='int')return Math.round(n).toString();
-  return n%1===0?n.toString():n.toFixed(1);
+  if(type==='pct')return x.toFixed(1)+'%';
+  if(type==='x')return x.toFixed(1)+'x';
+  if(type==='dec')return x.toFixed(2);
+  return x.toFixed(x%1===0?0:1);
+}
+function getLevel(){
+  const d=D[co];
+  if(per===0)return{label:'Resultado do Mês',sub:'Acumulado total do mês',data:d,level:'mensal'};
+  const sem=WKS[per-1];
+  return{label:sem,sub:'Resultado individual da semana',data:d,level:'semanas',idx:per-1};
+}
+function getVal(section, metric, level, idx){
+  const d=D[co][section];
+  if(!d)return null;
+  if(level==='mensal')return d.mensal?.[metric]??null;
+  if(level==='semanas')return d.semanas?.[idx]?.[metric]??null;
+  return null;
 }
 
-function semV(obj,key){
-  return (obj.semanas||[]).map(s=>{ const v=s?.[key]; return (v===null||v===undefined)?null:parseFloat(v)||null; });
-}
+// ── TABLE BUILDER ──────────────────────────────────────────
+function metricTable(metrics, rows){
+  // metrics: [{key, label, type}]
+  // rows: [{label, data_obj, isMedia}]
+  const cols = per===0
+    ? ['Total Mês','Média Sem.']
+    : [WKS[per-1],'Média Sem.'];
 
-function cht(id,cfg){
-  const el=document.getElementById(id);
-  if(!el)return;
-  try{charts[id]=new Chart(el,cfg);}catch(e){console.warn('chart err',id,e);}
-}
+  let th = '<tr><th>Métrica</th>';
+  if(per===0){
+    th += '<th>Total Mês</th><th>Média Sem.</th>';
+  } else {
+    th += `<th>${WKS[per-1]}</th><th>Média Sem.</th>`;
+  }
+  th += '</tr>';
 
-function barOpts(yFmt,xLbls){
-  return{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-    scales:{y:{ticks:{callback:yFmt,font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},
-            x:{ticks:{labels:xLbls,font:{size:10}},grid:{display:false}}}};
-}
-function lineOpts(yFmt){
-  return{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-    scales:{y:{ticks:{callback:yFmt,font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},
-            x:{ticks:{font:{size:10}},grid:{display:false}}}};
-}
-
-function buildTable(metrics,dataObj){
-  const ms=dataObj.mensal||{}, sem=dataObj.semanas||[], md=dataObj.media||{};
-  let h='<tr><th>Métrica</th>';
-  h+=per===0?'<th class="th-m">Total Mês</th>':'<th class="th-m">'+WKSF[per-1]+'</th>';
-  h+='<th class="th-av">Média Semanal</th></tr>';
-  let b='';
+  let tbody='';
   for(const m of metrics){
-    const cv=per===0?ms[m.key]:(sem[per-1]||{})[m.key];
-    const av=md[m.key];
-    b+='<tr><td>'+m.label+'</td><td class="td-m">'+fmtN(cv,m.type)+'</td><td class="td-av">'+fmtN(av,m.type)+'</td></tr>';
+    tbody+='<tr>';
+    tbody+=`<td>${m.label}</td>`;
+    if(per===0){
+      tbody+=`<td>${fmt(rows.mensal?.[m.key]??null,m.type)}</td>`;
+      tbody+=`<td style="color:#1B5E20;font-weight:600">${fmt(rows.media?.[m.key]??null,m.type)}</td>`;
+    }else{
+      tbody+=`<td>${fmt(rows.semanas?.[per-1]?.[m.key]??null,m.type)}</td>`;
+      tbody+=`<td style="color:#1B5E20;font-weight:600">${fmt(rows.media?.[m.key]??null,m.type)}</td>`;
+    }
+    tbody+='</tr>';
   }
-  return '<table class="mt"><thead>'+h+'</thead><tbody>'+b+'</tbody></table>';
+  return `<table class="metrics-table"><thead>${th}</thead><tbody>${tbody}</tbody></table>`;
 }
 
-// ── HOME ──────────────────────────────────────────────────
+// ── OVERVIEW ───────────────────────────────────────────────
 function renderHome(){
   const d=D[co];
   const cr=d.creative?.mensal||{};
-  const geral=d.marketplace?.GERAL?.mensal||{};
+  const mkt=d.marketplace?.mensal||{};
   const tr=d.trafego?.mensal||{};
   const vd=d.vendas?.equipe?.mensal||{};
+
+  const accent=co==='fish'?'#1565C0':'#B06000';
   const areas=[
-    {id:'creative',label:'Creative Strategist',color:'#E65100',icon:'🎨',rows:[
-      {l:'Win Rate',v:fmtN(cr.win_rate,'pct')},{l:'Hook Rate',v:fmtN(cr.hook,'pct')},{l:'CPM',v:fmtN(cr.cpm,'brl')}],foot:'Clique para ver detalhes'},
-    {id:'marketplace',label:'Marketplace',color:'#2E7D32',icon:'🛒',rows:[
-      {l:'Receita Total',v:fmtN(geral.receita,'brl')},{l:'Margem Líq.',v:fmtN(geral.margem,'brl')},{l:'TACOS',v:fmtN(geral.tacos,'pct')}],foot:'ML · Amazon · Shopee · TikTok · Shein'},
-    {id:'trafego',label:'Tráfego Pago',color:'#1565C0',icon:'📈',rows:[
-      {l:'aMER',v:fmtN(tr.amer,'x')},{l:'Novos Clientes',v:fmtN(tr.nnc,'int')},{l:'MC Aquisição',v:fmtN(tr.mc,'brl')}],foot:'Clique para ver detalhes'},
-    {id:'vendas',label:'Vendas',color:'#C62828',icon:'💰',rows:co==='fish'?[
-      {l:'Faturamento',v:fmtN(vd.fat,'brl')},{l:'CVR Equipe',v:fmtN(vd.cvr,'pct')},{l:'Ticket Médio',v:fmtN(vd.ticket,'brl')}]:[{l:'',v:'Apenas Fishermans'}],
-      foot:co==='fish'?'Leandro · Guilherme · Vinicius':'Não se aplica'},
+    {id:'creative',label:'Creative Strategist',color:'#E65100',icon:'🎨',kpis:[
+      {l:'Win Rate',v:fmt(cr.win_rate,'pct')},
+      {l:'Hook Rate',v:fmt(cr.hook,'pct')},
+      {l:'CPM',v:fmt(cr.cpm,'brl')},
+    ],footer:'Clique para ver detalhes'},
+    {id:'marketplace',label:'Marketplace',color:'#2E7D32',icon:'🛒',kpis:[
+      {l:'Receita Total',v:fmt(mkt.receita,'brl')},
+      {l:'Margem Líq.',v:fmt(mkt.margem,'brl')},
+      {l:'TACOS',v:fmt(mkt.tacos,'pct')},
+    ],footer:'5 canais ativos'},
+    {id:'trafego',label:'Tráfego Pago',color:'#1565C0',icon:'📈',kpis:[
+      {l:'aMER',v:fmt(tr.amer,'x')},
+      {l:'NNC',v:tr.nnc??'—'},
+      {l:'MC Aquisição',v:fmt(tr.mc,'brl')},
+    ],footer:'Clique para ver detalhes'},
+    {id:'vendas',label:'Vendas',color:'#C62828',icon:'💰',kpis: co==='fish'?[
+      {l:'Faturamento',v:fmt(vd.fat,'brl')},
+      {l:'CVR',v:fmt(vd.cvr,'pct')},
+      {l:'Ticket Médio',v:fmt(vd.ticket,'brl')},
+    ]:[{l:'',v:'Apenas Fishermans'}],footer: co==='fish'?'Leandro · Guilherme · Vinicius':'Não se aplica'},
   ];
-  const lbl=per===0?'mensal acumulado':WKSF[per-1];
-  document.getElementById('screen-home').innerHTML=
-    '<div class="tip">📌 Período: <b>'+lbl+'</b> — clique em uma área para ver todos os resultados, gráficos e médias</div>'+
-    '<div class="area-cards">'+areas.map(a=>
-      '<div class="area-card" onclick="goScreen(\''+a.id+'\')">'+
-      '<div class="ac-hdr" style="background:'+a.color+'"><div class="ac-title">'+a.icon+' '+a.label+'</div><div style="color:rgba(255,255,255,.8);font-size:18px">›</div></div>'+
-      '<div class="ac-body">'+a.rows.map(r=>'<div class="ac-row"><span class="ac-lbl">'+r.l+'</span><span class="ac-val">'+r.v+'</span></div>').join('')+'</div>'+
-      '<div class="ac-foot" style="color:'+a.color+'">'+a.foot+'</div></div>').join('')+'</div>';
+
+  const cards=areas.map(a=>`
+    <div class="area-card" onclick="goScreen('${a.id}')">
+      <div class="ac-hdr" style="background:${a.color}">
+        <div class="ac-title">${a.icon} ${a.label}</div>
+        <div style="color:rgba(255,255,255,.8);font-size:18px">›</div>
+      </div>
+      <div class="ac-body">${a.kpis.map(k=>`<div class="ac-row"><span class="ac-lbl">${k.l}</span><span class="ac-val">${k.v}</span></div>`).join('')}</div>
+      <div class="ac-footer" style="color:${a.color}">${a.footer}</div>
+    </div>`).join('');
+
+  document.getElementById('screen-home').innerHTML=`
+    <div style="font-size:11px;color:#888;margin-bottom:8px">Selecione uma semana ou "Mensal" no topo → clique em uma área para ver os detalhes</div>
+    <div class="area-cards">${cards}</div>`;
 }
 
-// ── CREATIVE ──────────────────────────────────────────────
+// ── CREATIVE ───────────────────────────────────────────────
 function renderCreative(){
   const d=D[co].creative;
-  const sub=co==='fish'?'Fishermans':'Aristocrata';
-  const m1=[{key:'lancados',label:'Criativos Lançados',type:'int'},{key:'vencedores',label:'Criativos Vencedores',type:'int'},
-    {key:'win_rate',label:'Win Rate %',type:'pct'},{key:'formatos',label:'Formatos Novos',type:'int'}];
-  const m2=[{key:'hook',label:'Hook Rate %',type:'pct'},{key:'hold',label:'Hold Rate %',type:'pct'},
-    {key:'ctr',label:'CTR Link %',type:'pct'},{key:'cpm',label:'CPM R$',type:'brl'},
-    {key:'custo_hook',label:'Custo por Hook R$',type:'brl'},{key:'freq',label:'Frequência',type:'dec'}];
-  document.getElementById('screen-creative').innerHTML=
-    '<div class="det-hdr"><div class="det-top"><div class="det-accent" style="background:#E65100"></div>'+
-    '<div><div class="det-title">Creative Strategist — '+sub+'</div>'+
-    '<div class="det-sub">'+(per===0?'Resultado mensal acumulado':WKSF[per-1])+'</div></div></div></div>'+
-    '<div class="charts-row">'+
-    '<div class="chart-card"><div class="chart-lbl">Hook Rate % — semanal</div><div style="position:relative;height:155px"><canvas id="cr-hk" role="img" aria-label="Hook Rate">Hook Rate</canvas></div></div>'+
-    '<div class="chart-card"><div class="chart-lbl">CPM R$ — semanal</div><div style="position:relative;height:155px"><canvas id="cr-cp" role="img" aria-label="CPM">CPM</canvas></div></div>'+
-    '</div><div class="charts-row">'+
-    '<div class="chart-card"><div class="chart-lbl">Hold Rate % — semanal</div><div style="position:relative;height:150px"><canvas id="cr-hd" role="img" aria-label="Hold Rate">Hold Rate</canvas></div></div>'+
-    '<div class="chart-card"><div class="chart-lbl">CTR % — semanal</div><div style="position:relative;height:150px"><canvas id="cr-ct" role="img" aria-label="CTR">CTR</canvas></div></div>'+
-    '</div>'+
-    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#E65100"><span class="lvl-hdr-title">📊 Produção de Criativos</span></div><div class="lvl-body">'+buildTable(m1,d)+'</div></div>'+
-    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#BF360C"><span class="lvl-hdr-title">📈 Performance dos Anúncios</span></div><div class="lvl-body">'+buildTable(m2,d)+'</div></div>';
-  setTimeout(function(){
-    const hkV=semV(d,'hook'),cpV=semV(d,'cpm'),hdV=semV(d,'hold'),ctV=semV(d,'ctr');
-    const hs=function(v){return v.some(function(x){return x!==null;});};
-    if(hs(hkV))cht('cr-hk',{type:'line',data:{labels:WKS,datasets:[{data:hkV,borderColor:'#E65100',backgroundColor:'rgba(230,81,0,.1)',pointRadius:5,tension:.3,fill:true}]},options:lineOpts(function(v){return v+'%';})});
-    if(hs(cpV))cht('cr-cp',{type:'bar',data:{labels:WKS,datasets:[{data:cpV,backgroundColor:'rgba(230,81,0,.65)',borderRadius:5}]},options:barOpts(function(v){return 'R$'+v;},WKS)});
-    if(hs(hdV))cht('cr-hd',{type:'line',data:{labels:WKS,datasets:[{data:hdV,borderColor:'#FF8F00',backgroundColor:'rgba(255,143,0,.1)',pointRadius:5,tension:.3,fill:true}]},options:lineOpts(function(v){return v+'%';})});
-    if(hs(ctV))cht('cr-ct',{type:'bar',data:{labels:WKS,datasets:[{data:ctV,backgroundColor:'rgba(255,183,77,.8)',borderRadius:5}]},options:barOpts(function(v){return v+'%';},WKS)});
-  },100);
-}
+  if(!d){document.getElementById('screen-creative').innerHTML='<div class="na-box">Sem dados</div>';return;}
 
-// ── MARKETPLACE ───────────────────────────────────────────
-function renderMarketplace(){
-  const allCh=D[co].marketplace||{};
-  const chKeys=Object.keys(allCh);
-  const mktMs=[
-    {key:'receita',label:'Receita (GMV) R$',type:'brl'},{key:'margem',label:'Margem Líquida R$',type:'brl'},
-    {key:'ads',label:'Gasto em Ads R$',type:'brl'},{key:'tacos',label:'TACOS %',type:'pct'},
-    {key:'earned',label:'Receita Earned R$',type:'brl'},{key:'earned_pct',label:'% Receita Earned',type:'pct'},
+  const isFish=co==='fish';
+  const title=isFish?'Creative Strategist — Fishermans':'Creative Strategist — Aristocrata';
+  const metrics=[
+    {key:'win_rate',label:'Win Rate %',type:'pct'},
+    {key:'hook',label:'Hook Rate %',type:'pct'},
+    {key:'hold',label:'Hold Rate %',type:'pct'},
+    {key:'ctr',label:'CTR Link %',type:'pct'},
+    {key:'cpm',label:'CPM R$',type:'brl'},
+    {key:'custo_hook',label:'Custo por Hook R$',type:'brl'},
+    {key:'freq',label:'Frequência',type:'dec'},
+  ];
+  const metrics_main=[
+    {key:'lancados',label:'Criativos Lançados',type:'num'},
+    {key:'vencedores',label:'Criativos Vencedores',type:'num'},
+    {key:'win_rate',label:'Win Rate %',type:'pct'},
+    {key:'formatos',label:'Formatos Novos',type:'num'},
   ];
 
-  const tabs=chKeys.map(function(k){
-    const active=k===curCh?' on':'';
-    const col=CH_COLS[k]||'#555';
-    return '<button class="ch-btn'+active+'" style="'+(k===curCh?'background:'+col+';color:#fff;border-color:'+col:'border-color:'+col+';color:'+col)+'" onclick="setCh(\''+k+'\')">'+k+'</button>';
-  }).join('');
-
-  const d=allCh[curCh]||{};
-  const ch_col=CH_COLS[curCh]||'#2E7D32';
-  const sub=co==='fish'?'Fishermans':'Aristocrata';
-
-  document.getElementById('screen-marketplace').innerHTML=
-    '<div class="det-hdr"><div class="det-top"><div class="det-accent" style="background:#2E7D32"></div>'+
-    '<div><div class="det-title">Marketplace — '+sub+'</div>'+
-    '<div class="det-sub">Selecione um canal abaixo · '+(per===0?'Mensal acumulado':WKSF[per-1])+'</div></div></div>'+
-    '<div class="ch-tab" style="margin-top:10px">'+tabs+'</div></div>'+
-    '<div class="charts-row">'+
-    '<div class="chart-card"><div class="chart-lbl">Receita por canal — comparativo</div><div style="position:relative;height:155px"><canvas id="mkt-bar" role="img" aria-label="Receita por canal">Receita</canvas></div></div>'+
-    '<div class="chart-card"><div class="chart-lbl">Receita R$ — tendência semanal ('+curCh+')</div><div style="position:relative;height:155px"><canvas id="mkt-line" role="img" aria-label="Receita semanal">Receita</canvas></div></div>'+
-    '</div><div class="charts-row">'+
-    '<div class="chart-card"><div class="chart-lbl">Margem Líquida R$ — tendência semanal</div><div style="position:relative;height:150px"><canvas id="mkt-mg" role="img" aria-label="Margem">Margem</canvas></div></div>'+
-    '<div class="chart-card"><div class="chart-lbl">TACOS % por canal (semáforo)</div><div style="position:relative;height:150px"><canvas id="mkt-tc" role="img" aria-label="TACOS">TACOS</canvas></div></div>'+
-    '</div>'+
-    '<div class="lvl-sec"><div class="lvl-hdr" style="background:'+ch_col+'"><span class="lvl-hdr-title">🛒 Resultados — '+curCh+'</span><span class="lvl-hdr-sub">'+(per===0?'mensal':'semanal')+' + média</span></div><div class="lvl-body">'+buildTable(mktMs,d)+'</div></div>';
-
-  setTimeout(function(){
-    // Chart 1: bar comparativo receita por canal
-    const barLabels=[],barData=[],barColors=[];
-    chKeys.forEach(function(k){
-      if(k==='GERAL')return;
-      const v=per===0?(allCh[k]?.mensal?.receita||0):((allCh[k]?.semanas||[])[per-1]?.receita||0);
-      barLabels.push(k); barData.push(parseFloat(v)||0);
-      barColors.push(CH_COLS[k]||'#999');
-    });
-    cht('mkt-bar',{type:'bar',data:{labels:barLabels,datasets:[{data:barData,backgroundColor:barColors,borderRadius:5}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-        scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-    // Chart 2: receita semanal do canal selecionado
-    const recV=semV(d,'receita');
-    if(recV.some(function(x){return x!==null;}))
-      cht('mkt-line',{type:'bar',data:{labels:WKS,datasets:[{data:recV,backgroundColor:ch_col+'bb',borderRadius:5}]},
-        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-          scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-    // Chart 3: margem semanal
-    const mgV=semV(d,'margem');
-    if(mgV.some(function(x){return x!==null;}))
-      cht('mkt-mg',{type:'line',data:{labels:WKS,datasets:[{data:mgV,borderColor:'#2E7D32',backgroundColor:'rgba(46,125,50,.1)',pointRadius:5,tension:.3,fill:true}]},
-        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-          scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-    // Chart 4: TACOS por canal
-    const tcLabels=[],tcData=[],tcColors=[];
-    chKeys.forEach(function(k){
-      if(k==='GERAL')return;
-      const v=parseFloat(per===0?(allCh[k]?.mensal?.tacos||0):((allCh[k]?.semanas||[])[per-1]?.tacos||0))||0;
-      tcLabels.push(k); tcData.push(v);
-      tcColors.push(v>15?'#E53935':v>10?'#F9A825':'#43A047');
-    });
-    cht('mkt-tc',{type:'bar',data:{labels:tcLabels,datasets:[{data:tcData,backgroundColor:tcColors,borderRadius:5}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y.toFixed(1)+'%';}}}},
-        scales:{y:{ticks:{callback:function(v){return v+'%';},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-  },100);
+  document.getElementById('screen-creative').innerHTML=`
+    <div class="det-header">
+      <div class="det-top">
+        <div class="det-accent" style="background:#E65100"></div>
+        <div><div class="det-title">${title}</div>
+        <div class="det-sub">Semana selecionada: ${per===0?'Mensal (acumulado)':WKS[per-1]}</div></div>
+      </div>
+    </div>
+    <div class="level-section">
+      <div class="level-hdr" style="background:#E65100">
+        <span class="level-hdr-title">📊 Métricas Principais</span>
+        <span class="level-hdr-sub">criativos e produção</span>
+      </div>
+      <div class="level-body">${metricTable(metrics_main,d)}</div>
+    </div>
+    <div class="level-section">
+      <div class="level-hdr" style="background:#BF360C">
+        <span class="level-hdr-title">📈 Métricas Diagnósticas</span>
+        <span class="level-hdr-sub">performance dos anúncios</span>
+      </div>
+      <div class="level-body">${metricTable(metrics,d)}</div>
+    </div>`;
 }
 
-function setCh(ch){
-  curCh=ch; dc(); renderMarketplace();
+// ── MARKETPLACE ────────────────────────────────────────────
+function renderMarketplace(){
+  const d=D[co].marketplace;
+  if(!d){document.getElementById('screen-marketplace').innerHTML='<div class="na-box">Sem dados</div>';return;}
+
+  const metrics=[
+    {key:'receita',label:'Receita (GMV) R$',type:'brl'},
+    {key:'margem',label:'Margem Líquida R$',type:'brl'},
+    {key:'tacos',label:'TACOS %',type:'pct'},
+    {key:'ads',label:'Gasto em Ads R$',type:'brl'},
+    {key:'earned',label:'Receita Earned R$',type:'brl'},
+    {key:'earned_pct',label:'% Receita Earned',type:'pct'},
+  ];
+
+  document.getElementById('screen-marketplace').innerHTML=`
+    <div class="det-header">
+      <div class="det-top">
+        <div class="det-accent" style="background:#2E7D32"></div>
+        <div><div class="det-title">Marketplace — ${co==='fish'?'Fishermans':'Aristocrata'}</div>
+        <div class="det-sub">ML · Amazon · Shopee · TikTok · Shein</div></div>
+      </div>
+    </div>
+    <div class="level-section">
+      <div class="level-hdr" style="background:#2E7D32">
+        <span class="level-hdr-title">🛒 Resultados Consolidados</span>
+        <span class="level-hdr-sub">todos os canais</span>
+      </div>
+      <div class="level-body">${metricTable(metrics,d)}</div>
+    </div>`;
 }
 
-// ── TRÁFEGO ───────────────────────────────────────────────
+// ── TRÁFEGO ────────────────────────────────────────────────
 function renderTrafego(){
   const d=D[co].trafego;
-  const sub=co==='fish'?'Fishermans':'Aristocrata';
-  const ms=[
-    {key:'amer',label:'aMER',type:'x'},{key:'receita_novos',label:'Receita Novos R$',type:'brl'},
-    {key:'gasto',label:'Gasto Mídia R$',type:'brl'},{key:'mc',label:'MC Aquisição R$',type:'brl'},
-    {key:'nnc',label:'NNC — Novos Clientes',type:'int'},{key:'cpm',label:'CPM R$',type:'brl'},
-    {key:'ctr',label:'CTR %',type:'pct'},{key:'cvr',label:'CVR Checkout %',type:'pct'},
+  if(!d){document.getElementById('screen-trafego').innerHTML='<div class="na-box">Sem dados</div>';return;}
+
+  const metrics=[
+    {key:'amer',label:'aMER',type:'x'},
+    {key:'receita_novos',label:'Receita Novos R$',type:'brl'},
+    {key:'gasto',label:'Gasto Mídia R$',type:'brl'},
+    {key:'mc',label:'MC Aquisição R$',type:'brl'},
+    {key:'nnc',label:'NNC (novos clientes)',type:'num'},
+    {key:'cpm',label:'CPM R$',type:'brl'},
+    {key:'ctr',label:'CTR %',type:'pct'},
+    {key:'cvr',label:'CVR Checkout %',type:'pct'},
   ];
-  document.getElementById('screen-trafego').innerHTML=
-    '<div class="det-hdr"><div class="det-top"><div class="det-accent" style="background:#1565C0"></div>'+
-    '<div><div class="det-title">Tráfego Pago — '+sub+'</div>'+
-    '<div class="det-sub">Aquisição e eficiência · '+(per===0?'Mensal acumulado':WKSF[per-1])+'</div></div></div></div>'+
-    '<div class="charts-row">'+
-    '<div class="chart-card"><div class="chart-lbl">NNC — Novos clientes por semana</div><div style="position:relative;height:155px"><canvas id="tr-nn" role="img" aria-label="NNC">NNC</canvas></div></div>'+
-    '<div class="chart-card"><div class="chart-lbl">aMER — Eficiência de aquisição</div><div style="position:relative;height:155px"><canvas id="tr-am" role="img" aria-label="aMER">aMER</canvas></div></div>'+
-    '</div><div class="charts-row">'+
-    '<div class="chart-card"><div class="chart-lbl">MC Aquisição R$ — semanal</div><div style="position:relative;height:150px"><canvas id="tr-mc" role="img" aria-label="MC">MC</canvas></div></div>'+
-    '<div class="chart-card"><div class="chart-lbl">CPM R$ e CTR %</div>'+
-    '<div class="ch-leg"><span><span class="ch-sq" style="background:#1565C0"></span>CPM R$</span><span><span class="ch-sq" style="background:#42A5F5"></span>CTR %</span></div>'+
-    '<div style="position:relative;height:130px"><canvas id="tr-cc" role="img" aria-label="CPM CTR">CPM CTR</canvas></div></div>'+
-    '</div>'+
-    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#1565C0"><span class="lvl-hdr-title">📈 Métricas de Aquisição</span></div><div class="lvl-body">'+buildTable(ms,d)+'</div></div>';
-  setTimeout(function(){
-    const nn=semV(d,'nnc'),am=semV(d,'amer'),mc=semV(d,'mc'),cp=semV(d,'cpm'),ct=semV(d,'ctr');
-    const hs=function(v){return v.some(function(x){return x!==null;});};
-    if(hs(nn))cht('tr-nn',{type:'bar',data:{labels:WKS,datasets:[{data:nn,backgroundColor:'rgba(21,101,192,.75)',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-    if(hs(am))cht('tr-am',{type:'line',data:{labels:WKS,datasets:[{data:am,borderColor:'#1565C0',backgroundColor:'rgba(21,101,192,.1)',pointRadius:5,tension:.3,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y.toFixed(1)+'x';}}}},scales:{y:{ticks:{callback:function(v){return v+'x';},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-    if(hs(mc))cht('tr-mc',{type:'bar',data:{labels:WKS,datasets:[{data:mc,backgroundColor:'rgba(66,165,245,.75)',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-    if(hs(cp)||hs(ct))cht('tr-cc',{type:'bar',data:{labels:WKS,datasets:[{label:'CPM',data:cp,backgroundColor:'rgba(21,101,192,.7)',borderRadius:3,yAxisID:'y'},{label:'CTR',data:ct,backgroundColor:'rgba(66,165,245,.7)',borderRadius:3,yAxisID:'y2'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return 'R$'+v;},font:{size:9}},grid:{color:'rgba(0,0,0,.05)'}},y2:{position:'right',ticks:{callback:function(v){return v+'%';},font:{size:9}},grid:{display:false}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-  },100);
+
+  document.getElementById('screen-trafego').innerHTML=`
+    <div class="det-header">
+      <div class="det-top">
+        <div class="det-accent" style="background:#1565C0"></div>
+        <div><div class="det-title">Tráfego Pago — ${co==='fish'?'Fishermans':'Aristocrata'}</div>
+        <div class="det-sub">Aquisição, eficiência e novos clientes</div></div>
+      </div>
+    </div>
+    <div class="level-section">
+      <div class="level-hdr" style="background:#1565C0">
+        <span class="level-hdr-title">📈 Métricas de Aquisição</span>
+      </div>
+      <div class="level-body">${metricTable(metrics,d)}</div>
+    </div>`;
 }
 
-// ── VENDAS ────────────────────────────────────────────────
+// ── VENDAS ─────────────────────────────────────────────────
 function renderVendas(){
   const el=document.getElementById('screen-vendas');
   if(co!=='fish'||!D[co].vendas){
-    el.innerHTML='<div class="na-box"><div style="font-size:28px;margin-bottom:8px">💼</div><div style="font-weight:700;margin-bottom:6px">Área de Vendas</div>Exclusiva da Fishermans.</div>';
+    el.innerHTML='<div class="na-box"><div style="font-size:28px;margin-bottom:8px">💼</div><div style="font-weight:600;margin-bottom:4px">Área de Vendas</div>Exclusiva da Fishermans. Selecione Fishermans para ver os resultados.</div>';
     return;
   }
   const vd=D[co].vendas;
-  const eq_ms=[
-    {key:'fat',label:'Faturamento R$',type:'brl'},{key:'vendas',label:'Vendas Fechadas',type:'int'},
-    {key:'leads',label:'Leads Recebidos',type:'int'},{key:'cvr',label:'CVR %',type:'pct'},
-    {key:'ticket',label:'Ticket Médio R$',type:'brl'},{key:'nps',label:'NPS Médio',type:'dec'},
-  ];
-  const sel_ms=[
-    {key:'fat',label:'Faturamento R$',type:'brl'},{key:'vendas',label:'Vendas Fechadas',type:'int'},
-    {key:'leads',label:'Leads',type:'int'},{key:'cvr',label:'CVR %',type:'pct'},
-    {key:'ticket',label:'Ticket Médio R$',type:'brl'},{key:'nps',label:'NPS',type:'dec'},
+  const eq=vd.equipe;
+
+  const eq_metrics=[
+    {key:'fat',label:'Faturamento R$',type:'brl'},
+    {key:'vendas',label:'Vendas Fechadas',type:'num'},
+    {key:'leads',label:'Leads Recebidos',type:'num'},
+    {key:'cvr',label:'CVR %',type:'pct'},
+    {key:'ticket',label:'Ticket Médio R$',type:'brl'},
+    {key:'nps',label:'NPS',type:'dec'},
   ];
 
-  // Seller cards
-  const selCards=(vd.sellers||[]).map(function(s,i){
-    const si=SI[i]||SI[0];
-    const pct=s.mensal?s.mensal.pct_meta:null;
-    const cv=per===0?s.mensal:((s.semanas||[])[per-1]||{});
+  const sel_metrics=[
+    {key:'fat',label:'Faturamento R$',type:'brl'},
+    {key:'vendas',label:'Vendas Fechadas',type:'num'},
+    {key:'leads',label:'Leads',type:'num'},
+    {key:'cvr',label:'CVR %',type:'pct'},
+    {key:'ticket',label:'Ticket Médio R$',type:'brl'},
+    {key:'nps',label:'NPS',type:'dec'},
+  ];
+
+  const selCards=(vd.sellers||[]).map((s,i)=>{
+    const si=SELLERS_INFO[i]||SELLERS_INFO[0];
+    const pct=s.mensal?.pct_meta;
     const bc=pct>=100?'#2E7D32':pct>=80?'#F57F17':'#C62828';
-    return '<div class="sc">'+
-      '<div class="sc-av" style="background:'+si.col+'">'+si.ini+'</div>'+
-      '<div class="sc-name" style="color:'+si.col+'">'+s.nome+'</div>'+
-      '<div class="sc-role">'+si.role+'</div>'+
-      '<div class="sc-row"><span class="sc-lbl">Faturamento</span><span class="sc-val">'+fmtN(cv?cv.fat:null,'brl')+'</span></div>'+
-      '<div class="sc-row"><span class="sc-lbl">Vendas</span><span class="sc-val">'+(cv&&cv.vendas!=null?Math.round(cv.vendas):'—')+'</span></div>'+
-      '<div class="sc-row"><span class="sc-lbl">CVR</span><span class="sc-val">'+fmtN(cv?cv.cvr:null,'pct')+'</span></div>'+
-      '<div class="sc-row"><span class="sc-lbl">Ticket</span><span class="sc-val">'+fmtN(cv?cv.ticket:null,'brl')+'</span></div>'+
-      (pct!==null?'<div class="prog-bg"><div class="prog-fill" style="width:'+Math.min(pct,100)+'%;background:'+bc+'"></div></div><div class="prog-lbl" style="color:'+bc+'">'+pct.toFixed(0)+'% da meta</div>':'')+
-    '</div>';
+    const cur=per===0?s.mensal:s.semanas?.[per-1]||{};
+    return `<div class="sc">
+      <div class="sc-av" style="background:${si.col}">${si.ini}</div>
+      <div class="sc-name" style="color:${si.col}">${s.nome}</div>
+      <div class="sc-role">${si.role}</div>
+      <div class="sc-row"><span class="sc-lbl">Faturamento</span><span class="sc-val">${fmt(cur?.fat,'brl')}</span></div>
+      <div class="sc-row"><span class="sc-lbl">Vendas</span><span class="sc-val">${cur?.vendas??'—'}</span></div>
+      <div class="sc-row"><span class="sc-lbl">CVR</span><span class="sc-val">${fmt(cur?.cvr,'pct')}</span></div>
+      <div class="sc-row"><span class="sc-lbl">Ticket</span><span class="sc-val">${fmt(cur?.ticket,'brl')}</span></div>
+      <div class="sc-row"><span class="sc-lbl">NPS</span><span class="sc-val">${fmt(cur?.nps,'dec')}</span></div>
+      ${pct?`<div class="prog-bg"><div class="prog-fill" style="width:${Math.min(pct,100)}%;background:${bc}"></div></div>
+      <div class="prog-lbl" style="color:${bc}">${pct.toFixed(0)}% da meta</div>`:''}
+    </div>`;
   }).join('');
 
-  // Per-seller detailed tables
-  const selTables=(vd.sellers||[]).map(function(s,i){
-    const si=SI[i]||SI[0];
-    return '<div style="margin-bottom:14px">'+
-      '<div style="font-size:12px;font-weight:700;color:'+si.col+';margin-bottom:6px;display:flex;align-items:center;gap:6px">'+
-      '<div style="width:10px;height:10px;border-radius:50%;background:'+si.col+'"></div>'+s.nome+' — '+si.role+'</div>'+
-      buildTable(sel_ms,s)+'</div>';
-  }).join('');
+  el.innerHTML=`
+    <div class="det-header">
+      <div class="det-top">
+        <div class="det-accent" style="background:#C62828"></div>
+        <div><div class="det-title">Vendas — Fishermans</div>
+        <div class="det-sub">Equipe: Leandro · Guilherme · Vinicius</div></div>
+      </div>
+    </div>
+    <div class="level-section">
+      <div class="level-hdr" style="background:#C62828">
+        <span class="level-hdr-title">💰 Resultado da Equipe</span>
+        <span class="level-hdr-sub">consolidado</span>
+      </div>
+      <div class="level-body">${metricTable(eq_metrics,eq)}</div>
+    </div>
+    <div class="level-section">
+      <div class="level-hdr" style="background:#880E4F">
+        <span class="level-hdr-title">👤 Resultado Individual</span>
+        <span class="level-hdr-sub">por vendedor</span>
+      </div>
+      <div class="level-body">
+        <div class="sellers-row">${selCards}</div>
+        ${(vd.sellers||[]).map((s,i)=>{
+          const si=SELLERS_INFO[i]||SELLERS_INFO[0];
+          return `<div style="font-size:11px;font-weight:600;color:${si.col};margin-bottom:6px;margin-top:8px">${s.nome}</div>
+          ${metricTable(sel_metrics,s)}`;
+        }).join('')}
+      </div>
+    </div>`;
+}
 
-  el.innerHTML=
-    '<div class="det-hdr"><div class="det-top"><div class="det-accent" style="background:#C62828"></div>'+
-    '<div><div class="det-title">Vendas — Fishermans</div>'+
-    '<div class="det-sub">Equipe: Leandro · Guilherme · Vinicius · '+(per===0?'Mensal acumulado':WKSF[per-1])+'</div></div></div></div>'+
-    '<div class="charts-row">'+
-    '<div class="chart-card"><div class="chart-lbl">Faturamento por vendedor</div>'+
-    '<div class="ch-leg">'+SI.map(function(s){return '<span><span class="ch-sq" style="background:'+s.col+'"></span>'+s.name+'</span>';}).join('')+'</div>'+
-    '<div style="position:relative;height:145px"><canvas id="vd-fat" role="img" aria-label="Faturamento vendedor">Faturamento</canvas></div></div>'+
-    '<div class="chart-card"><div class="chart-lbl">CVR % por vendedor — semanal</div>'+
-    '<div class="ch-leg">'+SI.map(function(s){return '<span><span class="ch-sq" style="background:'+s.col+'"></span>'+s.name+'</span>';}).join('')+'</div>'+
-    '<div style="position:relative;height:145px"><canvas id="vd-cvr" role="img" aria-label="CVR vendedor">CVR</canvas></div></div>'+
-    '</div>'+
-    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#C62828"><span class="lvl-hdr-title">💰 Resultado da Equipe — Consolidado</span></div><div class="lvl-body">'+buildTable(eq_ms,vd.equipe)+'</div></div>'+
-    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#880E4F"><span class="lvl-hdr-title">👤 Resumo Individual</span></div><div class="lvl-body"><div class="sellers-grid">'+selCards+'</div></div></div>'+
-    '<div class="lvl-sec"><div class="lvl-hdr" style="background:#AD1457"><span class="lvl-hdr-title">📊 Detalhe Individual — com Média Semanal</span></div><div class="lvl-body">'+selTables+'</div></div>';
+function goHome(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-home').classList.add('active');
+  document.getElementById('back-btn').style.display='none';
+  document.getElementById('top-title').innerHTML='Dashboard Marketing <span class="updated">atualizado 26/05/2026</span>';
+  curScreen='home'; renderHome();
+}
 
-  setTimeout(function(){
-    // Faturamento por vendedor (bar comparativo)
-    const fatData=(vd.sellers||[]).map(function(s){
-      const v=per===0?(s.mensal?s.mensal.fat:null):((s.semanas||[])[per-1]?.fat||null);
-      return parseFloat(v)||0;
-    });
-    cht('vd-fat',{type:'bar',data:{labels:SI.map(function(s){return s.name;}),datasets:[{data:fatData,backgroundColor:SI.map(function(s){return s.col;}),borderRadius:6}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-        scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'k':v);},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:11}},grid:{display:false}}}}});
-    // CVR semanal por vendedor (line)
-    const cvrDS=(vd.sellers||[]).map(function(s,i){
-      return{label:s.nome,data:semV(s,'cvr'),borderColor:SI[i].col,pointRadius:4,tension:.3,
-        borderDash:i===0?[]:i===1?[5,3]:[2,2]};
-    });
-    const hasCvr=cvrDS.some(function(ds){return ds.data.some(function(x){return x!==null;});});
-    if(hasCvr)cht('vd-cvr',{type:'line',data:{labels:WKS,datasets:cvrDS},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
-        tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.parsed.y+'%';}}}},
-        scales:{y:{ticks:{callback:function(v){return v+'%';},font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-  },100);
+function goScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+name).classList.add('active');
+  document.getElementById('back-btn').style.display='flex';
+  const titles={creative:'Creative Strategist',marketplace:'Marketplace',trafego:'Tráfego Pago',vendas:'Vendas'};
+  document.getElementById('top-title').textContent=titles[name];
+  curScreen=name; renderScreen();
 }
 
 function renderScreen(){
-  if(cur==='home')renderHome();
-  else if(cur==='creative')renderCreative();
-  else if(cur==='marketplace')renderMarketplace();
-  else if(cur==='trafego')renderTrafego();
-  else if(cur==='vendas')renderVendas();
+  if(curScreen==='home')renderHome();
+  else if(curScreen==='creative')renderCreative();
+  else if(curScreen==='marketplace')renderMarketplace();
+  else if(curScreen==='trafego')renderTrafego();
+  else if(curScreen==='vendas')renderVendas();
 }
-function goHome(){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
-  document.getElementById('screen-home').classList.add('active');
-  document.getElementById('back-btn').style.display='none';
-  document.getElementById('tb-title').innerHTML='Dashboard Marketing <span class="updated" id="updated-lbl">atualizado '+TODAY+'</span>';
-  dc(); cur='home'; curCh='GERAL'; renderHome();
-}
-function goScreen(name){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
-  document.getElementById('screen-'+name).classList.add('active');
-  document.getElementById('back-btn').style.display='flex';
-  const T={creative:'Creative Strategist',marketplace:'Marketplace',trafego:'Tráfego Pago',vendas:'Vendas'};
-  document.getElementById('tb-title').textContent=T[name];
-  dc(); cur=name; renderScreen();
-}
+
 function setCo(c){
-  co=c; curCh='GERAL';
-  document.querySelectorAll('#co-grp .tog').forEach(function(t,i){t.classList.toggle('on',i===(c==='fish'?0:1));});
+  co=c;
+  document.querySelectorAll('.tog-grp:first-child .tog').forEach((t,i)=>t.classList.toggle('on',i===(c==='fish'?0:1)));
   dc(); renderScreen();
 }
 function setPer(p){
   per=p;
-  document.querySelectorAll('#per-grp .tog').forEach(function(t,i){t.classList.toggle('on',i===(p===0?4:p-1));});
+  document.querySelectorAll('.tog-grp:last-child .tog').forEach((t,i)=>t.classList.toggle('on',i===(p===0?4:p-1)));
   dc(); renderScreen();
 }
 renderHome();
