@@ -1,0 +1,2608 @@
+{
+  "generatedAt": "2026-05-26",
+  "source": "planilha_export.xlsx",
+  "creativeAristocrata": [
+    {
+      "title": "GERAL",
+      "metrics": [
+        {
+          "name": "Criativos Lancados no Mes",
+          "s1": 23,
+          "s2": 19,
+          "s3": 18,
+          "total": 60,
+          "avg": 20,
+          "obs": "Total de criativos que entraram no ar"
+        },
+        {
+          "name": "Criativos Vencedores",
+          "s1": 1,
+          "s2": 2,
+          "s3": 2,
+          "total": 5,
+          "obs": "Bateram o controle ou ficaram abaixo do CPA-alvo"
+        },
+        {
+          "name": "Win Rate %  [calc]",
+          "s1": 0.043478260869565216,
+          "s2": 0.10526315789473684,
+          "s3": 0.1111111111111111,
+          "total": 0.08333333333333333,
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "% Gasto em Criativos Novos (&lt;30 dias)",
+          "obs": "Meta: 20-40%"
+        },
+        {
+          "name": "Formatos Novos Testados",
+          "total": 0,
+          "obs": "Tecnicas ineditas na conta. Meta: 1-3/mes"
+        },
+        {
+          "name": "Hook Rate %",
+          "s1": 0.1402,
+          "s2": 0.2703,
+          "s3": 0.3277,
+          "total": 0.24606666666666666,
+          "avg": 0.24606666666666666,
+          "obs": "3s views / impressoes. Meta: 25-35%+"
+        },
+        {
+          "name": "Hold Rate %",
+          "s1": 0.0304,
+          "s2": 0.0623,
+          "s3": 0.0733,
+          "total": 0.05533333333333334,
+          "obs": "15s views / 3s views. Quanto maior melhor"
+        },
+        {
+          "name": "CTR Link %",
+          "s1": 0.0116,
+          "s2": 0.0169,
+          "s3": 0.0175,
+          "total": 0.015333333333333332,
+          "obs": "Cliques / impressoes"
+        },
+        {
+          "name": "CPM R$",
+          "s1": 32,
+          "s2": 16.76,
+          "s3": 24.35,
+          "total": 73.11000000000001,
+          "obs": "Custo por 1.000 impressoes"
+        },
+        {
+          "name": "Custo por Hook R$  [calc]",
+          "s1": 228.2453637660485,
+          "s2": 62.00517943026268,
+          "s3": 74.30576747024719,
+          "total": 297.1146030885939,
+          "obs": "CPM / Hook Rate. Quanto menor melhor"
+        },
+        {
+          "name": "Frequencia",
+          "s1": 1.89,
+          "s2": 1.86,
+          "s3": 1.5,
+          "total": 1.75,
+          "avg": 1.75,
+          "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
+        }
+      ]
+    }
+  ],
+  "creativeFishermans": [
+    {
+      "title": "LINHA MULTIFILAMENTO",
+      "metrics": [
+        {
+          "name": "Criativos Lancados no Mes",
+          "s1": 23,
+          "s2": 16,
+          "s3": 9,
+          "s4": " ",
+          "total": 48,
+          "avg": 16,
+          "obs": "Total de criativos que entraram no ar"
+        },
+        {
+          "name": "Criativos Vencedores",
+          "s1": 4,
+          "s2": 4,
+          "s3": 0,
+          "total": 8,
+          "obs": "Bateram o controle ou ficaram abaixo do CPA-alvo"
+        },
+        {
+          "name": "Win Rate %  [calc]",
+          "s1": 0.17391304347826086,
+          "s2": 0.25,
+          "s3": 0,
+          "total": 0.16666666666666666,
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "% Gasto em Criativos Novos (&lt;30 dias)",
+          "obs": "Meta: 20-40%"
+        },
+        {
+          "name": "Formatos Novos Testados",
+          "total": 0,
+          "obs": "Tecnicas ineditas na conta. Meta: 1-3/mes"
+        },
+        {
+          "name": "Hook Rate %",
+          "s1": 0.3559,
+          "s2": 0.1576,
+          "s3": 0.3627,
+          "total": 0.29206666666666664,
+          "avg": 0.29206666666666664,
+          "obs": "3s views / impressoes. Meta: 25-35%+"
+        },
+        {
+          "name": "Hold Rate %",
+          "s1": 0.069,
+          "s2": 0.0451,
+          "s3": 0.1467,
+          "total": 0.08693333333333335,
+          "obs": "15s views / 3s views. Quanto maior melhor"
+        },
+        {
+          "name": "CTR Link %",
+          "s1": 0.0126,
+          "s2": 0.0133,
+          "s3": 0.0168,
+          "total": 0.014233333333333334,
+          "obs": "Cliques / impressoes"
+        },
+        {
+          "name": "CPM R$",
+          "s1": 15.56,
+          "s2": 16.28,
+          "s3": 18.57,
+          "total": 50.410000000000004,
+          "obs": "Custo por 1.000 impressoes"
+        },
+        {
+          "name": "Custo por Hook R$  [calc]",
+          "s1": 43.720146108457435,
+          "s2": 103.29949238578682,
+          "s3": 51.19933829611249,
+          "total": 172.59758046108198,
+          "obs": "CPM / Hook Rate. Quanto menor melhor"
+        },
+        {
+          "name": "Frequencia",
+          "s1": 2.9,
+          "s2": 3.82,
+          "s3": 1.57,
+          "total": 2.763333333333333,
+          "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
+        }
+      ]
+    },
+    {
+      "title": "LINHA MONOFILAMENTO",
+      "metrics": [
+        {
+          "name": "Criativos Lancados no Mes",
+          "s1": 6,
+          "s2": 18,
+          "s3": 6,
+          "total": 30,
+          "avg": 10,
+          "obs": "Total de criativos que entraram no ar"
+        },
+        {
+          "name": "Criativos Vencedores",
+          "s1": 1,
+          "s2": 0,
+          "s3": 0,
+          "total": 1,
+          "obs": "Bateram o controle ou ficaram abaixo do CPA-alvo"
+        },
+        {
+          "name": "Win Rate %  [calc]",
+          "s1": 0.16666666666666666,
+          "s2": 0,
+          "s3": 0,
+          "total": 0.03333333333333333,
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "% Gasto em Criativos Novos (&lt;30 dias)",
+          "obs": "Meta: 20-40%"
+        },
+        {
+          "name": "Formatos Novos Testados",
+          "total": 0,
+          "obs": "Tecnicas ineditas na conta. Meta: 1-3/mes"
+        },
+        {
+          "name": "Hook Rate %",
+          "s1": 0.1918,
+          "s2": 0.2178,
+          "s3": 0.1199,
+          "total": 0.1765,
+          "avg": 0.1765,
+          "obs": "3s views / impressoes. Meta: 25-35%+"
+        },
+        {
+          "name": "Hold Rate %",
+          "s1": 0.0466,
+          "s2": 0.0565,
+          "s3": 0.0327,
+          "total": 0.04526666666666667,
+          "obs": "15s views / 3s views. Quanto maior melhor"
+        },
+        {
+          "name": "CTR Link %",
+          "s1": 0.0132,
+          "s2": 0.0107,
+          "s3": 0.0128,
+          "total": 0.012233333333333332,
+          "obs": "Cliques / impressoes"
+        },
+        {
+          "name": "CPM R$",
+          "s1": 9.97,
+          "s2": 8.59,
+          "s3": 16.57,
+          "total": 35.13,
+          "obs": "Custo por 1.000 impressoes"
+        },
+        {
+          "name": "Custo por Hook R$  [calc]",
+          "s1": 51.981230448383734,
+          "s2": 39.439853076216714,
+          "s3": 138.19849874895746,
+          "total": 199.03682719546745,
+          "obs": "CPM / Hook Rate. Quanto menor melhor"
+        },
+        {
+          "name": "Frequencia",
+          "s1": 2.51,
+          "s2": 1.47,
+          "s3": 1.74,
+          "total": 1.9066666666666665,
+          "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
+        }
+      ]
+    },
+    {
+      "title": "CAMISETA",
+      "metrics": [
+        {
+          "name": "Criativos Lancados no Mes",
+          "total": 0,
+          "obs": "Total de criativos que entraram no ar"
+        },
+        {
+          "name": "Criativos Vencedores",
+          "total": 0,
+          "obs": "Bateram o controle ou ficaram abaixo do CPA-alvo"
+        },
+        {
+          "name": "Win Rate %  [calc]",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "% Gasto em Criativos Novos (&lt;30 dias)",
+          "obs": "Meta: 20-40%"
+        },
+        {
+          "name": "Formatos Novos Testados",
+          "total": 0,
+          "obs": "Tecnicas ineditas na conta. Meta: 1-3/mes"
+        },
+        {
+          "name": "Hook Rate %",
+          "obs": "3s views / impressoes. Meta: 25-35%+"
+        },
+        {
+          "name": "Hold Rate %",
+          "obs": "15s views / 3s views. Quanto maior melhor"
+        },
+        {
+          "name": "CTR Link %",
+          "obs": "Cliques / impressoes"
+        },
+        {
+          "name": "CPM R$",
+          "total": 0,
+          "obs": "Custo por 1.000 impressoes"
+        },
+        {
+          "name": "Custo por Hook R$  [calc]",
+          "obs": "CPM / Hook Rate. Quanto menor melhor"
+        },
+        {
+          "name": "Frequencia",
+          "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
+        }
+      ]
+    },
+    {
+      "title": "BONE",
+      "metrics": [
+        {
+          "name": "Criativos Lancados no Mes",
+          "total": 0,
+          "obs": "Total de criativos que entraram no ar"
+        },
+        {
+          "name": "Criativos Vencedores",
+          "total": 0,
+          "obs": "Bateram o controle ou ficaram abaixo do CPA-alvo"
+        },
+        {
+          "name": "Win Rate %  [calc]",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "% Gasto em Criativos Novos (&lt;30 dias)",
+          "obs": "Meta: 20-40%"
+        },
+        {
+          "name": "Formatos Novos Testados",
+          "total": 0,
+          "obs": "Tecnicas ineditas na conta. Meta: 1-3/mes"
+        },
+        {
+          "name": "Hook Rate %",
+          "obs": "3s views / impressoes. Meta: 25-35%+"
+        },
+        {
+          "name": "Hold Rate %",
+          "obs": "15s views / 3s views. Quanto maior melhor"
+        },
+        {
+          "name": "CTR Link %",
+          "obs": "Cliques / impressoes"
+        },
+        {
+          "name": "CPM R$",
+          "total": 0,
+          "obs": "Custo por 1.000 impressoes"
+        },
+        {
+          "name": "Custo por Hook R$  [calc]",
+          "obs": "CPM / Hook Rate. Quanto menor melhor"
+        },
+        {
+          "name": "Frequencia",
+          "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
+        }
+      ]
+    },
+    {
+      "title": "COPO",
+      "metrics": [
+        {
+          "name": "Criativos Lancados no Mes",
+          "s1": 0,
+          "s2": 0,
+          "total": 0,
+          "obs": "Total de criativos que entraram no ar"
+        },
+        {
+          "name": "Criativos Vencedores",
+          "s1": 0,
+          "s2": 0,
+          "total": 0,
+          "obs": "Bateram o controle ou ficaram abaixo do CPA-alvo"
+        },
+        {
+          "name": "Win Rate %  [calc]",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "% Gasto em Criativos Novos (&lt;30 dias)",
+          "obs": "Meta: 20-40%"
+        },
+        {
+          "name": "Formatos Novos Testados",
+          "total": 0,
+          "obs": "Tecnicas ineditas na conta. Meta: 1-3/mes"
+        },
+        {
+          "name": "Hook Rate %",
+          "s1": 0.1719,
+          "total": 0.1719,
+          "avg": 0.1719,
+          "obs": "3s views / impressoes. Meta: 25-35%+"
+        },
+        {
+          "name": "Hold Rate %",
+          "s1": 0.0387,
+          "total": 0.0387,
+          "obs": "15s views / 3s views. Quanto maior melhor"
+        },
+        {
+          "name": "CTR Link %",
+          "s1": 0.0081,
+          "total": 0.0081,
+          "obs": "Cliques / impressoes"
+        },
+        {
+          "name": "CPM R$",
+          "s1": 29.68,
+          "total": 29.68,
+          "obs": "Custo por 1.000 impressoes"
+        },
+        {
+          "name": "Custo por Hook R$  [calc]",
+          "s1": 172.65852239674228,
+          "total": 172.65852239674228,
+          "obs": "CPM / Hook Rate. Quanto menor melhor"
+        },
+        {
+          "name": "Frequencia",
+          "s1": 1.51,
+          "total": 1.51,
+          "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
+        }
+      ]
+    },
+    {
+      "title": "GERAL  —  CONSOLIDADO  (todos os produtos)",
+      "metrics": [
+        {
+          "name": "Criativos Lancados (total)",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 78,
+          "avg": 15.6,
+          "obs": "Soma de todos os produtos"
+        },
+        {
+          "name": "Criativos Vencedores (total)",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 9,
+          "avg": 1.8
+        },
+        {
+          "name": "Win Rate % Geral  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0.11538461538461539,
+          "avg": 0.11538461538461539,
+          "obs": "Meta: 15-25%"
+        }
+      ]
+    },
+    {
+      "title": "DIAGNÓSTICAS  (média entre produtos)",
+      "metrics": [
+        {
+          "name": "Hook Rate % (media)",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—"
+        },
+        {
+          "name": "CPM R$ (media)",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 23.044,
+          "avg": 23.044
+        }
+      ]
+    }
+  ],
+  "mktFishermans": [
+    {
+      "title": "MERCADO LIVRE",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 98808,
+          "s2": 93728,
+          "s3": 76642,
+          "total": 269178,
+          "avg": 89726
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$",
+          "s1": 14579.29,
+          "s2": 13914.88,
+          "s3": 11114.11
+        },
+        {
+          "name": "Frete R$",
+          "s1": 10941.11,
+          "s2": 10369.29,
+          "s3": 8401.99
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 3878.61,
+          "s2": 4449.59,
+          "s3": 2116.74
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 4017,
+          "s2": 4205,
+          "s3": 2407
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 65391.98999999999,
+          "s2": 60789.23999999999,
+          "s3": 52602.16,
+          "s4": 0,
+          "total": 178783.39,
+          "obs": "Devoluções + Cancelamentos"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "s1": 0.039254007772649986,
+          "s2": 0.04747343376579037,
+          "s3": 0.027618538138357556,
+          "total": 0.0388030968355512,
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "Disponivel em ML e Amazon"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "AMAZON",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 302.13,
+          "s2": 1769.54,
+          "s3": 1589.54,
+          "total": 3661.21,
+          "avg": 1220.4033333333334
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$",
+          "s1": 36.26,
+          "s2": 280.28,
+          "s3": 214.61
+        },
+        {
+          "name": "Frete R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 0,
+          "s2": 142.17,
+          "s3": 498.4
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 265.87,
+          "s2": 1347.09,
+          "s3": 876.5299999999999,
+          "s4": 0,
+          "total": 2489.49,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "s1": 0,
+          "s2": 0.0803429139776439,
+          "s3": 0.3135498320268757,
+          "total": 0.1749612832915894,
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "Disponivel em ML e Amazon"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "SHOPEE",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 11368.47,
+          "s2": 12288.19,
+          "s3": 15933.22,
+          "total": 39589.88,
+          "avg": 13196.626666666665
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$",
+          "s1": 2342.57,
+          "s2": 3894.38,
+          "s3": 2069.84
+        },
+        {
+          "name": "Frete R$",
+          "s1": 591.6,
+          "s2": 1284.91,
+          "s3": 1530.53
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 0,
+          "s2": 1000,
+          "s3": 1000
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 2050.21
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 8434.3,
+          "s2": 6108.9000000000015,
+          "s3": 9282.64,
+          "s4": 0,
+          "total": 23825.839999999997,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "s1": 0,
+          "s2": 0.08137895003251089,
+          "s3": 0.06276195270008197,
+          "total": 0.050517960650550094,
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "N/A para este canal"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "TIKTOK SHOP",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 6853.46,
+          "s2": 6592.16,
+          "s3": 7444.15,
+          "total": 20889.769999999997,
+          "avg": 6963.256666666665
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$"
+        },
+        {
+          "name": "Frete R$"
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 6853.46,
+          "s2": 6592.16,
+          "s3": 7444.15,
+          "s4": 0,
+          "total": 20889.769999999997,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "s1": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "s1": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "N/A para este canal"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "SHEIN",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 495.12,
+          "s2": 176,
+          "s3": 452.92,
+          "total": 1124.04,
+          "avg": 374.68
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$"
+        },
+        {
+          "name": "Frete R$"
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 495.12,
+          "s2": 176,
+          "s3": 452.92,
+          "s4": 0,
+          "total": 1124.04,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "N/A para este canal"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "MAGALU (saindo)",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "total": 0
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$"
+        },
+        {
+          "name": "Frete R$"
+        },
+        {
+          "name": "Gasto em Ads R$"
+        },
+        {
+          "name": "Devolucoes R$"
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "s4": 0,
+          "total": 0,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "N/A para este canal"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "GERAL  -  CONSOLIDADO (todos os canais)",
+      "metrics": [
+        {
+          "name": "Receita Total R$  [calc]",
+          "s1": 117827.18,
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 334442.9,
+          "avg": 334442.9,
+          "obs": "Soma de todos os canais"
+        },
+        {
+          "name": "Gasto Total Ads R$  [calc]",
+          "s1": 3878.61,
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 13085.51,
+          "avg": 13085.51
+        },
+        {
+          "name": "Margem Liquida Total R$  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 227112.53,
+          "avg": 227112.53
+        },
+        {
+          "name": "TACOS Total %  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0.039126290317420404,
+          "avg": 0.039126290317420404,
+          "obs": "Gasto Ads / Receita Total"
+        },
+        {
+          "name": "Receita Earned Total R$  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0,
+          "avg": 0
+        },
+        {
+          "name": "% Receita Earned Total  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0,
+          "avg": 0,
+          "obs": "Meta: 10-25%"
+        }
+      ]
+    }
+  ],
+  "mktAristocrata": [
+    {
+      "title": "MERCADO LIVRE",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 44963.39,
+          "s2": 38253,
+          "s3": 29052.59,
+          "total": 112268.98,
+          "avg": 37422.99333333333
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$",
+          "s1": 7754.33,
+          "s2": 7018.64,
+          "s3": 5535.04
+        },
+        {
+          "name": "Frete R$",
+          "s1": 6454.05,
+          "s2": 5517.34,
+          "s3": 3893.01
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 760,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 857,
+          "s2": 387,
+          "s3": 328
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 29138.01,
+          "s2": 25330.02,
+          "s3": 19296.54,
+          "s4": 0,
+          "total": 73764.57,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "s1": 0.016902640125666682,
+          "s2": 0,
+          "s3": 0,
+          "total": 0.006769456710125985,
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "Disponivel em ML e Amazon"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "AMAZON",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 1659.21,
+          "s2": 1604.01,
+          "s3": 2141.99,
+          "total": 5405.21,
+          "avg": 1801.7366666666667
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$",
+          "s1": 186.96,
+          "s2": 165.47,
+          "s3": 274.24
+        },
+        {
+          "name": "Frete R$",
+          "s1": 0,
+          "s2": 140.62,
+          "s3": 289.65
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 0,
+          "s2": 5.02,
+          "s3": 0
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 1472.25,
+          "s2": 1292.9,
+          "s3": 1578.1,
+          "s4": 0,
+          "total": 4343.25,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "s1": 0,
+          "s2": 0.0031296562989008795,
+          "s3": 0,
+          "total": 0.0009287335737186898,
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "Disponivel em ML e Amazon"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "SHOPEE",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 9898.62,
+          "s2": 8171.86,
+          "s3": 7168.43,
+          "total": 25238.91,
+          "avg": 8412.97
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$",
+          "s1": 2944.17,
+          "s2": 1220.36,
+          "s3": 1011.98
+        },
+        {
+          "name": "Frete R$",
+          "s1": 1529.07,
+          "s2": 1228.27,
+          "s3": 1118.9
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 5425.380000000001,
+          "s2": 5723.23,
+          "s3": 5037.550000000001,
+          "s4": 0,
+          "total": 16186.160000000002,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "N/A para este canal"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "TIKTOK SHOP",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 987.85,
+          "s2": 706.27,
+          "s3": 688.98,
+          "total": 2383.1,
+          "avg": 794.3666666666667
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$"
+        },
+        {
+          "name": "Frete R$"
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 987.85,
+          "s2": 706.27,
+          "s3": 688.98,
+          "s4": 0,
+          "total": 2383.1,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0,
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "N/A para este canal"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "SHEIN",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "total": 0
+        },
+        {
+          "name": "Custo do Produto (CMV) R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Comissao R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Frete R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Gasto em Ads R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Devolucoes R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "s4": 0,
+          "total": 0,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "N/A para este canal"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "MAGALU (saindo)",
+      "metrics": [
+        {
+          "name": "Receita (GMV) R$",
+          "total": 0
+        },
+        {
+          "name": "Custo do Produto (CMV) R$"
+        },
+        {
+          "name": "Comissao R$"
+        },
+        {
+          "name": "Frete R$"
+        },
+        {
+          "name": "Gasto em Ads R$"
+        },
+        {
+          "name": "Devolucoes R$"
+        },
+        {
+          "name": "Margem Liquida R$  [calc]",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "s4": 0,
+          "total": 0,
+          "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
+        },
+        {
+          "name": "TACOS %  [calc]",
+          "obs": "Meta: 5-15%"
+        },
+        {
+          "name": "Receita Earned R$",
+          "total": 0,
+          "obs": "Via cupom/UTM rastreavel"
+        },
+        {
+          "name": "% Receita Earned  [calc]",
+          "obs": "Meta: 10-25%"
+        },
+        {
+          "name": "Reach Earned (views clipes)",
+          "total": 0
+        },
+        {
+          "name": "Reputacao / Health Score",
+          "obs": "Cair abaixo do limite = suspensao"
+        },
+        {
+          "name": "Cobertura de Estoque (dias)",
+          "obs": "Alerta: abaixo de 15 dias"
+        },
+        {
+          "name": "Conversao por SKU %"
+        },
+        {
+          "name": "Buy Box % (ML/Amazon)",
+          "obs": "N/A para este canal"
+        },
+        {
+          "name": "% Receita SKUs Novos (90d)",
+          "obs": "Meta: 15-25%"
+        },
+        {
+          "name": "Parceiros Earned Ativos",
+          "total": 0,
+          "obs": "5 = fragil. 50 = robusto"
+        }
+      ]
+    },
+    {
+      "title": "GERAL  -  CONSOLIDADO (todos os canais)",
+      "metrics": [
+        {
+          "name": "Receita Total R$  [calc]",
+          "s1": 57479.07,
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 145296.2,
+          "avg": 145296.2,
+          "obs": "Soma de todos os canais"
+        },
+        {
+          "name": "Gasto Total Ads R$  [calc]",
+          "s1": 760,
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 765.02,
+          "avg": 765.02
+        },
+        {
+          "name": "Margem Liquida Total R$  [calc]",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 96677.08000000002,
+          "avg": 96677.08000000002
+        },
+        {
+          "name": "TACOS Total %  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0.00526524437665954,
+          "avg": 0.00526524437665954,
+          "obs": "Gasto Ads / Receita Total"
+        },
+        {
+          "name": "Receita Earned Total R$  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0,
+          "avg": 0
+        },
+        {
+          "name": "% Receita Earned Total  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0,
+          "avg": 0,
+          "obs": "Meta: 10-25%"
+        }
+      ]
+    }
+  ],
+  "trafego": [
+    {
+      "title": "GERAL",
+      "metrics": [
+        {
+          "name": "FISHERMANS"
+        },
+        {
+          "name": "Receita de Novos Clientes R$",
+          "s1": 183811,
+          "s2": 166760,
+          "s3": 135305,
+          "total": 485876,
+          "avg": 161958.66666666666,
+          "obs": "Apenas 1a compra"
+        },
+        {
+          "name": "Gasto Total em Midia de Aquisicao R$",
+          "s1": 77964,
+          "s2": 64423,
+          "s3": 58032,
+          "total": 200419
+        },
+        {
+          "name": "aMER (Acquisition MER)  [calc]",
+          "s1": 2.3576394233235853,
+          "s2": 2.588516523601819,
+          "s3": 2.3315584505100633,
+          "total": 2.4243010892180883,
+          "obs": "Min ~ 1 / margem bruta"
+        },
+        {
+          "name": "CMV R$",
+          "total": 0
+        },
+        {
+          "name": "Frete R$",
+          "total": 0
+        },
+        {
+          "name": "MC de Aquisicao R$  [calc]",
+          "s1": 105847,
+          "s2": 102337,
+          "s3": 77273,
+          "s4": 0,
+          "total": 285457,
+          "obs": "Negativo = queima caixa"
+        },
+        {
+          "name": "MC %  [calc]",
+          "s1": 0.5758469297267301,
+          "s2": 0.6136783401295275,
+          "s3": 0.5711023243782565,
+          "total": 0.5875099819707086
+        },
+        {
+          "name": "NNC - Net New Customers",
+          "s1": 927,
+          "s2": 823,
+          "s3": 682,
+          "total": 2432,
+          "obs": "Meta: +10-30% MoM"
+        },
+        {
+          "name": "CPM R$",
+          "s1": 15.44,
+          "s2": 15.88,
+          "s3": 15.54,
+          "total": 46.86,
+          "avg": 15.62
+        },
+        {
+          "name": "CTR Link %",
+          "s1": 0.0143,
+          "s2": 0.0136,
+          "s3": 0.0142,
+          "total": 0.014033333333333333
+        },
+        {
+          "name": "CPC R$  [calc]",
+          "s1": 1.0797202797202796,
+          "s2": 1.1676470588235295,
+          "s3": 1.0943661971830985,
+          "total": 3.3391923990498813
+        },
+        {
+          "name": "CVR de Checkout %",
+          "s1": 0.0733,
+          "s2": 0.084,
+          "s3": 0.0733,
+          "total": 0.07686666666666667,
+          "obs": "CVR caindo + CTR estavel = problema LP"
+        },
+        {
+          "name": "Frequencia por Campanha",
+          "s1": 5.65,
+          "s2": 6.4,
+          "s3": 5.35,
+          "total": 5.8,
+          "obs": "Acima 3.5 = refresh urgente"
+        },
+        {
+          "name": "CAC Payback (meses)",
+          "obs": "Meta &lt;= 6 meses"
+        },
+        {
+          "name": "ARISTOCRATA"
+        },
+        {
+          "name": "Receita de Novos Clientes R$",
+          "s1": 230360,
+          "s2": 198888,
+          "s3": 183618,
+          "total": 612866,
+          "avg": 204288.66666666666,
+          "obs": "Apenas 1a compra"
+        },
+        {
+          "name": "Gasto Total em Midia de Aquisicao R$",
+          "s1": 64199,
+          "s2": 65297,
+          "s3": 65599,
+          "total": 195095
+        },
+        {
+          "name": "aMER (Acquisition MER)  [calc]",
+          "s1": 3.588217885013785,
+          "s2": 3.0458979738732253,
+          "s3": 2.7990975472187074,
+          "total": 3.1413721520284987,
+          "obs": "Min ~ 1 / margem bruta"
+        },
+        {
+          "name": "CMV R$",
+          "total": 0
+        },
+        {
+          "name": "Frete R$",
+          "total": 0
+        },
+        {
+          "name": "MC de Aquisicao R$  [calc]",
+          "s1": 166161,
+          "s2": 133591,
+          "s3": 118019,
+          "s4": 0,
+          "total": 417771,
+          "obs": "Negativo = queima caixa"
+        },
+        {
+          "name": "MC %  [calc]",
+          "s1": 0.7213101232852925,
+          "s2": 0.6716895941434375,
+          "s3": 0.6427419969719744,
+          "total": 0.681667770768814
+        },
+        {
+          "name": "NNC - Net New Customers",
+          "s1": 1527,
+          "s2": 1344,
+          "s3": 1214,
+          "total": 4085,
+          "obs": "Meta: +10-30% MoM"
+        },
+        {
+          "name": "CPM R$",
+          "s1": 24.32,
+          "s2": 24.11,
+          "s3": 25.17,
+          "total": 73.6,
+          "avg": 24.53333333333333
+        },
+        {
+          "name": "CTR Link %",
+          "s1": 0.0178,
+          "s2": 0.0185,
+          "s3": 0.0217,
+          "total": 0.01933333333333333
+        },
+        {
+          "name": "CPC R$  [calc]",
+          "s1": 1.36,
+          "s2": 1.3032432432432433,
+          "s3": 1.1599078341013827,
+          "total": 3.806896551724138
+        },
+        {
+          "name": "CVR de Checkout %",
+          "s1": 0.0995,
+          "s2": 0.0813,
+          "s3": 0.0995,
+          "total": 0.09343333333333333,
+          "obs": "CVR caindo + CTR estavel = problema LP"
+        },
+        {
+          "name": "Frequencia por Campanha",
+          "s1": 3.76,
+          "s2": 3.37,
+          "s3": 3.26,
+          "total": 3.4633333333333334,
+          "obs": "Acima 3.5 = refresh urgente"
+        },
+        {
+          "name": "CAC Payback (meses)",
+          "obs": "Meta &lt;= 6 meses"
+        }
+      ]
+    }
+  ],
+  "vendas": [
+    {
+      "title": "LEANDRO  —  Gestor de Equipe",
+      "metrics": [
+        {
+          "name": "Faturamento R$",
+          "s1": 20980,
+          "s2": 18304.88,
+          "s3": 10597.15,
+          "total": 49882.030000000006,
+          "avg": 16627.343333333334,
+          "obs": "Soma das vendas fechadas no periodo"
+        },
+        {
+          "name": "Vendas Fechadas (numero)",
+          "s1": 7,
+          "s2": 4,
+          "s3": 3,
+          "total": 14,
+          "avg": 4.666666666666667
+        },
+        {
+          "name": "Leads / Atendimentos Recebidos",
+          "s1": 75,
+          "s2": 72,
+          "s3": 92,
+          "total": 239,
+          "avg": 79.66666666666667,
+          "obs": "WhatsApp, carrinho, ligacao, indicacao..."
+        },
+        {
+          "name": "CVR de Vendas %  [calc]",
+          "s1": 0.09333333333333334,
+          "s2": 0.05555555555555555,
+          "s3": 0.03260869565217391,
+          "total": 0.058577405857740586,
+          "avg": 0.06049919484702094,
+          "obs": "WhatsApp: 10-25% | Consultivo: 25-40%"
+        },
+        {
+          "name": "Ticket Medio R$  [calc]",
+          "s1": 2997.1428571428573,
+          "s2": 4576.22,
+          "s3": 3532.383333333333,
+          "total": 3563.002142857143,
+          "avg": 3701.9153968253972
+        },
+        {
+          "name": "Tempo Medio de Resposta (min)",
+          "s1": 3600,
+          "s2": 3600,
+          "s3": 3600,
+          "total": 3600,
+          "avg": 3600,
+          "obs": "&lt;5 min = 3-5x mais conversao"
+        },
+        {
+          "name": "Margem Media por Venda %",
+          "s1": 0.03,
+          "s2": 0.03,
+          "s3": 0.03,
+          "total": 0.03,
+          "avg": 0.03,
+          "obs": "Caindo = desconto agressivo"
+        },
+        {
+          "name": "Taxa de Cancelamento %",
+          "s1": 0.12,
+          "s2": 0.14,
+          "total": 0.13,
+          "avg": 0.13,
+          "obs": "Subindo = qualificacao ruim"
+        },
+        {
+          "name": "Taxa de Recompra %",
+          "s1": 0.714,
+          "s2": 0.5,
+          "s3": 0.66,
+          "total": 0.6246666666666667,
+          "avg": 0.6246666666666667
+        },
+        {
+          "name": "NPS Pos-Atendimento",
+          "s1": 5,
+          "s2": 5,
+          "total": 5,
+          "avg": 5,
+          "obs": "Escala 0-10"
+        }
+      ]
+    },
+    {
+      "title": "GUILHERME  —  Vendedor",
+      "metrics": [
+        {
+          "name": "Faturamento R$",
+          "s1": 6174,
+          "s2": 0,
+          "s3": 6863.94,
+          "total": 13037.939999999999,
+          "avg": 6518.969999999999,
+          "obs": "Soma das vendas fechadas no periodo"
+        },
+        {
+          "name": "Vendas Fechadas (numero)",
+          "s1": 3,
+          "s2": 0,
+          "s3": 3,
+          "total": 6,
+          "avg": 3
+        },
+        {
+          "name": "Leads / Atendimentos Recebidos",
+          "s1": 164,
+          "s2": 172,
+          "s3": 124,
+          "total": 460,
+          "avg": 153.33333333333334,
+          "obs": "WhatsApp, carrinho, ligacao, indicacao..."
+        },
+        {
+          "name": "CVR de Vendas %  [calc]",
+          "s1": 0.018292682926829267,
+          "s2": 0,
+          "s3": 0.024193548387096774,
+          "total": 0.013043478260869565,
+          "avg": 0.02124311565696302,
+          "obs": "WhatsApp: 10-25% | Consultivo: 25-40%"
+        },
+        {
+          "name": "Ticket Medio R$  [calc]",
+          "s1": 2058,
+          "s3": 2287.98,
+          "total": 2172.99,
+          "avg": 2172.99
+        },
+        {
+          "name": "Tempo Medio de Resposta (min)",
+          "s1": 3600,
+          "s3": 3600,
+          "total": 3600,
+          "avg": 3600,
+          "obs": "&lt;5 min = 3-5x mais conversao"
+        },
+        {
+          "name": "Margem Media por Venda %",
+          "obs": "Caindo = desconto agressivo"
+        },
+        {
+          "name": "Taxa de Cancelamento %",
+          "obs": "Subindo = qualificacao ruim"
+        },
+        {
+          "name": "Taxa de Recompra %",
+          "s1": 0,
+          "s3": 0,
+          "total": 0
+        },
+        {
+          "name": "NPS Pos-Atendimento",
+          "obs": "Escala 0-10"
+        }
+      ]
+    },
+    {
+      "title": "VINICIUS  —  Vendedor",
+      "metrics": [
+        {
+          "name": "Faturamento R$",
+          "s1": 0,
+          "s2": 0,
+          "s3": 26152.63,
+          "total": 26152.63,
+          "avg": 26152.63,
+          "obs": "Soma das vendas fechadas no periodo"
+        },
+        {
+          "name": "Vendas Fechadas (numero)",
+          "s1": 0,
+          "s2": 0,
+          "s3": 3,
+          "total": 3,
+          "avg": 3
+        },
+        {
+          "name": "Leads / Atendimentos Recebidos",
+          "s1": 0,
+          "s3": 82,
+          "total": 82,
+          "avg": 82,
+          "obs": "WhatsApp, carrinho, ligacao, indicacao..."
+        },
+        {
+          "name": "CVR de Vendas %  [calc]",
+          "s1": 0,
+          "s3": 0.036585365853658534,
+          "total": 0.036585365853658534,
+          "avg": 0.036585365853658534,
+          "obs": "WhatsApp: 10-25% | Consultivo: 25-40%"
+        },
+        {
+          "name": "Ticket Medio R$  [calc]",
+          "s1": 0,
+          "s3": 8717.543333333333,
+          "total": 8717.543333333333,
+          "avg": 8717.543333333333
+        },
+        {
+          "name": "Tempo Medio de Resposta (min)",
+          "s1": 0,
+          "s3": 3600,
+          "total": 1800,
+          "avg": 3600,
+          "obs": "&lt;5 min = 3-5x mais conversao"
+        },
+        {
+          "name": "Margem Media por Venda %",
+          "s1": 0,
+          "total": 0,
+          "obs": "Caindo = desconto agressivo"
+        },
+        {
+          "name": "Taxa de Cancelamento %",
+          "s1": 0,
+          "total": 0,
+          "obs": "Subindo = qualificacao ruim"
+        },
+        {
+          "name": "Taxa de Recompra %",
+          "s1": 0,
+          "s3": 0,
+          "total": 0
+        },
+        {
+          "name": "NPS Pos-Atendimento",
+          "s1": 0,
+          "total": 0,
+          "obs": "Escala 0-10"
+        }
+      ]
+    },
+    {
+      "title": "EQUIPE  —  RESULTADO CONSOLIDADO  (Leandro + Guilherme + Vinicius)",
+      "metrics": [
+        {
+          "name": "Faturamento Total da Equipe R$",
+          "s1": "—",
+          "s2": "—",
+          "s3": 43613.72,
+          "s4": "—",
+          "total": 89072.6,
+          "avg": 29690.86666666667,
+          "obs": "Leandro + Guilherme + Vinicius"
+        },
+        {
+          "name": "Vendas Fechadas Total",
+          "s1": "—",
+          "s2": "—",
+          "s3": 9,
+          "s4": "—",
+          "total": 23,
+          "avg": 7.666666666666667
+        },
+        {
+          "name": "Leads Totais Recebidos",
+          "s1": "—",
+          "s2": "—",
+          "s3": 298,
+          "s4": "—",
+          "total": 781,
+          "avg": 260.3333333333333
+        },
+        {
+          "name": "CVR da Equipe %  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0.029449423815621,
+          "avg": 0.029449423815621
+        },
+        {
+          "name": "Ticket Medio da Equipe R$  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": 14537.9,
+          "s4": "—",
+          "total": 3872.7217391304353,
+          "avg": 3872.7217391304353
+        },
+        {
+          "name": "NPS Medio da Equipe",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—"
+        },
+        {
+          "name": "Margem Media da Equipe %",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—"
+        },
+        {
+          "name": "Taxa de Cancelamento Media %",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—"
+        },
+        {
+          "name": "Taxa de Recompra Media %",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0.20822222222222223,
+          "avg": 0.20822222222222223
+        },
+        {
+          "name": "Vendedores que Atingiram a Meta (numero)",
+          "s1": 0,
+          "total": 0,
+          "obs": "Preencher quantos dos 3 bateram a meta na semana"
+        },
+        {
+          "name": "% Vendedores c/ Meta  [calc]",
+          "s1": "—",
+          "s2": "—",
+          "s3": "—",
+          "s4": "—",
+          "total": 0
+        }
+      ]
+    }
+  ],
+  "dashboard": [
+    {
+      "title": "GERAL",
+      "metrics": [
+        {
+          "name": "DASHBOARD  |  Fishermans &amp; Aristocrata  |  Consolidado"
+        },
+        {
+          "name": "Atualização automática a partir das abas fonte. Não preencher nada aqui."
+        },
+        {
+          "name": "KPIs EXECUTIVOS  —  Total Mês"
+        },
+        {
+          "name": "Receita Total (F+A)",
+          "s2": "Margem Líquida (F+A)",
+          "s4": "Gasto Ads Total (F+A)",
+          "avg": "TACOS Total",
+          "vsMeta": "Vendas Diretas (Fishermans)"
+        },
+        {
+          "name": "MARKETPLACES  —  Receita, Margem e Ads por canal"
+        },
+        {
+          "name": "Canal",
+          "s1": "Receita Fishermans",
+          "s2": "Receita Aristocrata",
+          "s3": "Receita Total",
+          "s4": "Margem F",
+          "total": "Margem A",
+          "avg": "Margem Total",
+          "meta": "Ads F",
+          "vsMeta": "Ads A",
+          "mom": "TACOS F",
+          "obs": "TACOS A"
+        },
+        {
+          "name": "Mercado Livre",
+          "s1": 269178,
+          "s2": 112268.98,
+          "s3": 381446.98,
+          "s4": 178783.39,
+          "total": 73764.57,
+          "avg": 252547.96000000002,
+          "meta": 10444.94,
+          "vsMeta": 760,
+          "mom": 0.0388030968355512,
+          "obs": 0.006769456710125985
+        },
+        {
+          "name": "Amazon",
+          "s1": 3661.21,
+          "s2": 5405.21,
+          "s3": 9066.42,
+          "s4": 2489.49,
+          "total": 4343.25,
+          "avg": 6832.74,
+          "meta": 640.5699999999999,
+          "vsMeta": 5.02,
+          "mom": 0.1749612832915894,
+          "obs": 0.0009287335737186898
+        },
+        {
+          "name": "Shopee",
+          "s1": 39589.88,
+          "s2": 25238.91,
+          "s3": 64828.78999999999,
+          "s4": 23825.839999999997,
+          "total": 16186.160000000002,
+          "avg": 40012,
+          "meta": 2000,
+          "vsMeta": 0,
+          "mom": 0.050517960650550094,
+          "obs": 0
+        },
+        {
+          "name": "TikTok Shop",
+          "s1": 20889.769999999997,
+          "s2": 2383.1,
+          "s3": 23272.869999999995,
+          "s4": 20889.769999999997,
+          "total": 2383.1,
+          "avg": 23272.869999999995,
+          "meta": 0,
+          "vsMeta": 0,
+          "mom": 0,
+          "obs": 0
+        },
+        {
+          "name": "Shein",
+          "s1": 1124.04,
+          "s2": 0,
+          "s3": 1124.04,
+          "s4": 1124.04,
+          "total": 0,
+          "avg": 1124.04,
+          "meta": 0,
+          "vsMeta": 0,
+          "mom": 0,
+          "obs": 0
+        },
+        {
+          "name": "Magalu (saindo)",
+          "s1": 0,
+          "s2": 0,
+          "s3": 0,
+          "s4": 0,
+          "total": 0,
+          "avg": 0,
+          "meta": 0,
+          "vsMeta": 0,
+          "mom": 0,
+          "obs": 0
+        },
+        {
+          "name": "TOTAL",
+          "s1": 334442.9,
+          "s2": 145296.2,
+          "s3": 479739.0999999999,
+          "s4": 227112.53,
+          "total": 96677.08000000002,
+          "avg": 323789.61,
+          "meta": 13085.51,
+          "vsMeta": 765.02,
+          "mom": 0.039126290317420404,
+          "obs": 0.00526524437665954
+        },
+        {
+          "name": "CRIATIVOS  —  Performance por Produto (Fishermans) e Aristocrata"
+        },
+        {
+          "name": "Produto / Marca",
+          "s1": "Hook Rate",
+          "s2": "Hold Rate",
+          "s3": "CTR Link",
+          "s4": "CPM R$",
+          "total": "Custo / Hook R$",
+          "avg": "Frequência",
+          "meta": "Hook vs Meta 25%"
+        },
+        {
+          "name": "F — Linha Multifilamento",
+          "s1": 0.29206666666666664,
+          "s2": 0.08693333333333335,
+          "s3": 0.014233333333333334,
+          "s4": 50.410000000000004,
+          "total": 172.59758046108198,
+          "avg": 2.763333333333333,
+          "meta": 0.16826666666666656
+        },
+        {
+          "name": "F — Linha Monofilamento",
+          "s1": 0.1765,
+          "s2": 0.04526666666666667,
+          "s3": 0.012233333333333332,
+          "s4": 35.13,
+          "total": 199.03682719546745,
+          "avg": 1.9066666666666665,
+          "meta": -0.29400000000000004
+        },
+        {
+          "name": "F — Camiseta",
+          "s4": 0
+        },
+        {
+          "name": "F — Boné",
+          "s4": 0
+        },
+        {
+          "name": "F — Copo",
+          "s1": 0.1719,
+          "s2": 0.0387,
+          "s3": 0.0081,
+          "s4": 29.68,
+          "total": 172.65852239674228,
+          "avg": 1.51,
+          "meta": -0.3124
+        },
+        {
+          "name": "Aristocrata (geral)",
+          "s1": 0.24606666666666666,
+          "s2": 0.05533333333333334,
+          "s3": 0.015333333333333332,
+          "s4": 73.11000000000001,
+          "total": 297.1146030885939,
+          "avg": 1.75,
+          "meta": -0.015733333333333377
+        },
+        {
+          "name": "TRÁFEGO  —  Aquisição de Novos Clientes"
+        },
+        {
+          "name": "Receita Novos Clientes R$",
+          "s1": 485876,
+          "s2": 612866,
+          "s3": 1098742
+        },
+        {
+          "name": "Gasto Mídia Aquisição R$",
+          "s1": 200419,
+          "s2": 195095,
+          "s3": 395514
+        },
+        {
+          "name": "aMER (Receita NC / Gasto)",
+          "s1": 2.4243010892180883,
+          "s2": 3.1413721520284987,
+          "s3": 2.7780103864844228
+        },
+        {
+          "name": "MC de Aquisição R$",
+          "s1": 285457,
+          "s2": 417771,
+          "s3": 703228
+        },
+        {
+          "name": "MC %",
+          "s1": 0.5875099819707086,
+          "s2": 0.681667770768814
+        },
+        {
+          "name": "NNC — Net New Customers",
+          "s1": 2432,
+          "s2": 4085,
+          "s3": 6517
+        },
+        {
+          "name": "CPM R$",
+          "s1": 46.86,
+          "s2": 73.6
+        },
+        {
+          "name": "CTR Link %",
+          "s1": 0.014033333333333333,
+          "s2": 0.01933333333333333
+        },
+        {
+          "name": "CVR Checkout %",
+          "s1": 0.07686666666666667,
+          "s2": 0.09343333333333333
+        },
+        {
+          "name": "Frequência",
+          "s1": 5.8,
+          "s2": 3.4633333333333334
+        },
+        {
+          "name": "CAC Payback (meses)"
+        },
+        {
+          "name": "VENDAS DIRETAS  —  Equipe Fishermans (Leandro / Guilherme / Vinicius)"
+        },
+        {
+          "name": "Vendedor",
+          "s1": "Faturamento",
+          "s2": "Vendas Fechadas",
+          "s3": "Leads",
+          "s4": "CVR",
+          "total": "Ticket Médio",
+          "avg": "Recompra %",
+          "meta": "% do Total"
+        },
+        {
+          "name": "Leandro",
+          "s1": 49882.030000000006,
+          "s2": 14,
+          "s3": 239,
+          "s4": 0.058577405857740586,
+          "total": 3563.002142857143,
+          "avg": 0.6246666666666667,
+          "meta": 0.5600154256191018
+        },
+        {
+          "name": "Guilherme",
+          "s1": 13037.939999999999,
+          "s2": 6,
+          "s3": 460,
+          "s4": 0.013043478260869565,
+          "total": 2172.99,
+          "avg": 0,
+          "meta": 0.14637430590327438
+        },
+        {
+          "name": "Vinicius",
+          "s1": 26152.63,
+          "s2": 3,
+          "s3": 82,
+          "s4": 0.036585365853658534,
+          "total": 8717.543333333333,
+          "avg": 0,
+          "meta": 0.29361026847762384
+        },
+        {
+          "name": "EQUIPE (Total)",
+          "s1": 89072.6,
+          "s2": 23,
+          "s3": 781,
+          "s4": 0.029449423815621,
+          "total": 3872.7217391304353,
+          "avg": 0.20822222222222223,
+          "meta": 1
+        },
+        {
+          "name": "DESTAQUES DO MÊS  —  Leitura Rápida"
+        },
+        {
+          "name": "• Canal líder em receita: Mercado Livre concentra 65%+ do faturamento Fishermans — risco de concentração."
+        },
+        {
+          "name": "• Multifilamento é o melhor criativo: Hook Rate 35.6% (+42% vs meta de 25%). Escalar verba."
+        },
+        {
+          "name": "• Copo está caro: Custo por Hook R$172, CTR 0.81%. Refresh criativo urgente."
+        },
+        {
+          "name": "• Aristocrata: Hook 14% (-44% vs meta), Freq 1.89. Criativo precisa de teste."
+        },
+        {
+          "name": "• Aba Tráfego sem dados — preencher Gasto/Receita NC para calcular aMER e CAC Payback."
+        },
+        {
+          "name": "• Vinicius sem vendas no período. Leandro responsável por 77% do fat. da equipe."
+        },
+        {
+          "name": "• TACOS consolidado 2.6% — muito saudável (meta usual 8-15%). Margem 67.6% sobre receita."
+        }
+      ]
+    }
+  ]
+}
