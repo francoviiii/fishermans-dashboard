@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dashboard Marketing · Fishermans &amp; Aristocrata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body class="theme-light" style="background-color: rgb(236, 234, 225); font-family: Verdana">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"></div>
+    <div class="brand-text">
+      <div class="brand-line1">Grupo Shrigma</div>
+      <div class="brand-line2">Dashboard Marketing</div>
+    </div>
+  </div>
+
+  <nav class="seg seg-brand" role="tablist" aria-label="Marca">
+    <button class="seg-btn is-active" data-brand="all">Visão Geral</button>
+    <button class="seg-btn" data-brand="fishermans">Fishermans</button>
+    <button class="seg-btn" data-brand="aristocrata">Aristocrata</button>
+  </nav>
+
+  <div class="topbar-right">
+    <div class="period-info">
+      <span class="period-label">Período</span>
+      <span class="period-value" id="period-label">Mai · 2026</span>
+    </div>
+    <button class="update-btn" id="btn-update" title="Atualizar dados com a planilha da semana">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+      Atualizar dados
+    </button>
+    <button class="icon-btn" id="theme-toggle" title="Alternar tema">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M19.07 4.93l-1.41 1.41M6.34 17.66l-1.41 1.41M19.07 19.07l-1.41-1.41M6.34 6.34L4.93 4.93"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="period-strip">
+  <div class="period-left">
+    <nav class="seg seg-period" role="tablist" aria-label="Período">
+      <button class="seg-btn is-active" data-period="month">Mensal</button>
+      <button class="seg-btn" data-period="s1">Sem 1</button>
+      <button class="seg-btn" data-period="s2">Sem 2</button>
+      <button class="seg-btn" data-period="s3">Sem 3</button>
+      <button class="seg-btn" data-period="s4">Sem 4</button>
+    </nav>
+    <div class="month-nav">
+      <label class="mn-label" for="month-select">Mês</label>
+      <div class="month-select-wrap">
+        <select id="month-select" class="month-select" aria-label="Mês do histórico"></select>
+      </div>
+      <label class="compare-wrap" id="compare-wrap" title="Sobrepor o mês anterior nos gráficos e KPIs">
+        <input type="checkbox" id="compare-toggle" />
+        <span class="cmp-track"><span class="cmp-thumb"></span></span>
+        <span class="cmp-text">Comparar com <strong id="compare-prev-label">—</strong></span>
+      </label>
+    </div>
+  </div>
+  <div class="period-meta">
+    <span class="badge badge-live">● Atualizado 26/05/2026</span>
+    <span class="badge badge-override" id="override-badge" style="display:none">◆ Dados locais (não publicados) · <a id="override-clear" href="#">limpar</a></span>
+    <span class="src">Fonte: planilha SharePoint · sincronia manual</span>
+  </div>
+</div>
+
+<main class="content">
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">KPIs Executivos</h2>
+      <span class="block-meta" id="kpi-meta">Total mês · maio/2026</span>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card kpi-hero">
+        <div class="kpi-eyebrow">Receita Total</div>
+        <div class="kpi-value" id="kpi-revenue">—</div>
+        <div class="kpi-delta" id="kpi-revenue-delta" data-base="kpi-delta">— vs mês anterior</div>
+        <div class="kpi-spark">
+          <canvas id="spark-revenue" height="56"></canvas>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">aMER Médio</div>
+        <div class="kpi-value" id="kpi-amer">—</div>
+        <div class="kpi-sub" id="kpi-amer-sub">Acquisition MER</div>
+        <div class="kpi-mom" id="kpi-amer-mom"></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">Novos Clientes</div>
+        <div class="kpi-value" id="kpi-nnc">—</div>
+        <div class="kpi-sub" id="kpi-nnc-sub">NNC consolidado</div>
+        <div class="kpi-mom" id="kpi-nnc-mom"></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">Margem Aquisição</div>
+        <div class="kpi-value" id="kpi-mc">—</div>
+        <div class="kpi-sub" id="kpi-mc-sub">MC consolidada</div>
+        <div class="kpi-mom" id="kpi-mc-mom"></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">CVR Checkout</div>
+        <div class="kpi-value" id="kpi-cvr">—</div>
+        <div class="kpi-sub" id="kpi-cvr-sub">Médio · todas marcas</div>
+        <div class="kpi-mom" id="kpi-cvr-mom"></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-eyebrow">Hook Rate Médio</div>
+        <div class="kpi-value" id="kpi-hook">—</div>
+        <div class="kpi-sub" id="kpi-hook-sub">Criativos · Meta 20–35%</div>
+        <div class="kpi-mom" id="kpi-hook-mom"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">1.1 — Snapshot da Semana Atual <span id="snap-week" style="color:var(--ink-3);font-weight:400">(Sem 4)</span></h2>
+      <span class="block-meta">Comparativo da semana corrente vs. semana anterior, por marca</span>
+    </div>
+    <div class="snap-grid">
+      <div class="snap-card fish">
+        <div class="snap-eyebrow">aMER Fishermans <span id="snap-week-1" class="snap-week-tag">(Sem 4)</span></div>
+        <div class="snap-value" id="snap-amer-fish">—</div>
+        <div class="snap-delta flat" id="snap-amer-fish-delta">—</div>
+      </div>
+      <div class="snap-card aris">
+        <div class="snap-eyebrow">aMER Aristocrata <span id="snap-week-2" class="snap-week-tag">(Sem 4)</span></div>
+        <div class="snap-value" id="snap-amer-aris">—</div>
+        <div class="snap-delta flat" id="snap-amer-aris-delta">—</div>
+      </div>
+      <div class="snap-card fish">
+        <div class="snap-eyebrow">Receita NC Fish <span id="snap-week-3" class="snap-week-tag">(Sem 4)</span></div>
+        <div class="snap-value" id="snap-rev-fish">—</div>
+        <div class="snap-delta flat" id="snap-rev-fish-delta">—</div>
+      </div>
+      <div class="snap-card aris">
+        <div class="snap-eyebrow">Receita NC Aristo <span id="snap-week-4" class="snap-week-tag">(Sem 4)</span></div>
+        <div class="snap-value" id="snap-rev-aris">—</div>
+        <div class="snap-delta flat" id="snap-rev-aris-delta">—</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">1.2 — Série Histórica · Tráfego &amp; Aquisição (4 semanas)</h2>
+      <span class="block-meta">★ = semana atual · Azul = Fishermans · Dourado = O Aristocrata</span>
+    </div>
+    <div class="card hist-table-card">
+      <table class="hist-table" id="hist-table">
+        <thead>
+          <tr>
+            <th>Semana</th>
+            <th class="fish">Fish — Gasto</th>
+            <th class="fish">Fish — Rec NC</th>
+            <th class="fish">Fish — aMER</th>
+            <th class="aris">Aristo — Gasto</th>
+            <th class="aris">Aristo — Rec NC</th>
+            <th class="aris">Aristo — aMER</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">1.3 — Alavancagem do Investimento</h2>
+      <span class="block-meta">Barras = gasto mídia · Linha sólida = Receita NC (eixo esq.) · Linha tracejada = aMER (eixo dir.)</span>
+    </div>
+    <div class="dual-grid">
+      <div class="dual-card fish">
+        <h3 class="dual-title">Fishermans</h3>
+        <canvas id="chart-alav-fish"></canvas>
+      </div>
+      <div class="dual-card aris">
+        <h3 class="dual-title">O Aristocrata</h3>
+        <canvas id="chart-alav-aris"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">1.4 — Saúde do Funil de Conversão</h2>
+      <span class="block-meta">Hook Rate (sólido) e Win Rate (tracejado) por marca · faixa verde = meta 25–35%</span>
+    </div>
+    <div class="funnel-card">
+      <h3 class="funnel-title">Hook Rate &amp; Win Rate — Fishermans vs O Aristocrata</h3>
+      <canvas id="chart-funnel-hook"></canvas>
+    </div>
+    <div class="funnel-card">
+      <h3 class="funnel-title">aMER — Eficiência de Aquisição</h3>
+      <canvas id="chart-funnel-amer"></canvas>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">1.5 — Volume de Criativos (Lançados &amp; Vencedores)</h2>
+      <span class="block-meta">Quantidade de criativos lançados vs. que viraram vencedores, por semana</span>
+    </div>
+    <div class="card chart-card">
+      <canvas id="chart-volume" height="200"></canvas>
+    </div>
+    <div class="card hist-table-card" style="margin-top:14px">
+      <div class="card-head"><h3 class="card-title">Detalhamento por semana</h3></div>
+      <table class="hist-table" id="volume-table">
+        <thead>
+          <tr>
+            <th>Semana</th>
+            <th class="fish">Fish — Lançados</th>
+            <th class="fish">Fish — Vencedores</th>
+            <th class="fish">Fish — Win Rate</th>
+            <th class="aris">Aris — Lançados</th>
+            <th class="aris">Aris — Vencedores</th>
+            <th class="aris">Aris — Win Rate</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">Evolução Semanal — Receita &amp; Gasto em Mídia</h2>
+      <span class="block-meta">Receita NC vs. investimento em aquisição, por semana</span>
+    </div>
+    <div class="card chart-card">
+      <canvas id="chart-revenue" height="120"></canvas>
+    </div>
+  </section>
+
+  <section class="block all-only">
+    <div class="block-head">
+      <h2 class="block-title">Comparativo · Fishermans × Aristocrata</h2>
+      <span class="block-meta">KPIs principais lado a lado</span>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card brand-card-fish">
+        <header class="brand-card-head">
+          <div class="brand-card-mark"></div>
+          <div class="brand-card-title">Fishermans</div>
+          <div class="brand-card-tag">Aquisição</div>
+        </header>
+        <div class="brand-kpis">
+          <div><span class="k">Receita NC</span><span class="v" id="f-revenue">—</span></div>
+          <div><span class="k">Gasto Mídia</span><span class="v" id="f-spend">—</span></div>
+          <div><span class="k">aMER</span><span class="v" id="f-amer">—</span></div>
+          <div><span class="k">NNC</span><span class="v" id="f-nnc">—</span></div>
+          <div><span class="k">CPM</span><span class="v" id="f-cpm">—</span></div>
+          <div><span class="k">CTR</span><span class="v" id="f-ctr">—</span></div>
+          <div><span class="k">CVR</span><span class="v" id="f-cvr">—</span></div>
+          <div><span class="k">Freq.</span><span class="v" id="f-freq">—</span></div>
+        </div>
+      </div>
+
+      <div class="brand-card brand-card-aris">
+        <header class="brand-card-head">
+          <div class="brand-card-mark"></div>
+          <div class="brand-card-title">O Aristocrata</div>
+          <div class="brand-card-tag">Aquisição</div>
+        </header>
+        <div class="brand-kpis">
+          <div><span class="k">Receita NC</span><span class="v" id="a-revenue">—</span></div>
+          <div><span class="k">Gasto Mídia</span><span class="v" id="a-spend">—</span></div>
+          <div><span class="k">aMER</span><span class="v" id="a-amer">—</span></div>
+          <div><span class="k">NNC</span><span class="v" id="a-nnc">—</span></div>
+          <div><span class="k">CPM</span><span class="v" id="a-cpm">—</span></div>
+          <div><span class="k">CTR</span><span class="v" id="a-ctr">—</span></div>
+          <div><span class="k">CVR</span><span class="v" id="a-cvr">—</span></div>
+          <div><span class="k">Freq.</span><span class="v" id="a-freq">—</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">Marketplaces</h2>
+      <span class="block-meta">Receita, margem líquida e investimento em Ads por canal</span>
+    </div>
+
+    <div class="split">
+      <div class="card chart-card">
+        <div class="card-head">
+          <h3 class="card-title">Receita por canal · GMV</h3>
+          <div class="legend-row" id="mkt-legend"></div>
+        </div>
+        <canvas id="chart-marketplaces" height="180"></canvas>
+      </div>
+      <div class="card table-card">
+        <div class="card-head">
+          <h3 class="card-title">Detalhamento</h3>
+          <span class="card-meta">Mês corrente</span>
+        </div>
+        <table class="dt" id="mkt-table">
+          <thead>
+            <tr>
+              <th>Canal</th>
+              <th class="right">GMV</th>
+              <th class="right">Margem</th>
+              <th class="right">Ads</th>
+              <th class="right">TACOS</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">Performance de Criativos</h2>
+      <span class="block-meta">Hook Rate · Hold Rate · CTR Link · Frequência</span>
+    </div>
+    <div class="card chart-card">
+      <div class="card-head">
+        <h3 class="card-title">Comparativo por linha/marca</h3>
+        <div class="legend-row">
+          <span class="lg"><i class="dot dot-fish"></i>Fishermans (por produto)</span>
+          <span class="lg"><i class="dot dot-aris"></i>Aristocrata (geral)</span>
+        </div>
+      </div>
+      <canvas id="chart-creative" height="160"></canvas>
+    </div>
+    <div class="card table-card" style="margin-top:14px">
+      <div class="card-head">
+        <h3 class="card-title">Tabela de criativos</h3>
+      </div>
+      <table class="dt" id="creative-table">
+        <thead>
+          <tr>
+            <th>Linha / Marca</th>
+            <th class="right">Lançados</th>
+            <th class="right">Vencedores</th>
+            <th class="right">Win Rate</th>
+            <th class="right">Hook</th>
+            <th class="right">Hold</th>
+            <th class="right">CTR</th>
+            <th class="right">CPM</th>
+            <th class="right">Custo/Hook</th>
+            <th class="right">Freq.</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" id="sales-block">
+    <div class="block-head">
+      <h2 class="block-title">Equipe de Vendas · Fishermans</h2>
+      <span class="block-meta">Leandro · Guilherme · Vinicius — evolução semana a semana</span>
+    </div>
+
+    <div class="card chart-card">
+      <div class="card-head">
+        <h3 class="card-title">Evolução semanal · Faturamento por vendedor &amp; Vendas fechadas</h3>
+        <span class="card-meta">Barras empilhadas = faturamento (eixo esq.) · Linha = vendas fechadas (eixo dir.)</span>
+      </div>
+      <canvas id="chart-sales-evo" height="200"></canvas>
+    </div>
+
+    <div class="card hist-table-card" style="margin-top:14px">
+      <div class="card-head"><h3 class="card-title">Consolidado da equipe por semana</h3><span class="card-meta">▲▼ = variação vs. semana anterior · ★ = semana atual</span></div>
+      <table class="hist-table" id="sales-evo-table">
+        <thead>
+          <tr>
+            <th>Semana</th>
+            <th class="fish">Faturamento</th>
+            <th class="fish">Vendas</th>
+            <th class="fish">Leads</th>
+            <th class="fish">CVR</th>
+            <th class="fish">Ticket Médio</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="card table-card" style="margin-top:14px">
+      <div class="card-head"><h3 class="card-title">Detalhamento por vendedor</h3><span class="card-meta">Período selecionado</span></div>
+      <table class="dt" id="sales-table">
+        <thead>
+          <tr>
+            <th>Vendedor</th>
+            <th class="right">Faturamento</th>
+            <th class="right">Vendas</th>
+            <th class="right">Leads</th>
+            <th class="right">CVR</th>
+            <th class="right">Ticket Médio</th>
+            <th class="right">TMR</th>
+            <th class="right">NPS</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot-l">
+      <strong>Dashboard Fishermans &amp; Aristocrata</strong> · Grupo Shrigma · uso interno
+    </div>
+    <div class="foot-r">
+      Dados sincronizados manualmente da planilha SharePoint · próxima atualização ao fim da semana
+    </div>
+  </footer>
+</main>
+
+<div class="updater-overlay" id="updater-overlay">
+  <div class="updater-modal">
+    <button class="updater-close" id="updater-close" aria-label="Fechar">&times;</button>
+    <h3 class="updater-title">Atualizar dados · adicionar mês ao histórico</h3>
+    <p class="updater-sub">Exporte a planilha do mês (mesmo modelo) e solte o arquivo <strong>.xlsx</strong> abaixo. Cada planilha vira <strong>mais um mês</strong> no histórico — nada é substituído.</p>
+
+    <div class="updater-drop" id="updater-drop">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      <div class="updater-drop-text">Arraste o arquivo <strong>.xlsx</strong> aqui<br><span>ou clique para escolher</span></div>
+      <input type="file" id="updater-input" accept=".xlsx" hidden />
+    </div>
+
+    <div class="updater-status" id="updater-status"></div>
+    <div class="updater-month" id="updater-month"></div>
+    <div class="updater-actions" id="updater-actions"></div>
+    <div class="updater-archive" id="updater-archive"></div>
+
+    <div class="updater-publish" id="updater-publish">
+      <div class="pub-head">Publicar para todos</div>
+      <p class="pub-sub">Envia os dados direto para o GitHub — quem abrir o link passa a ver a versão atualizada. (Sem isto, suas atualizações ficam só neste navegador.)</p>
+      <div class="pub-row">
+        <button class="up-btn primary" id="pub-btn">⇪ Publicar para todos</button>
+        <button class="up-btn ghost" id="pub-config-btn">Configurar chave</button>
+      </div>
+      <div class="pub-status" id="pub-status"></div>
+      <div class="pub-config" id="pub-config" style="display:none">
+        <p class="up-hint">Cole sua <strong>chave de acesso do GitHub</strong> (fine-grained token). Ela fica salva só neste navegador.</p>
+        <div class="up-month-row">
+          <input type="password" id="pub-token" class="up-field" placeholder="github_pat_…" style="flex:1" autocomplete="off" />
+          <button class="up-btn" id="pub-save">Salvar chave</button>
+        </div>
+        <p class="pub-help">Como criar: GitHub → Settings → Developer settings → <strong>Fine-grained tokens</strong> → Generate new token. Em <em>Repository access</em> escolha <strong>francoviiii/fishermans-dashboard</strong>; em <em>Permissions → Contents</em> marque <strong>Read and write</strong>.</p>
+      </div>
+    </div>
+
+    <div class="updater-help">
+      <strong>Como exportar:</strong> no Excel Online → Arquivo → Salvar como → Baixar uma cópia (.xlsx). Depois solte aqui.
+    </div>
+  </div>
+</div>
+
+<script src="app.js?v=3"></script>
+<script src="updater.js?v=3"></script>
+</body>
+</html>
