@@ -1,6 +1,6 @@
 {
   "schema": "multi-month-v1",
-  "generatedAt": "2026-06-08",
+  "generatedAt": "2026-06-15",
   "months": [
     {
       "id": "2026-05",
@@ -2891,8 +2891,8 @@
       "abbr": "Jun 2026",
       "year": 2026,
       "month": 6,
-      "source": "relatorio_marketing_Junho.xlsx",
-      "generatedAt": "2026-06-08",
+      "source": "relatorio_marketing_Junho1.xlsx",
+      "generatedAt": "2026-06-15",
       "data": {
         "trafego": [
           {
@@ -2904,21 +2904,24 @@
               {
                 "name": "Receita de Novos Clientes R$",
                 "s1": 121158,
-                "total": 121158,
-                "avg": 121158,
+                "s2": 114946,
+                "total": 236104,
+                "avg": 118052,
                 "obs": "Apenas 1a compra"
               },
               {
                 "name": "Gasto Total em Midia de Aquisicao R$",
                 "s1": 63324,
-                "total": 63324,
-                "avg": 63324
+                "s2": 52785,
+                "total": 116109,
+                "avg": 58054.5
               },
               {
                 "name": "aMER (Acquisition MER)  [calc]",
                 "s1": 1.9133030130756112,
-                "total": 1.9133030130756112,
-                "avg": 1.9133030130756112,
+                "s2": 2.1776262195699534,
+                "total": 2.033468551102843,
+                "avg": 2.045464616322782,
                 "obs": "Min ~ 1 / margem bruta"
               },
               {
@@ -2932,53 +2935,61 @@
               {
                 "name": "MC de Aquisicao R$  [calc]",
                 "s1": 57834,
-                "total": 57834,
-                "avg": 57834,
+                "s2": 62161,
+                "total": 119995,
+                "avg": 59997.5,
                 "obs": "Negativo = queima caixa"
               },
               {
                 "name": "MC %  [calc]",
                 "s1": 0.47734363393255086,
-                "total": 0.47734363393255086,
-                "avg": 0.47734363393255086
+                "s2": 0.540784368312077,
+                "total": 0.5082294243214854,
+                "avg": 0.509064001122314
               },
               {
                 "name": "NNC - Net New Customers",
                 "s1": 626,
-                "total": 626,
-                "avg": 626,
+                "s2": 464,
+                "total": 1090,
+                "avg": 545,
                 "obs": "Meta: +10-30% MoM"
               },
               {
                 "name": "CPM R$",
                 "s1": 15.93,
-                "total": 15.93,
-                "avg": 15.93
+                "s2": 12.67,
+                "total": 28.6,
+                "avg": 14.3
               },
               {
                 "name": "CTR Link %",
                 "s1": 0.0134,
-                "total": 0.0134,
-                "avg": 0.0134
+                "s2": 0.0161,
+                "total": 0.01475,
+                "avg": 0.01475
               },
               {
                 "name": "CPC R$  [calc]",
                 "s1": 1.19,
-                "total": 1.1888059701492537,
-                "avg": 1.19
+                "s2": 0.79,
+                "total": 1.9389830508474577,
+                "avg": 0.99
               },
               {
                 "name": "CVR de Checkout %",
-                "s1": 0.08,
-                "total": 0.08,
-                "avg": 0.08,
+                "s1": 0.068,
+                "s2": 0.055,
+                "total": 0.0615,
+                "avg": 0.0615,
                 "obs": "CVR caindo + CTR estavel = problema LP"
               },
               {
                 "name": "Frequencia por Campanha",
                 "s1": 5.35,
-                "total": 5.35,
-                "avg": 5.35,
+                "s2": 3.31,
+                "total": 4.33,
+                "avg": 4.33,
                 "obs": "Acima 3.5 = refresh urgente"
               },
               {
@@ -2991,21 +3002,24 @@
               {
                 "name": "Receita de Novos Clientes R$",
                 "s1": 253911,
-                "total": 253911,
-                "avg": 253911,
+                "s2": 368471,
+                "total": 622382,
+                "avg": 311191,
                 "obs": "Apenas 1a compra"
               },
               {
                 "name": "Gasto Total em Midia de Aquisicao R$",
                 "s1": 68058,
-                "total": 68058,
-                "avg": 68058
+                "s2": 86987,
+                "total": 155045,
+                "avg": 77522.5
               },
               {
                 "name": "aMER (Acquisition MER)  [calc]",
                 "s1": 3.7308031384995153,
-                "total": 3.7308031384995153,
-                "avg": 3.7308031384995153,
+                "s2": 4.235931805902031,
+                "total": 4.0142023283562835,
+                "avg": 3.983367472200773,
                 "obs": "Min ~ 1 / margem bruta"
               },
               {
@@ -3019,53 +3033,61 @@
               {
                 "name": "MC de Aquisicao R$  [calc]",
                 "s1": 185853,
-                "total": 185853,
-                "avg": 185853,
+                "s2": 281484,
+                "total": 467337,
+                "avg": 233668.5,
                 "obs": "Negativo = queima caixa"
               },
               {
                 "name": "MC %  [calc]",
                 "s1": 0.7319611990028002,
-                "total": 0.7319611990028002,
-                "avg": 0.7319611990028002
+                "s2": 0.7639244336732063,
+                "total": 0.7508845050146051,
+                "avg": 0.7479428163380033
               },
               {
                 "name": "NNC - Net New Customers",
                 "s1": 1658,
-                "total": 1658,
-                "avg": 1658,
+                "s2": 2065,
+                "total": 3723,
+                "avg": 1861.5,
                 "obs": "Meta: +10-30% MoM"
               },
               {
                 "name": "CPM R$",
                 "s1": 30.41,
-                "total": 30.41,
-                "avg": 30.41
+                "s2": 28.67,
+                "total": 59.08,
+                "avg": 29.54
               },
               {
                 "name": "CTR Link %",
                 "s1": 0.0224,
-                "total": 0.0224,
-                "avg": 0.0224
+                "s2": 0.0225,
+                "total": 0.022449999999999998,
+                "avg": 0.022449999999999998
               },
               {
                 "name": "CPC R$  [calc]",
                 "s1": 1.36,
-                "total": 1.3575892857142857,
-                "avg": 1.36
+                "s2": 1.27,
+                "total": 2.6316258351893094,
+                "avg": 1.315
               },
               {
                 "name": "CVR de Checkout %",
                 "s1": 0.08,
-                "total": 0.08,
-                "avg": 0.08,
+                "s2": 0.1,
+                "total": 0.09,
+                "avg": 0.09,
                 "obs": "CVR caindo + CTR estavel = problema LP"
               },
               {
                 "name": "Frequencia por Campanha",
                 "s1": 5.89,
-                "total": 5.89,
-                "avg": 5.89,
+                "s2": 3.93,
+                "total": 4.91,
+                "avg": 4.91,
                 "obs": "Acima 3.5 = refresh urgente"
               },
               {
@@ -3082,8 +3104,9 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 121043,
-                "total": 121043,
-                "avg": 121043
+                "s2": 111776.17,
+                "total": 232819.16999999998,
+                "avg": 116409.58499999999
               },
               {
                 "name": "Custo do Produto (CMV) R$",
@@ -3092,42 +3115,47 @@
               {
                 "name": "Comissao R$",
                 "s1": 18718.29,
-                "total": 18718.29,
-                "avg": 18718.29
+                "s2": 17636.43,
+                "total": 36354.72,
+                "avg": 18177.36
               },
               {
                 "name": "Frete R$",
                 "s1": 14066.82,
-                "total": 14066.82,
-                "avg": 14066.82
+                "s2": 13948.5,
+                "total": 28015.32,
+                "avg": 14007.66
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 8652.21,
-                "total": 8652.21,
-                "avg": 8652.21
+                "s2": 6286.08,
+                "total": 14938.289999999999,
+                "avg": 7469.1449999999995
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 4358,
-                "total": 4358,
-                "avg": 4358
+                "s2": 2651.56,
+                "total": 7009.5599999999995,
+                "avg": 3504.7799999999997
               },
               {
                 "name": "Margem Liquida R$  [calc]",
                 "s1": 75247.68,
-                "s2": 0,
+                "s2": 71253.59999999999,
                 "s3": 0,
                 "s4": 0,
-                "total": 75247.68,
-                "avg": 75247.68,
+                "total": 146501.27999999997,
+                "avg": 73250.63999999998,
                 "obs": "Devoluções + Cancelamentos"
               },
               {
                 "name": "TACOS %  [calc]",
                 "s1": 0.07148046561965582,
-                "total": 0.07148046561965582,
-                "avg": 0.07148046561965582,
+                "s2": 0.056238105134573856,
+                "total": 0.06416262887630773,
+                "avg": 0.06385928537711484,
                 "obs": "Meta: 5-15%"
               },
               {
@@ -3138,6 +3166,7 @@
               {
                 "name": "% Receita Earned  [calc]",
                 "s1": 0,
+                "s2": 0,
                 "total": 0,
                 "obs": "Meta: 10-25%"
               },
@@ -3177,8 +3206,9 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 127,
-                "total": 127,
-                "avg": 127
+                "s2": 597,
+                "total": 724,
+                "avg": 362
               },
               {
                 "name": "Custo do Produto (CMV) R$",
@@ -3187,41 +3217,44 @@
               {
                 "name": "Comissao R$",
                 "s1": 26.06,
-                "total": 26.06,
-                "avg": 26.06
+                "s2": 82.76,
+                "total": 108.82000000000001,
+                "avg": 54.410000000000004
               },
               {
                 "name": "Frete R$",
                 "s1": 0,
-                "total": 0
+                "s2": 16,
+                "total": 16,
+                "avg": 16
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Margem Liquida R$  [calc]",
                 "s1": 100.94,
-                "s2": 1347.09,
-                "s3": 876.5299999999999,
+                "s2": 498.24,
+                "s3": 0,
                 "s4": 0,
-                "total": 100.94,
-                "avg": 774.8533333333334,
+                "total": 599.18,
+                "avg": 299.59000000000003,
                 "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
               },
               {
                 "name": "TACOS %  [calc]",
                 "s1": 0,
-                "s2": 0.0803429139776439,
-                "s3": 0.3135498320268757,
+                "s2": 0,
                 "total": 0,
-                "avg": 0.1969463730022598,
                 "obs": "Meta: 5-15%"
               },
               {
@@ -3233,7 +3266,6 @@
                 "name": "% Receita Earned  [calc]",
                 "s1": 0,
                 "s2": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 10-25%"
               },
@@ -3273,8 +3305,9 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 13584.38,
-                "total": 13584.38,
-                "avg": 13584.38
+                "s2": 21555.29,
+                "total": 35139.67,
+                "avg": 17569.835
               },
               {
                 "name": "Custo do Produto (CMV) R$",
@@ -3283,43 +3316,47 @@
               {
                 "name": "Comissao R$",
                 "s1": 1539.34,
-                "total": 1539.34,
-                "avg": 1539.34
+                "s2": 3936.52,
+                "total": 5475.86,
+                "avg": 2737.93
               },
               {
                 "name": "Frete R$",
                 "s1": 291.85,
-                "total": 291.85,
-                "avg": 291.85
+                "s2": 198.62,
+                "total": 490.47,
+                "avg": 245.235
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 387.34,
-                "total": 387.34,
-                "avg": 387.34
+                "s2": 1200,
+                "total": 1587.34,
+                "avg": 793.67
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 0,
-                "total": 0
+                "s2": 417.26,
+                "total": 417.26,
+                "avg": 417.26
               },
               {
                 "name": "Margem Liquida R$  [calc]",
                 "s1": 11365.849999999999,
-                "s2": 6108.9000000000015,
-                "s3": 9282.64,
+                "s2": 15802.890000000001,
+                "s3": 0,
                 "s4": 0,
-                "total": 11365.849999999999,
-                "avg": 8919.13,
+                "total": 27168.739999999998,
+                "avg": 13584.369999999999,
                 "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
               },
               {
                 "name": "TACOS %  [calc]",
                 "s1": 0.028513631096892166,
-                "s2": 0.08137895003251089,
-                "s3": 0.06276195270008197,
-                "total": 0.028513631096892166,
-                "avg": 0.057551511276495014,
+                "s2": 0.05567078893394614,
+                "total": 0.04517230810647909,
+                "avg": 0.04209221001541916,
                 "obs": "Meta: 5-15%"
               },
               {
@@ -3331,7 +3368,6 @@
                 "name": "% Receita Earned  [calc]",
                 "s1": 0,
                 "s2": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 10-25%"
               },
@@ -3371,8 +3407,9 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 8216.53,
-                "total": 8216.53,
-                "avg": 8216.53
+                "s2": 11776.44,
+                "total": 19992.97,
+                "avg": 9996.485
               },
               {
                 "name": "Custo do Produto (CMV) R$",
@@ -3381,37 +3418,40 @@
               {
                 "name": "Comissao R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Frete R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Margem Liquida R$  [calc]",
                 "s1": 8216.53,
-                "s2": 6592.16,
-                "s3": 7444.15,
+                "s2": 11776.44,
+                "s3": 0,
                 "s4": 0,
-                "total": 8216.53,
-                "avg": 7417.613333333334,
+                "total": 19992.97,
+                "avg": 9996.485,
                 "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
               },
               {
                 "name": "TACOS %  [calc]",
                 "s1": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 5-15%"
               },
@@ -3423,7 +3463,6 @@
               {
                 "name": "% Receita Earned  [calc]",
                 "s1": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 10-25%"
               },
@@ -3463,8 +3502,9 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 2962.85,
-                "total": 2962.85,
-                "avg": 2962.85
+                "s2": 736.64,
+                "total": 3699.49,
+                "avg": 1849.745
               },
               {
                 "name": "Custo do Produto (CMV) R$",
@@ -3473,38 +3513,41 @@
               {
                 "name": "Comissao R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Frete R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Margem Liquida R$  [calc]",
                 "s1": 2962.85,
-                "s2": 176,
-                "s3": 452.92,
+                "s2": 736.64,
+                "s3": 0,
                 "s4": 0,
-                "total": 2962.85,
-                "avg": 1197.2566666666667,
+                "total": 3699.49,
+                "avg": 1849.745,
                 "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
               },
               {
                 "name": "TACOS %  [calc]",
                 "s1": 0,
                 "s2": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 5-15%"
               },
@@ -3517,7 +3560,6 @@
                 "name": "% Receita Earned  [calc]",
                 "s1": 0,
                 "s2": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 10-25%"
               },
@@ -3638,8 +3680,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 145933.76,
-                "avg": 145933.76,
+                "total": 292375.29999999993,
+                "avg": 292375.29999999993,
                 "obs": "Soma de todos os canais"
               },
               {
@@ -3647,8 +3689,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 9039.55,
-                "avg": 9039.55
+                "total": 16525.629999999997,
+                "avg": 16525.629999999997
               },
               {
                 "name": "Margem Liquida Total R$  [calc]",
@@ -3656,8 +3698,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 97893.85,
-                "avg": 97893.85
+                "total": 197961.65999999995,
+                "avg": 197961.65999999995
               },
               {
                 "name": "TACOS Total %  [calc]",
@@ -3665,8 +3707,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 0.06194282940424477,
-                "avg": 0.06194282940424477,
+                "total": 0.05652197706167382,
+                "avg": 0.05652197706167382,
                 "obs": "Gasto Ads / Receita Total"
               },
               {
@@ -3698,8 +3740,9 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 48276.01,
-                "total": 48276.01,
-                "avg": 48276.01
+                "s2": 51988.71,
+                "total": 100264.72,
+                "avg": 50132.36
               },
               {
                 "name": "Custo do Produto (CMV) R$",
@@ -3708,44 +3751,47 @@
               {
                 "name": "Comissao R$",
                 "s1": 9165.05,
-                "total": 9165.05,
-                "avg": 9165.05
+                "s2": 9554.37,
+                "total": 18719.42,
+                "avg": 9359.71
               },
               {
                 "name": "Frete R$",
                 "s1": 6549.2,
-                "total": 6549.2,
-                "avg": 6549.2
+                "s2": 7360.9,
+                "total": 13910.099999999999,
+                "avg": 6955.049999999999
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 4432.57,
-                "total": 4432.57,
-                "avg": 4432.57
+                "s2": 5288,
+                "total": 9720.57,
+                "avg": 4860.285
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 519.3,
-                "total": 519.3,
-                "avg": 519.3
+                "s2": 830.36,
+                "total": 1349.6599999999999,
+                "avg": 674.8299999999999
               },
               {
                 "name": "Margem Liquida R$  [calc]",
                 "s1": 27609.890000000007,
-                "s2": 25330.02,
-                "s3": 19296.54,
+                "s2": 28955.079999999994,
+                "s3": 0,
                 "s4": 0,
-                "total": 27609.890000000007,
-                "avg": 24078.81666666667,
+                "total": 56564.970000000016,
+                "avg": 28282.485,
                 "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
               },
               {
                 "name": "TACOS %  [calc]",
                 "s1": 0.09181724007431433,
-                "s2": 0,
-                "s3": 0,
-                "total": 0.09181724007431433,
-                "avg": 0.09181724007431433,
+                "s2": 0.10171439145152861,
+                "total": 0.09694905645774506,
+                "avg": 0.09676581576292147,
                 "obs": "Meta: 5-15%"
               },
               {
@@ -3757,7 +3803,6 @@
                 "name": "% Receita Earned  [calc]",
                 "s1": 0,
                 "s2": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 10-25%"
               },
@@ -3797,8 +3842,9 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 2267,
-                "total": 2267,
-                "avg": 2267
+                "s2": 2174.8,
+                "total": 4441.8,
+                "avg": 2220.9
               },
               {
                 "name": "Custo do Produto (CMV) R$",
@@ -3807,42 +3853,46 @@
               {
                 "name": "Comissao R$",
                 "s1": 367.55,
-                "total": 367.55,
-                "avg": 367.55
+                "s2": 629.83,
+                "total": 997.3800000000001,
+                "avg": 498.69000000000005
               },
               {
                 "name": "Frete R$",
                 "s1": 0,
-                "total": 0
+                "s2": 33,
+                "total": 33,
+                "avg": 33
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 116.54,
+                "s2": 0,
                 "total": 116.54,
                 "avg": 116.54
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Margem Liquida R$  [calc]",
                 "s1": 1782.91,
-                "s2": 1292.9,
-                "s3": 1578.1,
+                "s2": 1511.9700000000003,
+                "s3": 0,
                 "s4": 0,
-                "total": 1782.91,
-                "avg": 1551.3033333333333,
+                "total": 3294.88,
+                "avg": 1647.44,
                 "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
               },
               {
                 "name": "TACOS %  [calc]",
                 "s1": 0.05140714600794001,
-                "s2": 0.0031296562989008795,
-                "s3": 0,
-                "total": 0.05140714600794001,
-                "avg": 0.027268401153420444,
+                "s2": 0,
+                "total": 0.02623711108109325,
+                "avg": 0.05140714600794001,
                 "obs": "Meta: 5-15%"
               },
               {
@@ -3854,7 +3904,6 @@
                 "name": "% Receita Earned  [calc]",
                 "s1": 0,
                 "s2": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 10-25%"
               },
@@ -3894,8 +3943,9 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 4659.54,
-                "total": 4659.54,
-                "avg": 4659.54
+                "s2": 8285.09,
+                "total": 12944.630000000001,
+                "avg": 6472.3150000000005
               },
               {
                 "name": "Custo do Produto (CMV) R$",
@@ -3904,42 +3954,46 @@
               {
                 "name": "Comissao R$",
                 "s1": 540.91,
-                "total": 540.91,
-                "avg": 540.91
+                "s2": 1896.47,
+                "total": 2437.38,
+                "avg": 1218.69
               },
               {
                 "name": "Frete R$",
                 "s1": 0,
-                "total": 0
+                "s2": 935.89,
+                "total": 935.89,
+                "avg": 935.89
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 216.22,
-                "total": 216.22,
-                "avg": 216.22
+                "s2": 350,
+                "total": 566.22,
+                "avg": 283.11
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Margem Liquida R$  [calc]",
                 "s1": 3902.4100000000003,
-                "s2": 5723.23,
-                "s3": 5037.550000000001,
+                "s2": 5102.73,
+                "s3": 0,
                 "s4": 0,
-                "total": 3902.4100000000003,
-                "avg": 4887.7300000000005,
+                "total": 9005.140000000001,
+                "avg": 4502.57,
                 "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
               },
               {
                 "name": "TACOS %  [calc]",
                 "s1": 0.046403722255845,
-                "s2": 0,
-                "s3": 0,
-                "total": 0.046403722255845,
-                "avg": 0.046403722255845,
+                "s2": 0.04224456221960172,
+                "total": 0.0437416905697575,
+                "avg": 0.04432414223772336,
                 "obs": "Meta: 5-15%"
               },
               {
@@ -3951,7 +4005,6 @@
                 "name": "% Receita Earned  [calc]",
                 "s1": 0,
                 "s2": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 10-25%"
               },
@@ -3991,8 +4044,9 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 2019.55,
-                "total": 2019.55,
-                "avg": 2019.55
+                "s2": 1668.28,
+                "total": 3687.83,
+                "avg": 1843.915
               },
               {
                 "name": "Custo do Produto (CMV) R$",
@@ -4001,38 +4055,41 @@
               {
                 "name": "Comissao R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Frete R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Margem Liquida R$  [calc]",
                 "s1": 2019.55,
-                "s2": 706.27,
-                "s3": 688.98,
+                "s2": 1668.28,
+                "s3": 0,
                 "s4": 0,
-                "total": 2019.55,
-                "avg": 1138.2666666666667,
+                "total": 3687.83,
+                "avg": 1843.915,
                 "obs": "Receita - CMV - Comissao - Frete - Ads - Devolucoes"
               },
               {
                 "name": "TACOS %  [calc]",
                 "s1": 0,
                 "s2": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 5-15%"
               },
@@ -4045,7 +4102,6 @@
                 "name": "% Receita Earned  [calc]",
                 "s1": 0,
                 "s2": 0,
-                "s3": 0,
                 "total": 0,
                 "obs": "Meta: 10-25%"
               },
@@ -4085,31 +4141,37 @@
               {
                 "name": "Receita (GMV) R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Custo do Produto (CMV) R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Comissao R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Frete R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Gasto em Ads R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
                 "name": "Devolucoes R$",
                 "s1": 0,
+                "s2": 0,
                 "total": 0
               },
               {
@@ -4251,8 +4313,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 57222.100000000006,
-                "avg": 57222.100000000006,
+                "total": 121338.98000000001,
+                "avg": 121338.98000000001,
                 "obs": "Soma de todos os canais"
               },
               {
@@ -4260,16 +4322,16 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 4765.33,
-                "avg": 4765.33
+                "total": 10403.33,
+                "avg": 10403.33
               },
               {
                 "name": "Margem Liquida Total R$  [calc]",
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 35314.76000000001,
-                "avg": 35314.76000000001
+                "total": 72552.82000000002,
+                "avg": 72552.82000000002
               },
               {
                 "name": "TACOS Total %  [calc]",
@@ -4277,8 +4339,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 0.08327778952537568,
-                "avg": 0.08327778952537568,
+                "total": 0.08573774066668435,
+                "avg": 0.08573774066668435,
                 "obs": "Gasto Ads / Receita Total"
               },
               {
@@ -4310,20 +4372,25 @@
               {
                 "name": "Criativos Lancados no Mes",
                 "s1": 9,
-                "total": 9,
-                "avg": 9,
+                "s2": 24,
+                "total": 33,
+                "avg": 16.5,
                 "obs": "Total de criativos que entraram no ar"
               },
               {
                 "name": "Criativos Vencedores",
                 "s1": 0,
-                "total": 0,
+                "s2": 1,
+                "total": 1,
+                "avg": 1,
                 "obs": "Bateram o controle ou ficaram abaixo do CPA-alvo"
               },
               {
                 "name": "Win Rate %  [calc]",
                 "s1": 0,
-                "total": 0,
+                "s2": 0.041666666666666664,
+                "total": 0.030303030303030304,
+                "avg": 0.041666666666666664,
                 "obs": "Meta: 15-25%"
               },
               {
@@ -4338,45 +4405,49 @@
               {
                 "name": "Hook Rate %",
                 "s1": 0.1032,
-                "total": 0.1032,
-                "avg": 0.1032,
+                "s2": 0.2421,
+                "total": 0.17265,
+                "avg": 0.17265,
                 "obs": "3s views / impressoes. Meta: 25-35%+"
               },
               {
                 "name": "Hold Rate %",
                 "s1": 0.0354,
-                "total": 0.0354,
-                "avg": 0.0354,
+                "s2": 0.0665,
+                "total": 0.05095,
+                "avg": 0.05095,
                 "obs": "15s views / 3s views. Quanto maior melhor"
               },
               {
                 "name": "CTR Link %",
                 "s1": 0.0068,
-                "total": 0.0068,
-                "avg": 0.0068,
+                "s2": 0.0267,
+                "total": 0.01675,
+                "avg": 0.01675,
                 "obs": "Cliques / impressoes"
               },
               {
                 "name": "CPM R$",
                 "s1": 19.24,
-                "total": 19.24,
-                "avg": 19.24,
+                "s2": 10.64,
+                "total": 29.88,
+                "avg": 14.94,
                 "obs": "Custo por 1.000 impressoes"
               },
               {
                 "name": "Custo por Hook R$  [calc]",
                 "s1": 186.43410852713177,
-                "s2": 103.29949238578682,
-                "s3": 51.19933829611249,
-                "total": 186.43410852713177,
-                "avg": 113.64431306967703,
+                "s2": 43.9487814952499,
+                "total": 173.06689834926152,
+                "avg": 115.19144501119084,
                 "obs": "CPM / Hook Rate. Quanto menor melhor"
               },
               {
                 "name": "Frequencia",
                 "s1": 1.41,
-                "total": 1.41,
-                "avg": 1.41,
+                "s2": 2.11,
+                "total": 1.7599999999999998,
+                "avg": 1.7599999999999998,
                 "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
               }
             ]
@@ -4387,13 +4458,15 @@
               {
                 "name": "Criativos Lancados no Mes",
                 "s1": 2,
-                "total": 2,
-                "avg": 2,
+                "s2": 5,
+                "total": 7,
+                "avg": 3.5,
                 "obs": "Total de criativos que entraram no ar"
               },
               {
                 "name": "Criativos Vencedores",
                 "s1": 0,
+                "s2": 0,
                 "total": 0,
                 "obs": "Bateram o controle ou ficaram abaixo do CPA-alvo"
               },
@@ -4417,45 +4490,49 @@
               {
                 "name": "Hook Rate %",
                 "s1": 0.3679,
-                "total": 0.3679,
-                "avg": 0.3679,
+                "s2": 0.2381,
+                "total": 0.303,
+                "avg": 0.303,
                 "obs": "3s views / impressoes. Meta: 25-35%+"
               },
               {
                 "name": "Hold Rate %",
                 "s1": 0.2391,
-                "total": 0.2391,
-                "avg": 0.2391,
+                "s2": 0.083,
+                "total": 0.16105,
+                "avg": 0.16105,
                 "obs": "15s views / 3s views. Quanto maior melhor"
               },
               {
                 "name": "CTR Link %",
                 "s1": 0.0175,
-                "total": 0.0175,
-                "avg": 0.0175,
+                "s2": 0.023,
+                "total": 0.02025,
+                "avg": 0.02025,
                 "obs": "Cliques / impressoes"
               },
               {
                 "name": "CPM R$",
                 "s1": 16.55,
-                "total": 16.55,
-                "avg": 16.55,
+                "s2": 20.69,
+                "total": 37.24,
+                "avg": 18.62,
                 "obs": "Custo por 1.000 impressoes"
               },
               {
                 "name": "Custo por Hook R$  [calc]",
                 "s1": 44.985050285403645,
-                "s2": 39.439853076216714,
-                "s3": 138.19849874895746,
-                "total": 44.985050285403645,
-                "avg": 74.20780070352593,
+                "s2": 86.89626207475851,
+                "total": 122.90429042904292,
+                "avg": 65.94065618008108,
                 "obs": "CPM / Hook Rate. Quanto menor melhor"
               },
               {
                 "name": "Frequencia",
                 "s1": 1.23,
-                "total": 1.23,
-                "avg": 1.23,
+                "s2": 2,
+                "total": 1.615,
+                "avg": 1.615,
                 "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
               }
             ]
@@ -4594,39 +4671,27 @@
               },
               {
                 "name": "Hook Rate %",
-                "total": 0.1719,
-                "avg": 0.1719,
                 "obs": "3s views / impressoes. Meta: 25-35%+"
               },
               {
                 "name": "Hold Rate %",
-                "total": 0.0387,
-                "avg": 0.0387,
                 "obs": "15s views / 3s views. Quanto maior melhor"
               },
               {
                 "name": "CTR Link %",
-                "total": 0.0081,
-                "avg": 0.0081,
                 "obs": "Cliques / impressoes"
               },
               {
                 "name": "CPM R$",
-                "total": 29.68,
-                "avg": 29.68,
+                "total": 0,
                 "obs": "Custo por 1.000 impressoes"
               },
               {
                 "name": "Custo por Hook R$  [calc]",
-                "s1": 172.65852239674228,
-                "total": 172.65852239674228,
-                "avg": 172.65852239674228,
                 "obs": "CPM / Hook Rate. Quanto menor melhor"
               },
               {
                 "name": "Frequencia",
-                "total": 1.51,
-                "avg": 1.51,
                 "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
               }
             ]
@@ -4640,8 +4705,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 11,
-                "avg": 2.2,
+                "total": 40,
+                "avg": 8,
                 "obs": "Soma de todos os produtos"
               },
               {
@@ -4650,8 +4715,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 0,
-                "avg": 0
+                "total": 1,
+                "avg": 0.2
               },
               {
                 "name": "Win Rate % Geral  [calc]",
@@ -4659,8 +4724,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 0,
-                "avg": 0,
+                "total": 0.025,
+                "avg": 0.025,
                 "obs": "Meta: 15-25%"
               }
             ]
@@ -4681,8 +4746,8 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 13.094,
-                "avg": 13.094
+                "total": 13.424000000000001,
+                "avg": 13.424000000000001
               }
             ]
           }
@@ -4694,22 +4759,25 @@
               {
                 "name": "Criativos Lancados no Mes",
                 "s1": 15,
-                "total": 15,
-                "avg": 15,
+                "s2": 22,
+                "total": 37,
+                "avg": 18.5,
                 "obs": "Total de criativos que entraram no ar"
               },
               {
                 "name": "Criativos Vencedores",
-                "s1": 4,
-                "total": 4,
-                "avg": 4,
+                "s1": 5,
+                "s2": 5,
+                "total": 10,
+                "avg": 5,
                 "obs": "Bateram o controle ou ficaram abaixo do CPA-alvo"
               },
               {
                 "name": "Win Rate %  [calc]",
-                "s1": 0.26666666666666666,
-                "total": 0.26666666666666666,
-                "avg": 0.26666666666666666,
+                "s1": 0.3333333333333333,
+                "s2": 0.22727272727272727,
+                "total": 0.2702702702702703,
+                "avg": 0.2803030303030303,
                 "obs": "Meta: 15-25%"
               },
               {
@@ -4723,44 +4791,50 @@
               },
               {
                 "name": "Hook Rate %",
-                "s1": 0.0843,
-                "total": 0.0843,
-                "avg": 0.0843,
+                "s1": 0.1156,
+                "s2": 0.3558,
+                "total": 0.2357,
+                "avg": 0.2357,
                 "obs": "3s views / impressoes. Meta: 25-35%+"
               },
               {
                 "name": "Hold Rate %",
-                "s1": 0.0174,
-                "total": 0.0174,
-                "avg": 0.0174,
+                "s1": 0.0249,
+                "s2": 0.1114,
+                "total": 0.06815,
+                "avg": 0.06815,
                 "obs": "15s views / 3s views. Quanto maior melhor"
               },
               {
                 "name": "CTR Link %",
                 "s1": 0.0148,
-                "total": 0.0148,
-                "avg": 0.0148,
+                "s2": 0.0222,
+                "total": 0.018500000000000003,
+                "avg": 0.018500000000000003,
                 "obs": "Cliques / impressoes"
               },
               {
                 "name": "CPM R$",
-                "s1": 24.6,
-                "total": 24.6,
-                "avg": 24.6,
+                "s1": 24.89,
+                "s2": 34.07,
+                "total": 58.96,
+                "avg": 29.48,
                 "obs": "Custo por 1.000 impressoes"
               },
               {
                 "name": "Custo por Hook R$  [calc]",
-                "s1": 291.8149466192171,
-                "total": 291.8149466192171,
-                "avg": 291.8149466192171,
+                "s1": 215.3114186851211,
+                "s2": 95.75604272062957,
+                "total": 250.14849384811203,
+                "avg": 155.53373070287535,
                 "obs": "CPM / Hook Rate. Quanto menor melhor"
               },
               {
                 "name": "Frequencia",
                 "s1": 2.26,
-                "total": 2.26,
-                "avg": 2.26,
+                "s2": 1.79,
+                "total": 2.025,
+                "avg": 2.025,
                 "obs": "Impressoes / alcance. Acima de 3.5 = risco fadiga"
               }
             ]
@@ -4793,19 +4867,15 @@
               {
                 "name": "CVR de Vendas %  [calc]",
                 "s1": 0.08928571428571429,
-                "s2": 0.05555555555555555,
-                "s3": 0.03260869565217391,
                 "total": 0.08928571428571429,
-                "avg": 0.05914998849781458,
+                "avg": 0.08928571428571429,
                 "obs": "WhatsApp: 10-25% | Consultivo: 25-40%"
               },
               {
                 "name": "Ticket Medio R$  [calc]",
                 "s1": 3206.07,
-                "s2": 4576.22,
-                "s3": 3532.383333333333,
                 "total": 3206.07,
-                "avg": 3771.557777777778
+                "avg": 3206.07
               },
               {
                 "name": "Tempo Medio de Resposta (min)",
@@ -4867,18 +4937,15 @@
               {
                 "name": "CVR de Vendas %  [calc]",
                 "s1": 0.023809523809523808,
-                "s2": 0,
-                "s3": 0.024193548387096774,
                 "total": 0.023809523809523808,
-                "avg": 0.02400153609831029,
+                "avg": 0.023809523809523808,
                 "obs": "WhatsApp: 10-25% | Consultivo: 25-40%"
               },
               {
                 "name": "Ticket Medio R$  [calc]",
                 "s1": 3516.215,
-                "s3": 2287.98,
                 "total": 3516.215,
-                "avg": 2902.0975
+                "avg": 3516.215
               },
               {
                 "name": "Tempo Medio de Resposta (min)",
@@ -4915,14 +4982,12 @@
             "metrics": [
               {
                 "name": "Faturamento R$",
-                "total": 26152.63,
-                "avg": 26152.63,
+                "total": 0,
                 "obs": "Soma das vendas fechadas no periodo"
               },
               {
                 "name": "Vendas Fechadas (numero)",
-                "total": 3,
-                "avg": 3
+                "total": 0
               },
               {
                 "name": "Leads / Atendimentos Recebidos",
@@ -4933,16 +4998,11 @@
               },
               {
                 "name": "CVR de Vendas %  [calc]",
-                "s3": 0.036585365853658534,
-                "total": 0.04918032786885246,
-                "avg": 0.036585365853658534,
+                "total": 0,
                 "obs": "WhatsApp: 10-25% | Consultivo: 25-40%"
               },
               {
-                "name": "Ticket Medio R$  [calc]",
-                "s3": 8717.543333333333,
-                "total": 8717.543333333333,
-                "avg": 8717.543333333333
+                "name": "Ticket Medio R$  [calc]"
               },
               {
                 "name": "Tempo Medio de Resposta (min)",
@@ -4981,10 +5041,10 @@
                 "name": "Faturamento Total da Equipe R$",
                 "s1": 23062.78,
                 "s2": "—",
-                "s3": 43613.72,
+                "s3": 0,
                 "s4": "—",
-                "total": 49215.41,
-                "avg": 16405.13666666667,
+                "total": 23062.78,
+                "avg": 7687.593333333333,
                 "obs": "Leandro + Guilherme + Vinicius"
               },
               {
@@ -4992,8 +5052,8 @@
                 "s1": 7,
                 "s2": "—",
                 "s4": "—",
-                "total": 10,
-                "avg": 3.3333333333333335
+                "total": 7,
+                "avg": 2.3333333333333335
               },
               {
                 "name": "Leads Totais Recebidos",
@@ -5009,16 +5069,16 @@
                 "s2": "—",
                 "s3": "—",
                 "s4": "—",
-                "total": 0.04975124378109453,
-                "avg": 0.04975124378109453
+                "total": 0.03482587064676617,
+                "avg": 0.03482587064676617
               },
               {
                 "name": "Ticket Medio da Equipe R$  [calc]",
                 "s1": "—",
                 "s2": "—",
                 "s4": "—",
-                "total": 4921.541,
-                "avg": 4921.541
+                "total": 3294.682857142857,
+                "avg": 3294.682857142857
               },
               {
                 "name": "NPS Medio da Equipe",
@@ -5106,51 +5166,51 @@
               },
               {
                 "name": "Mercado Livre",
-                "s1": 121043,
-                "s2": 48276.01,
-                "s3": 169319.01,
-                "s4": 75247.68,
-                "total": 27609.890000000007,
-                "avg": 102857.57,
-                "meta": 8652.21,
-                "vsMeta": 4432.57,
-                "mom": 0.07148046561965582,
-                "obs": 0.09181724007431433
+                "s1": 232819.16999999998,
+                "s2": 100264.72,
+                "s3": 333083.89,
+                "s4": 146501.27999999997,
+                "total": 56564.970000000016,
+                "avg": 203066.25,
+                "meta": 14938.289999999999,
+                "vsMeta": 9720.57,
+                "mom": 0.06416262887630773,
+                "obs": 0.09694905645774506
               },
               {
                 "name": "Amazon",
-                "s1": 127,
-                "s2": 2267,
-                "s3": 2394,
-                "s4": 100.94,
-                "total": 1782.91,
-                "avg": 1883.8500000000001,
+                "s1": 724,
+                "s2": 4441.8,
+                "s3": 5165.8,
+                "s4": 599.18,
+                "total": 3294.88,
+                "avg": 3894.06,
                 "meta": 0,
                 "vsMeta": 116.54,
                 "mom": 0,
-                "obs": 0.05140714600794001
+                "obs": 0.02623711108109325
               },
               {
                 "name": "Shopee",
-                "s1": 13584.38,
-                "s2": 4659.54,
-                "s3": 18243.92,
-                "s4": 11365.849999999999,
-                "total": 3902.4100000000003,
-                "avg": 15268.259999999998,
-                "meta": 387.34,
-                "vsMeta": 216.22,
-                "mom": 0.028513631096892166,
-                "obs": 0.046403722255845
+                "s1": 35139.67,
+                "s2": 12944.630000000001,
+                "s3": 48084.3,
+                "s4": 27168.739999999998,
+                "total": 9005.140000000001,
+                "avg": 36173.88,
+                "meta": 1587.34,
+                "vsMeta": 566.22,
+                "mom": 0.04517230810647909,
+                "obs": 0.0437416905697575
               },
               {
                 "name": "TikTok Shop",
-                "s1": 8216.53,
-                "s2": 2019.55,
-                "s3": 10236.08,
-                "s4": 8216.53,
-                "total": 2019.55,
-                "avg": 10236.08,
+                "s1": 19992.97,
+                "s2": 3687.83,
+                "s3": 23680.800000000003,
+                "s4": 19992.97,
+                "total": 3687.83,
+                "avg": 23680.800000000003,
                 "meta": 0,
                 "vsMeta": 0,
                 "mom": 0,
@@ -5158,12 +5218,12 @@
               },
               {
                 "name": "Shein",
-                "s1": 2962.85,
+                "s1": 3699.49,
                 "s2": 0,
-                "s3": 2962.85,
-                "s4": 2962.85,
+                "s3": 3699.49,
+                "s4": 3699.49,
                 "total": 0,
-                "avg": 2962.85,
+                "avg": 3699.49,
                 "meta": 0,
                 "vsMeta": 0,
                 "mom": 0,
@@ -5184,16 +5244,16 @@
               },
               {
                 "name": "TOTAL",
-                "s1": 145933.76,
-                "s2": 57222.100000000006,
-                "s3": 203155.86,
-                "s4": 97893.85,
-                "total": 35314.76000000001,
-                "avg": 133208.61000000002,
-                "meta": 9039.55,
-                "vsMeta": 4765.33,
-                "mom": 0.06194282940424477,
-                "obs": 0.08327778952537568
+                "s1": 292375.29999999993,
+                "s2": 121338.98000000001,
+                "s3": 413714.27999999997,
+                "s4": 197961.65999999995,
+                "total": 72552.82000000002,
+                "avg": 270514.48,
+                "meta": 16525.629999999997,
+                "vsMeta": 10403.33,
+                "mom": 0.05652197706167382,
+                "obs": 0.08573774066668435
               },
               {
                 "name": "CRIATIVOS  —  Performance por Produto (Fishermans) e Aristocrata"
@@ -5210,23 +5270,23 @@
               },
               {
                 "name": "F — Linha Multifilamento",
-                "s1": 0.1032,
-                "s2": 0.0354,
-                "s3": 0.0068,
-                "s4": 19.24,
-                "total": 186.43410852713177,
-                "avg": 1.41,
-                "meta": -0.5871999999999999
+                "s1": 0.17265,
+                "s2": 0.05095,
+                "s3": 0.01675,
+                "s4": 29.88,
+                "total": 173.06689834926152,
+                "avg": 1.7599999999999998,
+                "meta": -0.3094
               },
               {
                 "name": "F — Linha Monofilamento",
-                "s1": 0.3679,
-                "s2": 0.2391,
-                "s3": 0.0175,
-                "s4": 16.55,
-                "total": 44.985050285403645,
-                "avg": 1.23,
-                "meta": 0.4716
+                "s1": 0.303,
+                "s2": 0.16105,
+                "s3": 0.02025,
+                "s4": 37.24,
+                "total": 122.90429042904292,
+                "avg": 1.615,
+                "meta": 0.21199999999999997
               },
               {
                 "name": "F — Camiseta",
@@ -5238,81 +5298,75 @@
               },
               {
                 "name": "F — Copo",
-                "s1": 0.1719,
-                "s2": 0.0387,
-                "s3": 0.0081,
-                "s4": 29.68,
-                "total": 172.65852239674228,
-                "avg": 1.51,
-                "meta": -0.3124
+                "s4": 0
               },
               {
                 "name": "Aristocrata (geral)",
-                "s1": 0.0843,
-                "s2": 0.0174,
-                "s3": 0.0148,
-                "s4": 24.6,
-                "total": 291.8149466192171,
-                "avg": 2.26,
-                "meta": -0.6628000000000001
+                "s1": 0.2357,
+                "s2": 0.06815,
+                "s3": 0.018500000000000003,
+                "s4": 58.96,
+                "total": 250.14849384811203,
+                "avg": 2.025,
+                "meta": -0.05720000000000003
               },
               {
                 "name": "TRÁFEGO  —  Aquisição de Novos Clientes"
               },
               {
                 "name": "Receita Novos Clientes R$",
-                "s1": 121158,
-                "s2": 253911,
-                "s3": 375069
+                "s1": 236104,
+                "s2": 622382,
+                "s3": 858486
               },
               {
                 "name": "Gasto Mídia Aquisição R$",
-                "s1": 63324,
-                "s2": 68058,
-                "s3": 131382
+                "s1": 116109,
+                "s2": 155045,
+                "s3": 271154
               },
               {
                 "name": "aMER (Receita NC / Gasto)",
-                "s1": 1.9133030130756112,
-                "s2": 3.7308031384995153,
-                "s3": 2.8547974608393845
+                "s1": 2.033468551102843,
+                "s2": 4.0142023283562835,
+                "s3": 3.1660458632363895
               },
               {
                 "name": "MC de Aquisição R$",
-                "s1": 57834,
-                "s2": 185853,
-                "s3": 243687
+                "s1": 119995,
+                "s2": 467337,
+                "s3": 587332
               },
               {
                 "name": "MC %",
-                "s1": 0.47734363393255086,
-                "s2": 0.7319611990028002
+                "s1": 0.5082294243214854,
+                "s2": 0.7508845050146051
               },
               {
                 "name": "NNC — Net New Customers",
-                "s1": 626,
-                "s2": 1658,
-                "s3": 2284
+                "s1": 1090,
+                "s2": 3723,
+                "s3": 4813
               },
               {
                 "name": "CPM R$",
-                "s1": 15.93,
-                "s2": 30.41
+                "s1": 28.6,
+                "s2": 59.08
               },
               {
                 "name": "CTR Link %",
-                "s1": 0.0134,
-                "s2": 0.0224
+                "s1": 0.01475,
+                "s2": 0.022449999999999998
               },
               {
                 "name": "CVR Checkout %",
-                "s1": 0.08,
-                "s2": 0.08
+                "s1": 0.0615,
+                "s2": 0.09
               },
               {
                 "name": "Frequência",
-                "s1": 5.35,
-                "s2": 5.89
+                "s1": 4.33,
+                "s2": 4.91
               },
               {
                 "name": "CAC Payback (meses)"
@@ -5338,7 +5392,7 @@
                 "s4": 0.08928571428571429,
                 "total": 3206.07,
                 "avg": 0.8,
-                "meta": 0.3257181033338948
+                "meta": 0.6950744879845362
               },
               {
                 "name": "Guilherme",
@@ -5348,25 +5402,24 @@
                 "s4": 0.023809523809523808,
                 "total": 3516.215,
                 "avg": 0.5,
-                "meta": 0.14289081407632284
+                "meta": 0.3049255120154639
               },
               {
                 "name": "Vinicius",
-                "s1": 26152.63,
-                "s2": 3,
+                "s1": 0,
+                "s2": 0,
                 "s3": 61,
-                "s4": 0.04918032786885246,
-                "total": 8717.543333333333,
+                "s4": 0,
                 "avg": 0,
-                "meta": 0.5313910825897823
+                "meta": 0
               },
               {
                 "name": "EQUIPE (Total)",
-                "s1": 49215.41,
-                "s2": 10,
+                "s1": 23062.78,
+                "s2": 7,
                 "s3": 201,
-                "s4": 0.04975124378109453,
-                "total": 4921.541,
+                "s4": 0.03482587064676617,
+                "total": 3294.682857142857,
                 "avg": 0.43333333333333335,
                 "meta": 1
               },
