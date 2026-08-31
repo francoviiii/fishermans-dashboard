@@ -1,18 +1,57 @@
 {
-  "updated": "",
+  "updated": "31/08/2026, 17:26",
   "items": {
-    "86ak8b33v": { "status": "afazer", "obs": "" },
-    "86ak8b33z": { "status": "afazer", "obs": "" },
-    "86ak8b346": { "status": "afazer", "obs": "" },
-    "86ak8b34a": { "status": "afazer", "obs": "" },
-    "86ak8b34g": { "status": "afazer", "obs": "" },
-    "86ak8b35g": { "status": "afazer", "obs": "" },
-    "86ak8b35t": { "status": "afazer", "obs": "" },
-    "86ak8b362": { "status": "afazer", "obs": "" },
-    "86ak8b36b": { "status": "afazer", "obs": "" },
-    "86ak8b36f": { "status": "afazer", "obs": "" },
-    "86ak8b36m": { "status": "afazer", "obs": "" },
-    "86ak8b36r": { "status": "afazer", "obs": "" },
-    "86ak8b379": { "status": "afazer", "obs": "" }
+    "86ak8b379": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b36r": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b36m": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b36f": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b36b": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b362": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b35t": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b35g": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b34g": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b34a": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b346": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b33z": {
+      "status": "afazer",
+      "obs": ""
+    },
+    "86ak8b33v": {
+      "status": "afazer",
+      "obs": ""
+    }
   }
 }
