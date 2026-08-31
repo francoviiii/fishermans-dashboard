@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acompanhamento dos Planos · Shrigma</title>
+<style>
+  :root{
+    --ink:#1b2431; --navy:#25405f; --gold:#8a6d3b; --mut:#6b7480;
+    --line:#dce3ec; --box:#f2f5f9; --boxln:#dfe5ec; --bg:#eef2f7; --card:#fff;
+    --fish:#25507e; --fishbg:#e7eef6; --aristo:#8a6d3b; --aristobg:#f6efda;
+    --g0:#8a93a0; --g0bg:#eef1f5; --g0ln:#dfe3e9;   /* a fazer */
+    --g1:#25507e; --g1bg:#e7eef6; --g1ln:#c9dcef;   /* em andamento */
+    --g2:#2f7d54; --g2bg:#e6f3ec; --g2ln:#bfe0cd;   /* feito */
+    --g3:#c0392b; --g3bg:#fdece9; --g3ln:#f3c7bf;   /* atrasado */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:13px;line-height:1.45}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px 18px 60px}
+  .over{font-size:9.5px;letter-spacing:2.4px;font-weight:700;color:var(--gold);text-transform:uppercase}
+  h1{font-family:Georgia,'Times New Roman',serif;font-size:27px;font-weight:700;margin:7px 0 4px}
+  .sub{color:var(--mut);font-size:13px;max-width:740px}
+  .sub b{color:var(--ink)}
+
+  .bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:15px 0 6px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+  .lgt{font-weight:800;font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
+  .st{display:inline-flex;align-items:center;gap:5px;font-size:11px}
+  .stdot{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .kpis{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .kpi{font-size:11px;font-weight:700;padding:4px 11px;border-radius:20px;border:1px solid}
+  .k0{color:var(--g0);background:var(--g0bg);border-color:var(--g0ln)}
+  .k1{color:var(--g1);background:var(--g1bg);border-color:var(--g1ln)}
+  .k2{color:var(--g2);background:var(--g2bg);border-color:var(--g2ln)}
+  .k3{color:var(--g3);background:var(--g3bg);border-color:var(--g3ln)}
+
+  .synced{margin:8px 0 0;display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--mut);flex-wrap:wrap}
+  .synced .live{display:inline-flex;align-items:center;gap:5px;font-weight:700}
+  .synced .live.on{color:var(--g2)} .synced .live.off{color:var(--g0)}
+  .synced .live .pt{width:8px;height:8px;border-radius:50%;display:inline-block}
+  .synced .live.on .pt{background:var(--g2)} .synced .live.off .pt{background:var(--g0)}
+  .synced a{color:var(--navy);font-weight:600;text-decoration:none} .synced a:hover{text-decoration:underline}
+
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:16px}
+  .phead{padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .plan.f .phead{background:var(--fishbg);border-bottom:2px solid var(--fish)}
+  .plan.a .phead{background:var(--aristobg);border-bottom:2px solid var(--aristo)}
+  .phead .pt{font-weight:800;font-size:15px}
+  .plan.f .phead .pt{color:var(--fish)} .plan.a .phead .pt{color:var(--aristo)}
+  .phead .pd{font-size:11px;color:var(--mut)}
+  .marca{font-size:9px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:20px;text-transform:uppercase}
+  .m-f{background:var(--fish);color:#fff} .m-a{background:var(--aristo);color:#fff}
+
+  table{width:100%;border-collapse:collapse}
+  th{font-size:8.6px;letter-spacing:.6px;text-transform:uppercase;color:var(--mut);font-weight:700;text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--box)}
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:12.3px}
+  tr:last-child td{border-bottom:none}
+  .num{color:var(--gold);font-weight:800;width:22px}
+  .ent b{color:var(--ink)}
+  .ent .lk{display:inline-block;margin-top:3px;font-size:10.5px;color:var(--navy);text-decoration:none;font-weight:600}
+  .ent .lk:hover{text-decoration:underline}
+  .dono{white-space:nowrap;font-size:11.5px;color:var(--navy);font-weight:600}
+  .vence{font-size:11.5px;white-space:nowrap;font-weight:600}
+
+  .pill{font-size:10px;font-weight:800;letter-spacing:.2px;text-transform:uppercase;border:1px solid;border-radius:20px;padding:4px 10px;white-space:nowrap;display:inline-block}
+  .p0{color:var(--g0);background:var(--g0bg);border-color:var(--g0ln)}
+  .p1{color:#fff;background:var(--g1);border-color:var(--g1)}
+  .p2{color:#fff;background:var(--g2);border-color:var(--g2)}
+  .p3{color:#fff;background:var(--g3);border-color:var(--g3)}
+  .obs{font-size:11.8px;color:var(--ink)}
+  .obs.empty{color:#b3bcc7;font-style:italic}
+
+  .metr{padding:12px 16px;background:#fafbfd;border-top:1px solid var(--line)}
+  .metr .mt{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--navy);margin-bottom:7px}
+  .metr ul{margin:0;padding-left:18px} .metr li{font-size:12px;margin:3px 0;color:var(--ink)}
+
+  .note{margin-top:16px;background:var(--box);border:1px solid var(--boxln);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 15px;font-size:12px}
+  .note b{color:var(--gold)}
+  .foot{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);color:var(--mut);font-size:10px;letter-spacing:.5px;text-transform:uppercase;display:flex;flex-wrap:wrap;gap:8px}
+  .foot .r{margin-left:auto}
+  @media(max-width:620px){.hide-sm{display:none}}
+  /* ===== Central de Governança · tema escuro + barra ===== */
+  body{ background:
+    radial-gradient(38% 38% at 14% 4%, rgba(90,162,255,.12), transparent 60%),
+    radial-gradient(38% 38% at 88% 3%, rgba(169,139,255,.10), transparent 60%),
+    linear-gradient(180deg,#070c16,#0a1322 55%,#070c16) !important;
+    background-attachment:fixed !important; padding-top:66px !important; }
+  .gv-top{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:13px;
+    padding:11px 18px;background:rgba(8,13,22,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,.08)}
+  .gv-back{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-family:ui-monospace,Menlo,Consolas,monospace;
+    font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#eaf0f8;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.15);padding:7px 14px;border-radius:22px;transition:.15s}
+  .gv-back:hover{background:rgba(255,255,255,.12);border-color:rgba(216,185,120,.55);color:#fff}
+  .gv-brand{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#9fb0c6;min-width:0}
+  .gv-brand .cr{width:26px;height:26px;flex:none;border-radius:8px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(160deg,#12233c,#0a1626);border:1px solid rgba(216,185,120,.35);color:#d8b978;font-family:Georgia,serif;font-weight:700;font-size:14px}
+  .gv-brand b{color:#eaf0f8;font-weight:700} .gv-brand .pg{color:#d8b978;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media(max-width:600px){.gv-brand .sys{display:none}}
+  :root{ --ink:#eaf0f8; --navy:#8fb6ff; --gold:#d8b978; --mut:#9fb0c6; --line:rgba(255,255,255,.12);
+    --box:rgba(255,255,255,.05); --boxln:rgba(255,255,255,.12); --bg:#0a1322; --card:#0f1a2b;
+    --fish:#7fb0ff; --fishbg:rgba(90,162,255,.14); --aristo:#d8b978; --aristobg:rgba(216,185,120,.14);
+    --g0:#8a93a0; --g0bg:#1e2536; --g0ln:rgba(255,255,255,.14); }
+  .metr{background:rgba(255,255,255,.03)!important}
+</style></head>
+<body>
+<div class="gv-top">
+  <a class="gv-back" href="index.html">← Central</a>
+  <div class="gv-brand"><span class="cr">S</span><span class="sys"><b>Central de Governança</b> · </span><span class="pg">Acompanhamento dos Planos</span></div>
+</div>
+<div class="wrap">
+
+  <div class="over">Grupo Shrigma · Governança · Cobrança dos Planos</div>
+  <h1>Acompanhamento dos Planos</h1>
+  <div class="sub">Este painel é um <b>espelho do ClickUp</b>. Você atualiza o <b>status</b> e escreve a <b>observação</b> (comentário) na task — e aqui aparece sozinho. Cada linha tem link direto pra sua task.</div>
+
+  <div class="bar">
+    <span class="lgt">Status</span>
+    <span class="st"><span class="stdot" style="background:var(--g0)"></span>A fazer</span>
+    <span class="st"><span class="stdot" style="background:var(--g1)"></span>Em andamento</span>
+    <span class="st"><span class="stdot" style="background:var(--g2)"></span>Feito</span>
+    <span class="st"><span class="stdot" style="background:var(--g3)"></span>Atrasado</span>
+    <span class="kpis" id="kpis"></span>
+  </div>
+  <div class="synced">
+    <span class="live off" id="live"><span class="pt"></span><span id="liveTxt">aguardando 1ª sincronização</span></span>
+    <span>·</span><a href="https://app.clickup.com/90132798157/v/l/li/901327080406" target="_blank">Abrir a lista no ClickUp ↗</a>
+  </div>
+
+  <!-- FISHERMANS -->
+  <div class="plan f">
+    <div class="phead">
+      <div><span class="pt">Plano de Ação — Fishermans (Meta Ads)</span> <span class="marca m-f">Fishermans</span>
+        <div class="pd">Destravar a escala do Multi · cobrança semanal com o <b>Jorge</b></div></div>
+    </div>
+    <table><thead><tr><th></th><th>Ação combinada</th><th class="hide-sm">Dono</th><th>Prazo</th><th>Status</th><th>Observação (do ClickUp)</th></tr></thead>
+      <tbody id="tbF"></tbody></table>
+    <div class="metr">
+      <div class="mt">Métricas de decisão — olhar toda semana</div>
+      <ul>
+        <li>CPA e ROAS por frente (janela móvel de 7 dias)</li>
+        <li>Frequência semanal da Escala abaixo de 4</li>
+        <li>Share de spend em topo/meio de funil ≥ 50% (em 30 dias)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ARISTOCRATA -->
+  <div class="plan a">
+    <div class="phead">
+      <div><span class="pt">Plano do Mês — O Aristocrata (Sabrina)</span> <span class="marca m-a">O Aristocrata</span>
+        <div class="pd">Entregas do sprint · cobrança nas travas com a <b>Sabrina</b></div></div>
+      <div class="pd" style="max-width:290px">KPIs: ≥40% do spend em anúncios &lt;30 dias · zero flags de qualidade · hook rate ≥25%</div>
+    </div>
+    <table><thead><tr><th></th><th>Entrega combinada</th><th class="hide-sm">Dono</th><th>Trava</th><th>Status</th><th>Observação (do ClickUp)</th></tr></thead>
+      <tbody id="tbA"></tbody></table>
+  </div>
+
+  <div class="note"><b>Regra de ferro:</b> nenhuma linha atravessa <b>duas segundas seguidas</b> sem status. Desvio grande por 2 semanas = replaneja o mês na mesma reunião. Você resolve o <b>amarelo</b>; só o <b>vermelho</b> sobe pro Mateus.</div>
+
+  <div class="foot"><span>Acompanhamento dos Planos · Grupo Shrigma — Governança (Viviane)</span><span class="r" id="stamp">Fonte: ClickUp · lista Viviane</span></div>
+
+</div>
+
+<script>
+/* Cada item aponta para a task real no ClickUp (cu = id da task).
+   O n8n grava dados_planos.json com { updated, items:{ <cu>:{status,obs,vence} } }.
+   status: "afazer" | "andamento" | "feito" | "atrasado" */
+const FISH=[
+ {n:1, cu:"86ak8b33v", ac:"Pausar os 8 anúncios de qualidade abaixo da média", dono:"Jorge", prazo:"02/09"},
+ {n:2, cu:"86ak8b33z", ac:"Reduzir a Escala p/ R$4.500/dia + excluir compradores 30–60d + frequency cap", dono:"Jorge", prazo:"03/09"},
+ {n:3, cu:"86ak8b346", ac:"Criar campanha broad/ASC de aquisição (Multi)", dono:"Jorge", prazo:"08/09"},
+ {n:4, cu:"86ak8b34a", ac:"Escalar o Copo em degraus até R$1.600/dia", dono:"Jorge", prazo:"11/09"},
+ {n:5, cu:"86ak8b34g", ac:"Escalar o Mono até R$1.300/dia", dono:"Jorge", prazo:"08/09"},
+ {n:6, cu:"86ak8b35g", ac:"Nova leva criativa: 70% problema/inconsciente, 30% oferta", dono:"Jorge + Sabrina", prazo:"22/09"},
+ {n:7, cu:"86ak8b35t", ac:"Consolidar a CBO Escala: de 30+ adsets para 5–8 por conceito", dono:"Jorge", prazo:"01/10"},
+ {n:8, cu:"86ak8b362", ac:"Decidir destino de CA-VALIDADOS-BIDCAP e CAPTAÇÃO METEÓRICO", dono:"Jorge", prazo:"08/09"}
+];
+const ARIS=[
+ {n:1, cu:"86ak8b36b", ac:"LP da escada (69/155/219) validada mobile topo-a-fundo + criativos do launch", dono:"Sabrina", prazo:"05/09"},
+ {n:2, cu:"86ak8b36f", ac:"Launch VIP: agressiva 72h no grupo → média na LP pública → soft permanente", dono:"Sabrina", prazo:"08–15/09"},
+ {n:3, cu:"86ak8b36m", ac:"Esteira: 8–10 anúncios novos/semana (copy + editor + UGC da Marcela)", dono:"Sabrina", prazo:"01/10"},
+ {n:4, cu:"86ak8b36r", ac:"Leva de Black Friday completa (kits; estáticos priorizados)", dono:"Sabrina", prazo:"20/10"},
+ {n:5, cu:"86ak8b379", ac:"Criativos do perfume (estética presente/premium)", dono:"Sabrina", prazo:"15/11"}
+];
+const TURL="https://app.clickup.com/t/";
+const ST={ afazer:[0,"A fazer"], andamento:[1,"Em andamento"], feito:[2,"Feito"], atrasado:[3,"Atrasado"] };
+let SYNC=null; // preenchido pelo dados_planos.json
+
+function esc(s){return (s==null?"":String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function statusOf(cu){ const d=SYNC&&SYNC.items&&SYNC.items[cu]; const k=(d&&d.status)||"afazer"; return ST[k]||ST.afazer; }
+function obsOf(cu){ const d=SYNC&&SYNC.items&&SYNC.items[cu]; return d&&d.obs? d.obs : ""; }
+
+function row(r){
+  const s=statusOf(r.cu); const obs=obsOf(r.cu);
+  return `<tr>
+    <td class="num">${r.n}</td>
+    <td class="ent"><b>${esc(r.ac)}</b><br><a class="lk" href="${TURL}${r.cu}" target="_blank">abrir no ClickUp ↗</a></td>
+    <td class="dono hide-sm">${esc(r.dono)}</td>
+    <td class="vence">${esc(r.prazo)}</td>
+    <td><span class="pill p${s[0]}">${s[1]}</span></td>
+    <td class="obs ${obs?'':'empty'}">${obs?esc(obs):'—'}</td>
+  </tr>`;
+}
+function renderKPIs(){
+  const all=[...FISH,...ARIS].map(r=>statusOf(r.cu)[0]);
+  const c=[0,0,0,0]; all.forEach(v=>c[v]++);
+  document.getElementById('kpis').innerHTML =
+    `<span class="kpi k0">${c[0]} a fazer</span><span class="kpi k1">${c[1]} em andamento</span>`+
+    `<span class="kpi k2">${c[2]} feito</span><span class="kpi k3">${c[3]} atrasado</span>`;
+}
+function render(){
+  document.getElementById('tbF').innerHTML=FISH.map(row).join("");
+  document.getElementById('tbA').innerHTML=ARIS.map(row).join("");
+  renderKPIs();
+  const live=document.getElementById('live'), txt=document.getElementById('liveTxt');
+  if(SYNC&&SYNC.updated){ live.className="live on"; txt.textContent="sincronizado do ClickUp · "+SYNC.updated; }
+  else { live.className="live off"; txt.textContent="aguardando 1ª sincronização (mostrando as tasks já criadas)"; }
+}
+fetch("dados_planos.json",{cache:"no-store"})
+  .then(r=>r.ok?r.json():null).then(d=>{ SYNC=d; render(); })
+  .catch(()=>render());
+render();
+</script>
+</body></html>
