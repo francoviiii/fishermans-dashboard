@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organograma · Grupo Shrigma</title>
+<style>
+  :root{
+    --ink:#1b2431; --navy:#25405f; --gold:#8a6d3b; --mut:#6b7480;
+    --line:#dce3ec; --box:#f2f5f9; --boxln:#dfe5ec; --bg:#eef2f7; --card:#fff;
+    --mateus:#2f6dd0;  --mateusbg:#eaf1fc;
+    --felipe:#6d4aff;  --felipebg:#efeaff;
+    --joao:#2f7d54;    --joaobg:#e6f3ec;
+    --dir:#8a6d3b;     --dirbg:#f6efda;
+    --ok:#2f7d54; --okbg:#e6f3ec; --okln:#bfe0cd;
+    --cri:#b8760f; --cribg:#fff4e0; --criln:#f0d8ac;
+    --res:#8a6d3b; --resbg:#f3ecdd; --ala:#25507e; --alabg:#e7eef6; --grd:#5b6472; --grdbg:#eceef2; --green:#2f7d54;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:13px;line-height:1.45;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:100%;margin:0 auto;padding:24px 20px 40px}
+
+  header{max-width:1100px;margin:0 auto}
+  .over{font-size:9.5px;letter-spacing:2.6px;font-weight:700;color:var(--gold);text-transform:uppercase}
+  h1{font-family:Georgia,'Times New Roman',serif;font-size:29px;font-weight:700;color:var(--ink);margin:7px 0 4px}
+  .sub{color:var(--mut);font-size:13px;max-width:760px}
+  .sub b{color:var(--ink)}
+
+  .bar{max-width:1100px;margin:15px auto 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:11px 15px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+  .bar .lgt{font-weight:800;font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px}
+  .lg{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink)}
+  .dot{width:11px;height:11px;border-radius:4px;display:inline-block}
+  .sep{width:1px;height:16px;background:var(--line)}
+  .btn{margin-left:auto;display:flex;gap:8px}
+  button.ctl{font:inherit;font-size:11.5px;font-weight:600;color:var(--navy);background:var(--box);border:1px solid var(--boxln);border-radius:20px;padding:6px 14px;cursor:pointer;transition:.12s}
+  button.ctl:hover{background:#e7edf5;border-color:#c9d4e0}
+  .hint{max-width:1100px;margin:8px auto 0;font-size:11.5px;color:var(--mut)}
+  .hint b{color:var(--ink)}
+
+  /* ---------- ÁRVORE (organograma) ---------- */
+  .scroller{overflow-x:auto;padding:26px 10px 20px;-webkit-overflow-scrolling:touch}
+  .tree{display:inline-block;min-width:100%;text-align:center}
+  .tree ul{display:flex;justify-content:center;padding-top:22px;position:relative}
+  .tree li{list-style:none;position:relative;padding:22px 7px 0;text-align:center}
+  /* conectores */
+  .tree li::before,.tree li::after{content:'';position:absolute;top:0;right:50%;border-top:2px solid var(--line);width:50%;height:22px}
+  .tree li::after{right:auto;left:50%;border-left:2px solid var(--line)}
+  .tree li:only-child::before,.tree li:only-child::after{display:none}
+  .tree li:only-child{padding-top:0}
+  .tree li:first-child::before,.tree li:last-child::after{border:0 none}
+  .tree li:last-child::before{border-right:2px solid var(--line);border-radius:0 6px 0 0}
+  .tree li:first-child::after{border-radius:6px 0 0 0}
+  .tree ul ul::before{content:'';position:absolute;top:0;left:50%;border-left:2px solid var(--line);width:0;height:22px}
+  .tree>ul{padding-top:0}
+  .tree>ul>li:only-child::before,.tree>ul>li:only-child::after{display:none}
+
+  /* nós */
+  .node{display:inline-block;vertical-align:top;border:1px solid var(--line);border-radius:11px;background:var(--card);
+        min-width:150px;max-width:190px;box-shadow:0 1px 2px rgba(20,30,50,.05);position:relative;cursor:pointer;transition:.12s;text-align:left}
+  .node:hover{box-shadow:0 4px 14px rgba(20,30,50,.13);transform:translateY(-1px)}
+  .node .body{padding:9px 11px}
+  .node .role{font-size:8.2px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;color:var(--mut);line-height:1.2}
+  .node .name{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.18;margin-top:2px}
+  .node .marca{display:inline-block;font-size:8px;font-weight:700;letter-spacing:.2px;padding:1px 6px;border-radius:20px;margin-top:4px;background:var(--box);color:var(--mut);border:1px solid var(--boxln)}
+  .node .marca.aristo{background:#f6efda;color:#8a6d3b;border-color:#e6d5a8}
+  .node .marca.fish{background:#e7eef6;color:#25507e;border-color:#c9dcef}
+  /* faixa de cor por ramo no topo do nó */
+  .node.top{border-top:none}
+  .node .cap{height:4px;border-radius:11px 11px 0 0}
+  .node.r-dir .cap{background:var(--dir)} .node.r-mateus .cap{background:var(--mateus)}
+  .node.r-felipe .cap{background:var(--felipe)} .node.r-joao .cap{background:var(--joao)}
+  /* diretoria e diretores maiores */
+  .node.lvl-dir{min-width:200px;max-width:240px}
+  .node.lvl-dir .name{font-family:Georgia,serif;font-size:18px}
+  .node.lvl-dir2{min-width:180px;max-width:210px}
+  .node.lvl-dir2 .name{font-size:16px}
+  .node.lvl-exec{min-width:118px;max-width:150px;background:var(--box)}
+  .node.lvl-exec .name{font-size:12px}
+  .node.vago .name{color:var(--mut);font-weight:600}
+
+  /* selo cartão */
+  .cbadge{position:absolute;top:-8px;right:8px;font-size:7.6px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;padding:2px 7px;border-radius:20px;pointer-events:none}
+  .cbadge.pronto{background:var(--ok);color:#fff}
+  .cbadge.criar{background:var(--cribg);color:var(--cri);border:1px solid var(--criln)}
+
+  /* expander de ramo (time) */
+  .exp{position:absolute;bottom:-11px;left:50%;transform:translateX(-50%);z-index:3;
+       width:22px;height:22px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);
+       color:var(--navy);font-weight:800;font-size:13px;line-height:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.12s}
+  .exp:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+  li.collapsed>ul{display:none}
+  li.collapsed>.node .exp .p{display:inline}
+  li:not(.collapsed)>.node .exp .p{display:none}
+  .exp .p::after{content:'+'} .exp .m::after{content:'–'}
+  li.collapsed>.node .exp .m{display:none}
+  li:not(.collapsed)>.node .exp .m{display:inline}
+
+  /* ---------- MODAL (cartão) ---------- */
+  .overlay{position:fixed;inset:0;background:rgba(20,30,45,.55);backdrop-filter:blur(2px);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:26px 16px;overflow-y:auto}
+  .overlay.on{display:flex}
+  .modal{background:#fff;max-width:820px;width:100%;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden;animation:pop .16s ease}
+  @keyframes pop{from{transform:translateY(8px);opacity:.6}to{transform:none;opacity:1}}
+  .mclose{position:sticky;top:0;float:right;margin:10px 12px 0 0;z-index:5;background:var(--box);border:1px solid var(--boxln);border-radius:50%;width:30px;height:30px;font-size:17px;color:var(--navy);cursor:pointer;line-height:0}
+  .mclose:hover{background:#e5ebf3}
+  .cpad{padding:26px 30px 30px}
+  .c-over{font-size:9px;letter-spacing:2px;font-weight:700;color:var(--gold);text-transform:uppercase}
+  .c-h1{font-family:Georgia,serif;font-size:24px;font-weight:700;margin:6px 0 3px}
+  .c-sub{color:var(--mut);font-size:12px}
+  .c-sub b{color:var(--ink)}
+  .c-top{display:flex;flex-wrap:wrap;border:1px solid var(--boxln);border-radius:9px;margin:15px 0 4px;overflow:hidden}
+  .c-top .c{flex:1;min-width:33%;padding:10px 13px}
+  .c-top .c+.c{border-left:1px solid var(--boxln)}
+  .c-top .l{font-size:8.4px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut);font-weight:700;margin-bottom:3px}
+  .c-top .val{font-size:11.4px;color:var(--ink)}
+  .c-sec{display:flex;align-items:baseline;gap:10px;margin:20px 0 9px;padding-bottom:5px;border-bottom:2px solid var(--navy)}
+  .c-sec .t{font-size:11px;font-weight:800;letter-spacing:.7px;color:var(--navy);text-transform:uppercase}
+  .c-sec .f{margin-left:auto;font-size:8.6px;letter-spacing:.8px;color:var(--mut);text-transform:uppercase}
+  .card{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .row{display:flex;border-top:1px solid var(--line)}
+  .row:first-child{border-top:none}
+  .row .k{width:30%;padding:10px 12px;background:var(--box);font-weight:700;color:var(--navy);font-size:10.6px}
+  .row .k .kk{display:block;font-size:8px;letter-spacing:.8px;color:var(--mut);font-weight:700;text-transform:uppercase;margin-top:3px}
+  .row .v{flex:1;padding:10px 13px;font-size:12px}
+  .item{margin:2px 0 6px;padding-left:19px;position:relative}
+  .item:last-child{margin-bottom:2px}
+  .item .n{position:absolute;left:0;top:0;color:var(--gold);font-weight:800}
+  .foco{color:var(--green);font-weight:800;font-size:9.6px;letter-spacing:.3px}
+  .fronteira{background:var(--box);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 13px;margin:9px 0 2px;font-size:11.6px}
+  .fronteira b{color:var(--gold)}
+  .supremo{background:var(--dirbg);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:11px 14px;margin:16px 0 4px;font-size:12px}
+  .kpi{margin-top:11px}
+  .kpi .lab{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+  .kpi .lab .id{font-size:9.6px;font-weight:800;letter-spacing:1px;color:var(--navy);text-transform:uppercase}
+  .pill{font-size:8.2px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:2px 8px;border-radius:20px}
+  .p-res{background:var(--resbg);color:var(--res)} .p-ala{background:var(--alabg);color:var(--ala)} .p-grd{background:var(--grdbg);color:var(--grd)}
+  .proposta{display:inline-block;font-size:8.4px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--cri);background:var(--cribg);border:1px solid var(--criln);padding:2px 8px;border-radius:20px;margin-left:8px;vertical-align:middle}
+  .quem{font-size:11px;color:var(--mut);margin-top:4px}
+  .quem b{color:var(--ink)}
+  .c-foot{display:flex;margin-top:20px;padding-top:10px;border-top:1px solid var(--line);color:var(--mut);font-size:8.6px;letter-spacing:.7px;text-transform:uppercase}
+  .c-foot .r{margin-left:auto}
+
+  .pagefoot{max-width:1100px;margin:20px auto 0;padding-top:12px;border-top:1px solid var(--line);color:var(--mut);font-size:10px;letter-spacing:.5px;text-transform:uppercase;display:flex;flex-wrap:wrap;gap:8px}
+  .pagefoot .r{margin-left:auto}
+  @media(max-width:640px){.c-top .c{min-width:100%;border-left:none!important;border-top:1px solid var(--boxln)}.c-top .c:first-child{border-top:none}}
+  /* ===== Central de Governança · tema escuro + barra ===== */
+  body{ background:
+    radial-gradient(38% 38% at 14% 4%, rgba(90,162,255,.12), transparent 60%),
+    radial-gradient(38% 38% at 88% 3%, rgba(169,139,255,.10), transparent 60%),
+    linear-gradient(180deg,#070c16,#0a1322 55%,#070c16) !important;
+    background-attachment:fixed !important; padding-top:66px !important; }
+  .gv-top{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:13px;
+    padding:11px 18px;background:rgba(8,13,22,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,.08)}
+  .gv-back{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-family:ui-monospace,Menlo,Consolas,monospace;
+    font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#eaf0f8;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.15);padding:7px 14px;border-radius:22px;transition:.15s}
+  .gv-back:hover{background:rgba(255,255,255,.12);border-color:rgba(216,185,120,.55);color:#fff}
+  .gv-brand{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#9fb0c6;min-width:0}
+  .gv-brand .cr{width:26px;height:26px;flex:none;border-radius:8px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(160deg,#12233c,#0a1626);border:1px solid rgba(216,185,120,.35);color:#d8b978;font-family:Georgia,serif;font-weight:700;font-size:14px}
+  .gv-brand b{color:#eaf0f8;font-weight:700} .gv-brand .pg{color:#d8b978;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media(max-width:600px){.gv-brand .sys{display:none}}
+  :root{ --ink:#eaf0f8; --navy:#8fb6ff; --gold:#d8b978; --mut:#9fb0c6; --line:rgba(255,255,255,.16);
+    --box:rgba(255,255,255,.06); --boxln:rgba(255,255,255,.14); --bg:#0a1322; --card:#0f1a2b; --dirbg:rgba(216,185,120,.14); }
+  .scroller .node{background:#0f1a2b}
+  .node.lvl-exec{background:rgba(255,255,255,.045)}
+  .modal{background:#0f1a2b!important}
+  .mclose{background:rgba(255,255,255,.08);color:#eaf0f8} .mclose:hover{background:rgba(255,255,255,.16)!important}
+  button.ctl{background:rgba(255,255,255,.06);color:#cfe0ff} button.ctl:hover{background:rgba(255,255,255,.12)!important;border-color:rgba(216,185,120,.4)}
+  .marca{background:rgba(255,255,255,.06);color:#9fb0c6;border-color:rgba(255,255,255,.14)}
+  .marca.aristo{background:rgba(216,185,120,.16)!important;color:#e8d2a0!important;border-color:rgba(216,185,120,.32)!important}
+  .marca.fish{background:rgba(90,162,255,.16)!important;color:#9cc4ff!important;border-color:rgba(90,162,255,.32)!important}
+  .p-res{background:rgba(216,185,120,.16)!important;color:#e8d2a0!important}
+  .p-ala{background:rgba(90,162,255,.16)!important;color:#9cc4ff!important}
+  .p-grd{background:rgba(255,255,255,.08)!important;color:#c3ccd8!important}
+  .cbadge.criar{background:rgba(216,185,120,.16);color:#e8d2a0;border-color:rgba(216,185,120,.3)}
+</style></head>
+<body>
+<div class="gv-top">
+  <a class="gv-back" href="index.html">← Central</a>
+  <div class="gv-brand"><span class="cr">S</span><span class="sys"><b>Central de Governança</b> · </span><span class="pg">Organograma &amp; Cartões</span></div>
+</div>
+<div class="wrap">
+  <header>
+    <div class="over">Grupo Shrigma · Governança · Estrutura Organizacional</div>
+    <h1>Organograma do Grupo Shrigma</h1>
+    <div class="sub">A empresa em três diretorias. <b>Clique numa caixa</b> para abrir o <b>cartão de cargo</b> daquela cadeira. Use o <b>+</b> embaixo de cada líder para abrir o time.</div>
+  </header>
+
+  <div class="bar">
+    <span class="lgt">Diretorias</span>
+    <span class="lg"><span class="dot" style="background:var(--mateus)"></span>Mateus</span>
+    <span class="lg"><span class="dot" style="background:var(--felipe)"></span>Felipe</span>
+    <span class="lg"><span class="dot" style="background:var(--joao)"></span>João</span>
+    <span class="sep"></span>
+    <span class="lgt">Cartão</span>
+    <span class="lg"><span class="cbadge pronto" style="position:static">Pronto</span></span>
+    <span class="lg"><span class="cbadge criar" style="position:static">Rascunho</span></span>
+    <span class="btn">
+      <button class="ctl" onclick="expandAll(true)">Abrir todos os times</button>
+      <button class="ctl" onclick="expandAll(false)">Recolher</button>
+    </span>
+  </div>
+  <div class="hint">Todos os cargos já têm cartão. O selo <b>Pronto</b> é o cartão validado (o da Viviane); <b>Rascunho</b> é a proposta pronta para você e o Mateus revisarem. Os itens marcados <span style="color:var(--cri);font-weight:700">proposta</span> dentro do cartão são os que dependem dessa validação.</div>
+
+  <div class="scroller">
+    <div class="tree" id="tree"></div>
+  </div>
+
+  <div class="pagefoot">
+    <span>Organograma + Cartões de Cargo · Grupo Shrigma — preparado por Viviane · Governança</span>
+    <span class="r">v2.0 · Agosto de 2026</span>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeCartao()">
+  <div class="modal">
+    <button class="mclose" onclick="closeCartao()">×</button>
+    <div class="cpad" id="cpad"></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   CARTÕES DE CARGO  (deduplicados por CARGO, não por pessoa)
+   status:"pronto" = validado · "criar" = rascunho para revisar
+   Itens com proposta:true dependem de validação com Mateus/Ivan
+   ========================================================= */
+const CARGOS = {
+
+/* ---------- DIRETORIA ---------- */
+"dir-comercial":{status:"criar",ramo:"mateus",cargo:"Diretoria — Comercial, Performance e Criativo",frente:"Diretoria",respondeA:"Sociedade / Diretoria",
+ missao:"Fazer o grupo crescer com performance — comandar aquisição (criativo e tráfego), venda (B2B e marketplace) e o motor administrativo-financeiro, com qualidade, números e pessoas em cada frente.",
+ escopo:[
+  {t:"Aquisição & criativo",d:"O Aristocrata e Fishermans — criativo e performance."},
+  {t:"Vendas",d:"B2B (Leandro) e Marketplace (Uri)."},
+  {t:"Tráfego / mídia paga",d:"escala da aquisição (Pedro)."},
+  {t:"Administrativo & Financeiro",d:"a frente que sustenta o resto (Larissa)."},
+  {t:"Governança do time",d:"weeklys, 1:1 e metas das frentes comerciais."}],
+ fronteira:"Não é dono da operação física (produção, despacho, supply — João) nem da marca/experiência/produto (Felipe). Dirige pelos 3 polos (qualidade, números, pessoas) — não executa.",
+ supremo:"Crescimento com margem — faturamento e margem de contribuição das frentes comerciais.",
+ alcadas:{n1:"Metas e prioridades das frentes comerciais; aprovar campanhas e verbas dentro do orçamento.",n2:"Ajustar estrutura do time comercial; redirecionar verba entre canais.",n3:"Mudar orçamento global; abrir/fechar canal ou marca; contratar/desligar liderança."},
+ kpis:[
+  {nome:"Faturamento do grupo (frentes comerciais)",tipo:"res",meta:"a definir",freq:"mensal",proposta:true},
+  {nome:"Margem de contribuição",tipo:"res",meta:"a definir",freq:"mensal",proposta:true},
+  {nome:"Cadência de governança (weeklys/1:1 com ata)",tipo:"grd",meta:"100%",freq:"semanal"}],
+ quem:"Mateus"},
+
+"dir-marca":{status:"criar",ramo:"felipe",cargo:"Diretoria — Marca, Experiência e Produto",frente:"Diretoria",respondeA:"Sociedade / Diretoria",
+ missao:"Cuidar da marca, da experiência do cliente e do produto — influência, atendimento, conteúdo orgânico, P&D e compras — para que percepção e experiência sustentem o crescimento.",
+ escopo:[
+  {t:"Influência & afiliados",d:"parcerias que geram alcance e venda (Marcela)."},
+  {t:"Atendimento (CS/CX)",d:"Fishermans e O Aristocrata (Samuel)."},
+  {t:"Conteúdo orgânico",d:"as duas marcas (Julia e Julia R.)."},
+  {t:"Produto & compras",d:"P&D e compras/insumo de marca."},
+  {t:"Design de marca",d:"identidade e peças institucionais."}],
+ fronteira:"Não é dono da aquisição paga/venda (Mateus) nem da operação física (João). Cuida da marca e da experiência, não do funil de performance.",
+ supremo:"Saúde da marca e da experiência — reputação/CSAT e crescimento do orgânico.",
+ alcadas:{n1:"Diretrizes de marca; prioridades de conteúdo e atendimento; parcerias dentro do orçamento.",n2:"Ajustar times de marca/CX; calendário de conteúdo.",n3:"Lançar produto novo; mudar posicionamento; orçamento global."},
+ kpis:[
+  {nome:"CSAT / reputação do atendimento",tipo:"res",meta:"a definir",freq:"mensal",proposta:true},
+  {nome:"Crescimento do orgânico (alcance/engajamento)",tipo:"res",meta:"a definir",freq:"mensal",proposta:true},
+  {nome:"Parcerias/afiliados gerando receita",tipo:"ala",meta:"a definir",freq:"mensal",proposta:true}],
+ quem:"Felipe"},
+
+"dir-operacoes":{status:"criar",ramo:"joao",cargo:"Diretoria — Operações",frente:"Diretoria",respondeA:"Sociedade / Diretoria",
+ missao:"Garantir que o produto seja produzido, tenha insumo e chegue ao cliente no prazo e no custo — supply chain, produção e despacho com previsibilidade.",
+ escopo:[
+  {t:"Supply chain & estoque",d:"comprar e ter insumo sem ruptura."},
+  {t:"Produção",d:"fazer no prazo, volume e padrão (Juliana)."},
+  {t:"Despacho / expedição",d:"entregar certo e no prazo das duas marcas (Alexandre)."},
+  {t:"Serviços & infra",d:"transporte e escritório."}],
+ fronteira:"Não é dono do que vender ou de como comunicar (Mateus/Felipe). Dono de fazer, ter e entregar — não da demanda.",
+ supremo:"Pedidos entregues no prazo com custo sob controle (OTIF).",
+ alcadas:{n1:"Prioridade de produção/despacho; gestão de estoque e equipe operacional.",n2:"Ajustar turnos, fluxo e fornecedores dentro do orçamento.",n3:"Investimento em capacidade; troca estrutural de fornecedor; orçamento operacional."},
+ kpis:[
+  {nome:"OTIF — pedidos entregues no prazo",tipo:"res",meta:"a definir",freq:"semanal",proposta:true},
+  {nome:"Ruptura de estoque",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true},
+  {nome:"Custo / produtividade da produção",tipo:"ala",meta:"a definir",freq:"mensal",proposta:true}],
+ quem:"João"},
+
+/* ---------- GESTÃO · ramo Mateus ---------- */
+"gestor-b2b":{status:"criar",ramo:"mateus",cargo:"Gestor de B2B",frente:"Frente comercial · B2B",respondeA:"Mateus",
+ missao:"Construir e liderar uma rede de revendedores que recompra — receita recorrente de alta margem, feita pelo time, não por desconto.",
+ escopo:[
+  {t:"Rede de revendedores",d:"prospecção → ativação → recompra."},
+  {t:"Time de vendas",d:"rotina, meta e coaching dos vendedores."},
+  {t:"Funil",d:"leads e ligações (conversão, ciclo, custo)."},
+  {t:"Política comercial B2B",d:"dentro da margem definida."}],
+ fronteira:"Não define preço/margem fora da política (N3) nem cuida do marketplace (Uri). Vende pelo time, não no lugar dele.",
+ supremo:"Faturamento total do canal B2B.",
+ alcadas:{n1:"Rotina e meta do time; abordagem comercial; priorização de carteira.",n2:"Ajustar script/política dentro da margem; remanejar carteira.",n3:"Mudar tabela de preço/margem; contratar/desligar vendedor."},
+ kpis:[
+  {nome:"Faturamento total do canal",tipo:"res",meta:"≥ R$ 250 mil",freq:"semanal"},
+  {nome:"% do time de vendas na meta",tipo:"ala",meta:"≥ 75% batendo meta individual",freq:"semanal"},
+  {nome:"Recompra / receita recorrente",tipo:"res",meta:"a definir",freq:"mensal",proposta:true}],
+ quem:"Leandro"},
+
+"estrategista-criativo":{status:"criar",ramo:"mateus",cargo:"Estrategista Criativo",frente:"Uma conta cada — Jorge (Fishermans) · Sabrina (O Aristocrata)",respondeA:"Mateus",
+ missao:"Transformar leitura de público e de dados em criativos que conquistam clientes novos — e que o tráfego consegue escalar.",
+ escopo:[
+  {t:"Estratégia criativa da conta",d:"ângulos, ofertas e linha."},
+  {t:"Time criativo",d:"copy, edição, design e filmmaker."},
+  {t:"Volume e acerto",d:"criativos novos/semana e vencedores."},
+  {t:"Leitura de dados",d:"aquisição, junto ao tráfego."}],
+ fronteira:"Não gere a verba/tráfego (Pedro) nem o orgânico (conteúdo). Dono do criativo de aquisição, não da mídia.",
+ supremo:"Receita de cliente novo puxada por criativo.",
+ alcadas:{n1:"Linha criativa; priorização da fila; distribuição do time.",n2:"Testar novos formatos/ângulos; ajustar processo do time.",n3:"Mudar posicionamento da marca; orçamento de produção."},
+ kpis:[
+  {nome:"Criativos novos no ar / semana",tipo:"ala",meta:"meta por conta",freq:"semanal"},
+  {nome:"Vencedores novos (semana + mês)",tipo:"res",meta:"bater o período anterior",freq:"semanal"},
+  {nome:"Receita de cliente novo",tipo:"res",meta:"bater o período anterior",freq:"semana + mês"},
+  {nome:"ROAS 7d-click de cliente novo",tipo:"res",meta:"≥ média das últimas 4 semanas",freq:"semanal"},
+  {nome:"Frequência em cold",tipo:"grd",meta:"< 4 em 15 dias",freq:"quinzenal"}],
+ quem:"Jorge (Fishermans) e Sabrina (O Aristocrata) — mesmo cartão, uma conta cada."},
+
+"gestor-trafego":{status:"criar",ramo:"mateus",cargo:"Gestor de Tráfego",frente:"Frente de performance",respondeA:"Mateus",
+ missao:"Escalar a aquisição paga com eficiência — transformar verba em cliente novo ao menor custo possível, sem furar os guardrails de frequência e margem.",
+ escopo:[
+  {t:"Mídia paga",d:"Meta/Google das duas marcas."},
+  {t:"Estrutura de campanhas",d:"e distribuição da verba diária."},
+  {t:"Performance com criativos",d:"leitura junto aos estrategistas."},
+  {t:"Eficiência",d:"CAC e ROAS de aquisição."}],
+ fronteira:"Não produz criativo (estrategistas) nem define a verba total (N3). Dono de como e onde o dinheiro roda, não de quanto existe.",
+ supremo:"CAC de cliente novo na meta com volume crescente.",
+ alcadas:{n1:"Estrutura de campanha; distribuição diária da verba; pausar/escalar.",n2:"Testar canais/estratégias de lance dentro do orçamento.",n3:"Mudar orçamento total de mídia; abrir canal novo."},
+ kpis:[
+  {nome:"CAC de cliente novo",tipo:"res",meta:"na meta",freq:"semanal",proposta:true},
+  {nome:"ROAS de aquisição",tipo:"res",meta:"na meta",freq:"semanal",proposta:true},
+  {nome:"% da verba em criativos novos",tipo:"ala",meta:"na meta",freq:"semanal",proposta:true}],
+ quem:"Pedro"},
+
+"gestor-marketplace":{status:"criar",ramo:"mateus",cargo:"Gestor de Marketplace",frente:"Frente comercial · Marketplace",respondeA:"Mateus",
+ missao:"Crescer o marketplace como receita incremental de alta margem — sem furar paridade, sem derrubar reputação e sem aumentar a dependência de ads.",
+ escopo:[
+  {t:"Canais de marketplace",d:"anúncios, preço e paridade."},
+  {t:"Margem do canal",d:"margem de contribuição (R$)."},
+  {t:"Estoque no Full",d:"cobertura 15–30 dias."},
+  {t:"Reputação & ads",d:"do canal."}],
+ fronteira:"Não define preço fora da política nem cuida do B2B (Leandro). Dono do canal, não da política de preço global (N3).",
+ supremo:"Margem de contribuição (R$) do canal.",
+ alcadas:{n1:"Anúncios; preço dentro da política; gestão de estoque no Full.",n2:"Abrir/ajustar campanhas do canal; testar novos anúncios.",n3:"Furar paridade; mudar política de preço; abrir novo marketplace."},
+ kpis:[
+  {nome:"Margem de contribuição do canal",tipo:"res",meta:"bater o período anterior",freq:"semanal"},
+  {nome:"TACOS do canal",tipo:"grd",meta:"≤ teto%, tendência de queda",freq:"semanal"},
+  {nome:"Cobertura de estoque no Full",tipo:"grd",meta:"15–30 dias",freq:"semanal"}],
+ quem:"Uri"},
+
+"diretora-administrativa":{status:"criar",ramo:"mateus",cargo:"Diretora Administrativa",frente:"Administrativo · Financeiro · RH",respondeA:"Mateus",
+ missao:"Dar à empresa uma leitura confiável e no prazo da saúde financeira — e manter o administrativo (financeiro + RH) rodando sem ponto cego.",
+ escopo:[
+  {t:"Financeiro",d:"fluxo de caixa, DRE, contas."},
+  {t:"Controladoria",d:"orçado vs realizado, margem."},
+  {t:"Administrativo & RH",d:"com a Ana M."},
+  {t:"Comunicação com o Mateus",d:"ritual fixo e bidirecional."}],
+ fronteira:"Não define metas de negócio das áreas (só reporta) nem gasta fora do orçamento. Dona do número financeiro, não da decisão comercial.",
+ supremo:"Saúde financeira lida no prazo — DRE e fluxo de caixa confiáveis e pontuais.",
+ alcadas:{n1:"Rotina financeira; cobrança; organização do administrativo.",n2:"Ajustar processos financeiros; calendário de fechamento.",n3:"Política de crédito; investimentos; contratações."},
+ kpis:[
+  {nome:"Fluxo de caixa / saldo projetado",tipo:"res",meta:"no prazo",freq:"quinzenal"},
+  {nome:"Margem / lucratividade (DRE)",tipo:"res",meta:"fechado no mês",freq:"mensal"},
+  {nome:"Inadimplência",tipo:"grd",meta:"≤ meta",freq:"mensal",proposta:true},
+  {nome:"Orçado vs realizado",tipo:"ala",meta:"dentro da faixa",freq:"mensal",proposta:true}],
+ quem:"Larissa (Gabrielle no financeiro, Ana M. no RH)"},
+
+"gestao-projetos":{status:"pronto",ramo:"mateus",cargo:"Gestão de Projetos",frente:"Frente corporativa · Governança",respondeA:"Mateus",
+ missao:"Garantir que a operação do grupo rode nos padrões — que reuniões, cronogramas, compromissos e processos aconteçam e sejam cumpridos —, conectando as pessoas certas e cobrando o que não anda.",
+ escopo:[
+  {t:"Governança & cadências",d:"weeklys, atas, 1:1 dos diretores, compromissos cobrados."},
+  {t:"Processos & governança",d:"que SOPs e processos existam, sejam seguidos e atualizados; painel de aderência.",foco:true},
+  {t:"Indicadores & performance",d:"que cada área acompanhe seus KPIs no padrão.",foco:true},
+  {t:"Projetos com cronograma",d:"cronograma, pessoas, documentação e follow-up."},
+  {t:"Estruturação",d:"rastreamento de tempo, cartões de cargo, dashboard."}],
+ fronteira:"Não é dona do orçamento/custo dos projetos, dos números de negócio das áreas (faturamento, ROAS, margem) nem da execução das áreas (o “como fazer” é do líder).",
+ supremo:"Taxa de compromissos cumpridos no prazo — o combinado acontece.",
+ alcadas:{n1:"Cadência e formato de reuniões/atas; auditar aderência a SOPs; montar cronogramas; cobrar compromissos; padrão de rastreamento de tempo.",n2:"Ajustar processos/SOPs entre áreas; propor e ajustar o painel e indicadores; remanejar prazos dentro do escopo.",n3:"Mudar orçamento/custo de projeto; mexer em metas de negócio; contratar/desligar; mudar a estrutura de governança."},
+ kpis:[
+  {nome:"Compromissos cumpridos no prazo",tipo:"res",meta:"≥ 90%",freq:"semanal"},
+  {nome:"Projetos com cronograma no prazo",tipo:"res",meta:"≥ 85%",freq:"por projeto"},
+  {nome:"Aderência a padrões (SOPs/ata) pelos líderes",tipo:"ala",meta:"≥ 90%",freq:"semanal",foco:"Processos & governança"},
+  {nome:"Áreas acompanhando os próprios KPIs no padrão",tipo:"ala",meta:"a definir",freq:"mensal",foco:"Indicadores & performance"},
+  {nome:"Cadência de governança realizada (com ata)",tipo:"grd",meta:"100%",freq:"semanal"}],
+ quem:"Viviane"},
+
+/* ---------- GESTÃO · ramo Felipe ---------- */
+"gestao-influencia":{status:"criar",ramo:"felipe",cargo:"Gestão de Influência & Afiliados",frente:"Frente de marca",respondeA:"Felipe",
+ missao:"Crescer a marca e a receita por meio de influenciadores e afiliados — parcerias que geram alcance qualificado e venda, com custo sob controle.",
+ escopo:[
+  {t:"Estratégia de influência",d:"das duas marcas."},
+  {t:"Programa de afiliados",d:"recrutamento e ativação."},
+  {t:"Parcerias",d:"prospecção e negociação."},
+  {t:"Mensuração",d:"alcance → venda."}],
+ fronteira:"Não gere mídia paga (Pedro) nem o orgânico próprio (conteúdo). Dona das parcerias externas, não da conta própria.",
+ supremo:"Receita/alcance gerado por parcerias vs. investimento.",
+ alcadas:{n1:"Escolha de parceiros; briefing; calendário de campanhas.",n2:"Negociar contrapartidas dentro do orçamento; testar formatos.",n3:"Contratos de longo prazo; orçamento total de influência."},
+ kpis:[
+  {nome:"Receita atribuída a afiliados/influência",tipo:"res",meta:"a definir",freq:"mensal",proposta:true},
+  {nome:"Parcerias ativas no período",tipo:"ala",meta:"a definir",freq:"mensal",proposta:true},
+  {nome:"Custo por resultado (parceria)",tipo:"grd",meta:"≤ teto",freq:"mensal",proposta:true}],
+ quem:"Marcela (com Manuela)"},
+
+"cs-cx":{status:"criar",ramo:"felipe",cargo:"CS · CX (Atendimento)",frente:"Frente de experiência",respondeA:"Felipe",
+ missao:"Garantir uma experiência de atendimento que resolve, retém e protege a reputação das duas marcas — pré e pós-venda.",
+ escopo:[
+  {t:"Atendimento das duas marcas",d:"Fishermans e O Aristocrata, com líderes."},
+  {t:"Padrão & SLA",d:"tempo e qualidade de resposta."},
+  {t:"Reputação",d:"marketplaces e redes."},
+  {t:"Voz do cliente",d:"feedback → produto/operação."}],
+ fronteira:"Não decide produto/estorno fora da política (escala) nem faz venda ativa. Dono da experiência de atendimento, não da política comercial.",
+ supremo:"CSAT / reputação com SLA cumprido.",
+ alcadas:{n1:"Rotina e escala; padrão de resposta; priorização.",n2:"Ajustar SLA/scripts; redistribuir times.",n3:"Política de estorno/troca; contratações."},
+ kpis:[
+  {nome:"CSAT / nota de atendimento",tipo:"res",meta:"≥ meta",freq:"mensal",proposta:true},
+  {nome:"Tempo de 1ª resposta (SLA)",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true},
+  {nome:"Reclamações resolvidas",tipo:"res",meta:"≥ meta",freq:"mensal",proposta:true}],
+ quem:"Samuel (líderes: Maria — Fishermans; Vitória — O Aristocrata)"},
+
+"conteudo-organico":{status:"criar",ramo:"felipe",cargo:"Conteúdo Orgânico",frente:"Uma conta cada — Julia (Fishermans) · Julia R. (O Aristocrata)",respondeA:"Felipe",
+ missao:"Crescer a marca no orgânico — construir audiência e engajamento que sustentam a aquisição e a percepção da marca.",
+ escopo:[
+  {t:"Calendário & produção",d:"conteúdo orgânico da conta."},
+  {t:"Linha editorial",d:"formatos e tom da marca."},
+  {t:"Crescimento",d:"seguidores, alcance, engajamento."},
+  {t:"Comunidade",d:"relação com a audiência."}],
+ fronteira:"Não gere mídia paga (Pedro) nem parcerias (Marcela). Dona da conta orgânica da marca.",
+ supremo:"Crescimento e engajamento do orgânico da conta.",
+ alcadas:{n1:"Pauta, calendário, formatos e publicação.",n2:"Testar novos formatos/linhas; ajustar frequência.",n3:"Mudar posicionamento da marca no orgânico."},
+ kpis:[
+  {nome:"Crescimento de seguidores/alcance",tipo:"res",meta:"a definir",freq:"mensal",proposta:true},
+  {nome:"Engajamento médio",tipo:"ala",meta:"a definir",freq:"semanal",proposta:true},
+  {nome:"Volume publicado no calendário",tipo:"grd",meta:"100% do planejado",freq:"semanal",proposta:true}],
+ quem:"Julia (Fishermans) e Julia R. (O Aristocrata) — mesmo cartão, uma conta cada."},
+
+/* ---------- GESTÃO · ramo João ---------- */
+"gerente-supply-chain":{status:"criar",ramo:"joao",cargo:"Gerente de Supply Chain",frente:"Operações · Suprimentos",respondeA:"João",
+ missao:"Garantir insumo e estoque para produzir e vender sem ruptura e sem excesso — comprar certo, na hora certa, ao custo certo.",
+ escopo:[
+  {t:"Estoque & reposição",d:"níveis e giro."},
+  {t:"Compras / fornecedores",d:"com o time de compras."},
+  {t:"Logística de entrada",d:"recebimento e endereçamento."},
+  {t:"Serviços & infra",d:"apoio ao escritório."}],
+ fronteira:"Não decide o que produzir (produção/demanda) nem o mix de venda. Dono de ter o insumo, não da demanda.",
+ supremo:"Ruptura zero com estoque enxuto.",
+ alcadas:{n1:"Reposição; pedidos de compra dentro do orçamento; equipe de apoio.",n2:"Trocar/ajustar fornecedor dentro da política.",n3:"Contrato estrutural de fornecedor; investimento em estoque."},
+ kpis:[
+  {nome:"Ruptura de estoque",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true},
+  {nome:"Cobertura / giro de estoque",tipo:"res",meta:"na faixa",freq:"mensal",proposta:true},
+  {nome:"Custo de compra vs. orçado",tipo:"ala",meta:"≤ orçado",freq:"mensal",proposta:true}],
+ quem:"Cadeira em aberto — a definir"},
+
+"encarregado-producao":{status:"criar",ramo:"joao",cargo:"Encarregada de Produção",frente:"Operações · Produção",respondeA:"João",
+ missao:"Produzir no prazo, no volume e no padrão de qualidade — com a equipe de produção rodando de forma previsível.",
+ escopo:[
+  {t:"Programação de produção",d:"do dia e da semana."},
+  {t:"Equipe",d:"mono, multi e finalização."},
+  {t:"Qualidade",d:"padrão do produto."},
+  {t:"Produtividade & perdas",d:"eficiência da linha."}],
+ fronteira:"Não compra insumo (supply) nem despacha (Alexandre). Dona de fazer no padrão, não de ter ou entregar.",
+ supremo:"Produção no prazo dentro do padrão de qualidade.",
+ alcadas:{n1:"Programação diária; distribuição da equipe; padrão de qualidade.",n2:"Ajustar fluxo/turno dentro do plano.",n3:"Investimento em máquina/capacidade; contratação."},
+ kpis:[
+  {nome:"Produção no prazo (plano cumprido)",tipo:"res",meta:"≥ meta",freq:"semanal",proposta:true},
+  {nome:"Perdas / retrabalho",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true},
+  {nome:"Produtividade por pessoa",tipo:"ala",meta:"a definir",freq:"mensal",proposta:true}],
+ quem:"Juliana"},
+
+"encarregado-despacho":{status:"criar",ramo:"joao",cargo:"Encarregado de Despacho",frente:"Operações · Expedição",respondeA:"João",
+ missao:"Expedir os pedidos das duas marcas no prazo e sem erro — do pedido pronto à transportadora.",
+ escopo:[
+  {t:"Despacho das duas marcas",d:"Fishermans e O Aristocrata, com líderes."},
+  {t:"Conferência & embalagem",d:"padrão de expedição."},
+  {t:"Prazo",d:"tempo de expedição."},
+  {t:"Erros de envio",d:"troca/extravio."}],
+ fronteira:"Não produz (Juliana) nem atende o cliente (Samuel). Dono de entregar certo e no prazo.",
+ supremo:"Pedidos expedidos no prazo sem erro.",
+ alcadas:{n1:"Rotina e escala; priorização de pedidos.",n2:"Ajustar fluxo/transportadora dentro da política.",n3:"Troca estrutural de transportadora; investimento."},
+ kpis:[
+  {nome:"Pedidos expedidos no prazo",tipo:"res",meta:"≥ meta",freq:"diário/semanal",proposta:true},
+  {nome:"Erros de envio (troca/extravio)",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true},
+  {nome:"Custo de frete/expedição",tipo:"ala",meta:"≤ orçado",freq:"mensal",proposta:true}],
+ quem:"Alexandre (líderes: Ketlyn — Fishermans; Thainara — O Aristocrata)"},
+
+/* ---------- EXECUÇÃO (versão enxuta) ---------- */
+"vendedor-b2b":{status:"criar",ramo:"mateus",cargo:"Vendedor B2B",frente:"Time de vendas",respondeA:"Leandro (Gestor de B2B)",
+ missao:"Vender e desenvolver a carteira de revendedores — gerar recompra de alta margem.",
+ entregas:["Prospecção e ligações diárias","Fechamento e follow-up","Recompra da carteira","CRM atualizado"],
+ fronteira:"Segue a política de preço/margem — não negocia fora dela.",
+ kpis:[
+  {nome:"Meta individual de faturamento",tipo:"res",meta:"na meta",freq:"semanal",proposta:true},
+  {nome:"Ligações / dia",tipo:"ala",meta:"meta diária",freq:"diário",proposta:true},
+  {nome:"Ciclo de fechamento",tipo:"grd",meta:"≤ meta",freq:"mensal",proposta:true}],
+ quem:"Juliano, Ede, Guilherme, Vinicius e +1"},
+
+"copywriter":{status:"criar",ramo:"mateus",cargo:"Copywriter",frente:"Time criativo",respondeA:"Estrategista Criativo da conta",
+ missao:"Escrever criativos e textos que convertem, dentro da linha da conta.",
+ entregas:["Roteiros e copies de criativos","Ganchos e variações para teste","Textos de campanha","Volume da fila criativa"],
+ fronteira:"Segue a estratégia do Estrategista Criativo; não define verba/mídia.",
+ kpis:[
+  {nome:"Volume de copies entregues",tipo:"ala",meta:"meta da fila",freq:"semanal",proposta:true},
+  {nome:"Copies em criativos vencedores",tipo:"res",meta:"a definir",freq:"mensal",proposta:true}],
+ quem:"Diulia (Fishermans), Paulo (O Aristocrata)"},
+
+"editor-video":{status:"criar",ramo:"mateus",cargo:"Editor de Vídeo",frente:"Time criativo",respondeA:"Estrategista Criativo da conta",
+ missao:"Editar vídeos e criativos no padrão e no volume da conta.",
+ entregas:["Edição de criativos de aquisição","Variações para teste","Ajustes rápidos","Padrão visual da marca"],
+ fronteira:"Segue o briefing do estrategista; não define pauta.",
+ kpis:[
+  {nome:"Volume de edições entregues",tipo:"ala",meta:"meta da fila",freq:"semanal",proposta:true},
+  {nome:"Tempo de entrega por peça",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true}],
+ quem:"Maria (Fishermans); Yasmin, Gustavo e Felipe (O Aristocrata)"},
+
+"designer":{status:"criar",ramo:"mateus",cargo:"Designer",frente:"Time criativo / Marca",respondeA:"Estrategista Criativo (ou Diretoria de Marca)",
+ missao:"Criar peças visuais (estáticos, stories, storymaker) no padrão da marca.",
+ entregas:["Criativos estáticos e stories","Materiais de marca","Variações para teste","Padrão visual"],
+ fronteira:"Segue a linha criativa/marca; não define estratégia.",
+ kpis:[
+  {nome:"Volume de peças entregues",tipo:"ala",meta:"meta da fila",freq:"semanal",proposta:true},
+  {nome:"Peças em campanhas vencedoras",tipo:"res",meta:"a definir",freq:"mensal",proposta:true}],
+ quem:"Tirzah (Fishermans); Mariana (storymaker) e Cesar (O Aristocrata); Welington (marca)"},
+
+"filmmaker":{status:"criar",ramo:"mateus",cargo:"Filmmaker",frente:"Time criativo",respondeA:"Estrategista Criativo da conta",
+ missao:"Captar e produzir vídeo para os criativos e a marca.",
+ entregas:["Captação de vídeo","Bruto organizado para edição","Produção de gravações"],
+ fronteira:"Segue o briefing/estratégia; não faz a edição final.",
+ kpis:[{nome:"Gravações entregues no prazo",tipo:"ala",meta:"meta",freq:"semanal",proposta:true}],
+ quem:"Fernando (Fishermans)"},
+
+"assistente-financeiro":{status:"criar",ramo:"mateus",cargo:"Assistente Financeiro",frente:"Financeiro",respondeA:"Larissa (Diretora Administrativa)",
+ missao:"Sustentar a rotina financeira — contas, conciliação e organização — para o fechamento sair no prazo.",
+ entregas:["Contas a pagar/receber","Conciliação bancária","Apoio ao DRE/fechamento","Cobrança"],
+ fronteira:"Segue a política financeira; não aprova pagamento fora da alçada.",
+ kpis:[
+  {nome:"Contas em dia (sem atraso)",tipo:"grd",meta:"100%",freq:"semanal",proposta:true},
+  {nome:"Fechamento no prazo",tipo:"res",meta:"no prazo",freq:"mensal",proposta:true}],
+ quem:"Gabrielle"},
+
+"analista-rh":{status:"criar",ramo:"mateus",cargo:"Analista de RH",frente:"Administrativo · RH",respondeA:"Larissa (Diretora Administrativa)",
+ missao:"Cuidar das pessoas no operacional de RH — admissão, rotina e clima — dando base ao administrativo.",
+ entregas:["Admissão/desligamento e documentação","Folha e benefícios (apoio)","Rotina de RH","Apoio ao clima"],
+ fronteira:"Segue a política de RH; decisões de contratação são da liderança.",
+ kpis:[
+  {nome:"Processos de RH no prazo",tipo:"grd",meta:"no prazo",freq:"mensal",proposta:true},
+  {nome:"Turnover",tipo:"res",meta:"≤ meta",freq:"mensal",proposta:true}],
+ quem:"Ana M."},
+
+"estagiaria-parcerias":{status:"criar",ramo:"felipe",cargo:"Estagiária de Parcerias",frente:"Influência & Afiliados",respondeA:"Marcela (Gestão de Influência)",
+ missao:"Apoiar a gestão de influência/afiliados na operação das parcerias.",
+ entregas:["Prospecção e contato com parceiros","Organização de campanhas e envios","Acompanhamento de entregáveis","Planilha de resultados"],
+ fronteira:"Executa sob a Marcela; não fecha contrato.",
+ kpis:[{nome:"Parceiros contatados/ativados",tipo:"ala",meta:"meta",freq:"semanal",proposta:true}],
+ quem:"Manuela"},
+
+"lider-atendimento":{status:"criar",ramo:"felipe",cargo:"Líder de Atendimento",frente:"CS · CX (uma marca)",respondeA:"Samuel (CS · CX)",
+ missao:"Liderar o time de atendimento de uma marca — garantir SLA, padrão e resolução.",
+ entregas:["Escala e rotina do time","Padrão de resposta","Casos escalados","Reporte de voz do cliente"],
+ fronteira:"Segue a política de CX (Samuel); escala o que foge da alçada.",
+ kpis:[
+  {nome:"SLA de 1ª resposta do time",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true},
+  {nome:"CSAT do time",tipo:"res",meta:"≥ meta",freq:"mensal",proposta:true}],
+ quem:"Maria (Fishermans), Vitória (O Aristocrata)"},
+
+"analista-cx":{status:"criar",ramo:"felipe",cargo:"Analista de Atendimento (CX)",frente:"CS · CX",respondeA:"Líder de Atendimento da marca",
+ missao:"Atender o cliente resolvendo no 1º contato sempre que possível, no padrão da marca.",
+ entregas:["Atendimento pré e pós-venda","Moderação e resposta em canais","Registro de casos","Encaminhamento do que escala"],
+ fronteira:"Segue o script/política; não decide estorno fora da alçada.",
+ kpis:[
+  {nome:"Tempo de resposta",tipo:"grd",meta:"≤ meta",freq:"diário",proposta:true},
+  {nome:"Casos resolvidos no 1º contato",tipo:"res",meta:"≥ meta",freq:"semanal",proposta:true}],
+ quem:"Adão, João (operacional) e Carlos (Fishermans); Geovane, Juliano e Vivian (O Aristocrata)"},
+
+"estagiario-pd":{status:"criar",ramo:"felipe",cargo:"Estagiário de P&D",frente:"Produto",respondeA:"Felipe (Diretoria de Produto)",
+ missao:"Apoiar a pesquisa e o desenvolvimento de produto — testar, documentar e trazer insumo para decisões.",
+ entregas:["Pesquisa de produto/mercado","Testes e amostras","Documentação","Apoio a lançamentos"],
+ fronteira:"Executa sob a diretoria de produto; não decide lançamento.",
+ kpis:[{nome:"Entregas de pesquisa no prazo",tipo:"ala",meta:"no prazo",freq:"mensal",proposta:true}],
+ quem:"Nicole"},
+
+"assistente-compras":{status:"criar",ramo:"felipe",cargo:"Assistente de Compras",frente:"Compras",respondeA:"Felipe / Supply Chain",
+ missao:"Apoiar as compras — cotação, pedido e acompanhamento — para não faltar insumo.",
+ entregas:["Cotações com fornecedores","Emissão e acompanhamento de pedidos","Conferência de recebimento","Planilha de compras"],
+ fronteira:"Compra dentro da política/orçamento; não fecha contrato estrutural.",
+ kpis:[
+  {nome:"Pedidos sem ruptura",tipo:"grd",meta:"100%",freq:"semanal",proposta:true},
+  {nome:"Economia vs. cotação base",tipo:"ala",meta:"meta",freq:"mensal",proposta:true}],
+ quem:"Brendha"},
+
+"aux-estoque":{status:"criar",ramo:"joao",cargo:"Auxiliar de Estoque",frente:"Supply Chain",respondeA:"Gerente de Supply Chain",
+ missao:"Manter o estoque organizado, contado e disponível.",
+ entregas:["Recebimento e endereçamento","Contagem / inventário","Separação para produção/despacho","Controle de níveis"],
+ fronteira:"Executa a rotina de estoque; não faz compras.",
+ kpis:[{nome:"Acuracidade de inventário",tipo:"grd",meta:"≥ meta",freq:"mensal",proposta:true}],
+ quem:"A definir"},
+
+"assistente-producao":{status:"criar",ramo:"joao",cargo:"Assistente de Produção",frente:"Produção",respondeA:"Gerente de Supply Chain / Produção",
+ missao:"Apoiar a produção na rotina e no fluxo do dia.",
+ entregas:["Preparação de materiais","Apoio às etapas de produção","Organização do posto","Registro de produção"],
+ fronteira:"Segue a programação da encarregada.",
+ kpis:[{nome:"Metas diárias de apoio cumpridas",tipo:"ala",meta:"meta",freq:"diário",proposta:true}],
+ quem:"Cadu"},
+
+"motorista-servicos":{status:"criar",ramo:"joao",cargo:"Motorista / Serviços",frente:"Serviços & Infra",respondeA:"Gerente de Supply Chain",
+ missao:"Garantir transporte e serviços que sustentam a operação e o escritório.",
+ entregas:["Entregas e coletas","Serviços externos","Apoio logístico","Manutenções simples"],
+ fronteira:"Executa a agenda de serviços; não define rota estrutural.",
+ kpis:[{nome:"Serviços no prazo",tipo:"grd",meta:"no prazo",freq:"semanal",proposta:true}],
+ quem:"Cristiano"},
+
+"aux-escritorio":{status:"criar",ramo:"joao",cargo:"Auxiliar de Escritório / Serviços",frente:"Serviços & Infra",respondeA:"Gerente de Supply Chain",
+ missao:"Manter o escritório e os serviços internos funcionando.",
+ entregas:["Organização e limpeza","Apoio administrativo","Serviços internos","Recepção/apoio"],
+ fronteira:"Executa a rotina de serviços internos.",
+ kpis:[{nome:"Rotina de serviços em dia",tipo:"grd",meta:"em dia",freq:"semanal",proposta:true}],
+ quem:"Rosane"},
+
+"auxiliar-producao":{status:"criar",ramo:"joao",cargo:"Auxiliar de Produção",frente:"Equipe de Produção",respondeA:"Juliana (Encarregada de Produção)",
+ missao:"Executar as etapas de produção (mono, multi, finalização) no padrão e no ritmo.",
+ entregas:["Produção na etapa (mono/multi/finalização)","Padrão de qualidade","Volume da meta diária","Cuidado com perdas"],
+ fronteira:"Segue a programação e o padrão da encarregada.",
+ kpis:[
+  {nome:"Volume / meta diária",tipo:"ala",meta:"meta",freq:"diário",proposta:true},
+  {nome:"Perdas / retrabalho",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true}],
+ quem:"Viviane (mono), Sirley (multi), Maria e Isabela (finalização)"},
+
+"lider-despacho":{status:"criar",ramo:"joao",cargo:"Líder de Despacho",frente:"Despacho (uma marca)",respondeA:"Alexandre (Encarregado de Despacho)",
+ missao:"Liderar o despacho de uma marca — expedir no prazo e sem erro.",
+ entregas:["Escala e rotina do despacho","Conferência e embalagem","Prazo de expedição","Correção de erros"],
+ fronteira:"Segue a política de despacho (Alexandre); escala exceções.",
+ kpis:[
+  {nome:"Pedidos no prazo do time",tipo:"res",meta:"≥ meta",freq:"diário",proposta:true},
+  {nome:"Erros de envio",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true}],
+ quem:"Ketlyn (Fishermans), Thainara (O Aristocrata)"},
+
+"auxiliar-despacho":{status:"criar",ramo:"joao",cargo:"Auxiliar de Despacho",frente:"Equipe de Despacho",respondeA:"Líder de Despacho da marca",
+ missao:"Separar, conferir e embalar pedidos para expedição.",
+ entregas:["Separação de pedidos","Conferência","Embalagem","Organização da expedição"],
+ fronteira:"Segue a rotina do líder de despacho.",
+ kpis:[
+  {nome:"Pedidos embalados / dia",tipo:"ala",meta:"meta",freq:"diário",proposta:true},
+  {nome:"Erros de separação",tipo:"grd",meta:"≤ meta",freq:"semanal",proposta:true}],
+ quem:"Vanessa e Melry (Fishermans), Suely e +1 (O Aristocrata)"}
+};
+
+/* =========================================================
+   ORGANOGRAMA (árvore) — cada nó aponta para um cargo
+   ========================================================= */
+const ORG = {
+ name:"Grupo Shrigma", role:"Diretoria", ramo:"dir", root:true,
+ children:[
+  { name:"Mateus", role:"Diretoria", cargo:"dir-comercial", ramo:"mateus", children:[
+     {name:"Leandro", role:"Gestor de B2B", cargo:"gestor-b2b", ramo:"mateus", children:[
+        {name:"Juliano", role:"Vendedor B2B", cargo:"vendedor-b2b", ramo:"mateus"},
+        {name:"Ede", role:"Vendedor B2B", cargo:"vendedor-b2b", ramo:"mateus"},
+        {name:"Guilherme", role:"Vendedor B2B", cargo:"vendedor-b2b", ramo:"mateus"},
+        {name:"Vinicius", role:"Vendedor B2B", cargo:"vendedor-b2b", ramo:"mateus"},
+        {name:"+1", role:"Vendedor B2B", cargo:"vendedor-b2b", ramo:"mateus"} ]},
+     {name:"Jorge", role:"Estrategista Criativo", marca:"fish", marcaL:"Fishermans", cargo:"estrategista-criativo", ramo:"mateus", children:[
+        {name:"Diulia", role:"Copywriter", cargo:"copywriter", ramo:"mateus"},
+        {name:"Maria", role:"Editora de Vídeo", cargo:"editor-video", ramo:"mateus"},
+        {name:"Tirzah", role:"Designer", cargo:"designer", ramo:"mateus"},
+        {name:"Fernando", role:"Filmmaker", cargo:"filmmaker", ramo:"mateus"} ]},
+     {name:"Sabrina", role:"Estrategista Criativo", marca:"aristo", marcaL:"O Aristocrata", cargo:"estrategista-criativo", ramo:"mateus", children:[
+        {name:"Paulo", role:"Copywriter", cargo:"copywriter", ramo:"mateus"},
+        {name:"Yasmin", role:"Editora de Vídeo", cargo:"editor-video", ramo:"mateus"},
+        {name:"Gustavo", role:"Editor de Vídeo", cargo:"editor-video", ramo:"mateus"},
+        {name:"Felipe", role:"Editor de Vídeo", cargo:"editor-video", ramo:"mateus"},
+        {name:"Mariana", role:"Design · Storymaker", cargo:"designer", ramo:"mateus"},
+        {name:"Cesar", role:"Designer", cargo:"designer", ramo:"mateus"} ]},
+     {name:"Pedro", role:"Gestor de Tráfego", cargo:"gestor-trafego", ramo:"mateus"},
+     {name:"Uri", role:"Gestor de Marketplace", cargo:"gestor-marketplace", ramo:"mateus"},
+     {name:"Viviane", role:"Gestão de Projetos", cargo:"gestao-projetos", ramo:"mateus"},
+     {name:"Larissa", role:"Diretora Administrativa", cargo:"diretora-administrativa", ramo:"mateus", children:[
+        {name:"Gabrielle", role:"Assistente Financeiro", cargo:"assistente-financeiro", ramo:"mateus"},
+        {name:"Ana M.", role:"Analista de RH", cargo:"analista-rh", ramo:"mateus"} ]}
+  ]},
+  { name:"Felipe", role:"Diretoria", cargo:"dir-marca", ramo:"felipe", children:[
+     {name:"Marcela", role:"Gestão de Influência", cargo:"gestao-influencia", ramo:"felipe", children:[
+        {name:"Manuela", role:"Estagiária de Parcerias", cargo:"estagiaria-parcerias", ramo:"felipe"} ]},
+     {name:"Samuel", role:"CS · CX (Atendimento)", cargo:"cs-cx", ramo:"felipe", children:[
+        {name:"Maria", role:"Líder Atendimento", marca:"fish", marcaL:"Fishermans", cargo:"lider-atendimento", ramo:"felipe", children:[
+           {name:"Adão", role:"Atendimento N1", cargo:"analista-cx", ramo:"felipe"},
+           {name:"João", role:"Operacional", cargo:"analista-cx", ramo:"felipe"},
+           {name:"Carlos", role:"Moderação", cargo:"analista-cx", ramo:"felipe"} ]},
+        {name:"Vitória", role:"Líder Atendimento", marca:"aristo", marcaL:"O Aristocrata", cargo:"lider-atendimento", ramo:"felipe", children:[
+           {name:"Geovane", role:"Atendimento N1", cargo:"analista-cx", ramo:"felipe"},
+           {name:"Juliano", role:"Atendimento", cargo:"analista-cx", ramo:"felipe"},
+           {name:"Vivian", role:"Atendimento", cargo:"analista-cx", ramo:"felipe"} ]} ]},
+     {name:"Julia", role:"Conteúdo Orgânico", marca:"fish", marcaL:"Fishermans", cargo:"conteudo-organico", ramo:"felipe"},
+     {name:"Julia R.", role:"Conteúdo Orgânico", marca:"aristo", marcaL:"O Aristocrata", cargo:"conteudo-organico", ramo:"felipe"},
+     {name:"Nicole", role:"Estagiária de P&D", cargo:"estagiario-pd", ramo:"felipe"},
+     {name:"Brendha", role:"Assistente de Compras", cargo:"assistente-compras", ramo:"felipe"},
+     {name:"Welington", role:"Designer", cargo:"designer", ramo:"felipe"}
+  ]},
+  { name:"João", role:"Diretoria", cargo:"dir-operacoes", ramo:"joao", children:[
+     {name:"—", role:"Gerente de Supply Chain", cargo:"gerente-supply-chain", ramo:"joao", vago:true, children:[
+        {name:"—", role:"Auxiliar de Estoque", cargo:"aux-estoque", ramo:"joao", vago:true},
+        {name:"Cadu", role:"Assistente de Produção", cargo:"assistente-producao", ramo:"joao"},
+        {name:"Cristiano", role:"Motorista / Serviços", cargo:"motorista-servicos", ramo:"joao"},
+        {name:"Rosane", role:"Aux. Escritório / Serviços", cargo:"aux-escritorio", ramo:"joao"} ]},
+     {name:"Juliana", role:"Encarregada de Produção", cargo:"encarregado-producao", ramo:"joao", children:[
+        {name:"Viviane", role:"Aux. Mono", cargo:"auxiliar-producao", ramo:"joao"},
+        {name:"Sirley", role:"Aux. Multi", cargo:"auxiliar-producao", ramo:"joao"},
+        {name:"Maria", role:"Finalização", cargo:"auxiliar-producao", ramo:"joao"},
+        {name:"Isabela", role:"Finalização", cargo:"auxiliar-producao", ramo:"joao"} ]},
+     {name:"Alexandre", role:"Encarregado de Despacho", cargo:"encarregado-despacho", ramo:"joao", children:[
+        {name:"Ketlyn", role:"Líder Despacho", marca:"fish", marcaL:"Fishermans", cargo:"lider-despacho", ramo:"joao", children:[
+           {name:"Vanessa", role:"Aux. Despacho", cargo:"auxiliar-despacho", ramo:"joao"},
+           {name:"Melry", role:"Aux. Despacho", cargo:"auxiliar-despacho", ramo:"joao"} ]},
+        {name:"Thainara", role:"Líder Despacho", marca:"aristo", marcaL:"O Aristocrata", cargo:"lider-despacho", ramo:"joao", children:[
+           {name:"Suely", role:"Aux. Despacho", cargo:"auxiliar-despacho", ramo:"joao"},
+           {name:"—", role:"Aux. Despacho", cargo:"auxiliar-despacho", ramo:"joao", vago:true} ]} ]}
+  ]}
+ ]
+};
+
+/* =========================================================
+   RENDER da árvore
+   ========================================================= */
+function esc(s){return (s==null?"":String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function nodeHTML(n, depth){
+  const hasKids = n.children && n.children.length;
+  let lvl = depth===0 ? "lvl-root" : depth===1 ? "lvl-dir" : depth>=3 ? "lvl-exec" : "lvl-lead";
+  const rcls = "r-"+(n.ramo||"dir");
+  const marca = n.marca ? `<span class="marca ${n.marca}">${esc(n.marcaL||"")}</span>` : "";
+  const vago = n.vago ? "vago" : "";
+
+  if(n.root){
+    // nó topo simples, não clicável
+    return `<li><div class="node ${lvl} ${rcls}" style="cursor:default"><div class="cap"></div>
+      <div class="body"><div class="role">Governança</div><div class="name" style="font-family:Georgia,serif">${esc(n.name)}</div></div></div>
+      ${hasKids?`<ul>${n.children.map(c=>nodeHTML(c,depth+1)).join("")}</ul>`:""}</li>`;
+  }
+
+  const c = CARGOS[n.cargo] || {};
+  const badge = n.cargo ? `<span class="cbadge ${c.status==='pronto'?'pronto':'criar'}">${c.status==='pronto'?'Pronto':'Rascunho'}</span>` : "";
+  const exp = hasKids ? `<div class="exp" onclick="event.stopPropagation();this.closest('li').classList.toggle('collapsed')"><span class="p"></span><span class="m"></span></div>` : "";
+  const collapsed = (depth>=1 && hasKids) ? "collapsed" : "";
+
+  return `<li class="${collapsed}">
+    <div class="node ${lvl} ${rcls} ${vago}" ${n.cargo?`onclick="openCartao('${n.cargo}')"`:''}>
+      <div class="cap"></div>
+      ${badge}
+      <div class="body">
+        <div class="role">${esc(n.role||"")}</div>
+        <div class="name">${esc(n.name)}${marca}</div>
+      </div>
+      ${exp}
+    </div>
+    ${hasKids?`<ul>${n.children.map(x=>nodeHTML(x,depth+1)).join("")}</ul>`:""}
+  </li>`;
+}
+
+function renderTree(){
+  document.getElementById('tree').innerHTML = `<ul>${nodeHTML(ORG,0)}</ul>`;
+  centerScroll();
+}
+function centerScroll(){
+  const sc=document.querySelector('.scroller'), tr=document.getElementById('tree');
+  if(sc && tr){ sc.scrollLeft = Math.max(0,(tr.scrollWidth - sc.clientWidth)/2); }
+}
+window.addEventListener('resize',centerScroll);
+
+function expandAll(open){
+  document.querySelectorAll('#tree li').forEach(li=>{
+    if(li.querySelector(':scope > ul')) li.classList.toggle('collapsed', !open);
+  });
+}
+
+/* =========================================================
+   MODAL do cartão de cargo
+   ========================================================= */
+const PILL={res:['Resultado','p-res'],ala:['Alavanca','p-ala'],grd:['Guardrail','p-grd']};
+
+function cartaoHTML(id){
+  const c = CARGOS[id]; if(!c) return "<p>Cartão não encontrado.</p>";
+  const rev = c.status==='pronto' ? 'agosto de 2026 · v1.0' : 'agosto de 2026 · rascunho para validar';
+  let h = "";
+  h += `<div class="c-over">Grupo Shrigma · Cartão de Cargo · ${c.status==='pronto'?'Validado':'Rascunho'}</div>`;
+  h += `<div class="c-h1">${esc(c.cargo)}</div>`;
+  h += `<div class="c-sub">${esc(c.frente||'')} · Grupo Shrigma</div>`;
+
+  h += `<div class="c-top">
+    <div class="c"><div class="l">Responde a</div><div class="val">${esc(c.respondeA||'—')}</div></div>
+    <div class="c"><div class="l">Última revisão</div><div class="val">${rev}</div></div>
+    <div class="c"><div class="l">Gatilho de atualização</div><div class="val">mudança real no cargo · escopo/foco · meta ou KPI</div></div>
+  </div>`;
+
+  // Definição
+  h += `<div class="c-sec"><span class="t">Definição do cargo</span></div><div class="card">`;
+  h += `<div class="row"><div class="k">Missão</div><div class="v">${esc(c.missao)}</div></div>`;
+  if(c.escopo){
+    h += `<div class="row"><div class="k">Escopo<span class="kk">Território, não tarefa</span></div><div class="v">`;
+    c.escopo.forEach((e,i)=>{ h += `<div class="item"><span class="n">${i+1}</span> <b>${esc(e.t)}</b> — ${esc(e.d)} ${e.foco?'<span class="foco">FOCO</span>':''}</div>`; });
+    h += `<div class="fronteira"><b>Fronteira — não é dono de:</b> ${esc(c.fronteira)}</div></div></div>`;
+  } else if(c.entregas){
+    h += `<div class="row"><div class="k">Principais entregas</div><div class="v">`;
+    c.entregas.forEach((e,i)=>{ h += `<div class="item"><span class="n">${i+1}</span> ${esc(e)}</div>`; });
+    h += `</div></div>`;
+    h += `<div class="row"><div class="k">Fronteira</div><div class="v">${esc(c.fronteira)}</div></div>`;
+  }
+  h += `</div>`;
+
+  if(c.supremo){ h += `<div class="supremo">★ <b>KPI supremo:</b> ${esc(c.supremo)}</div>`; }
+
+  // Alçadas (só gestão)
+  if(c.alcadas){
+    h += `<div class="c-sec"><span class="t">Alçadas</span><span class="f">o que decide sozinho</span></div><div class="card">`;
+    h += `<div class="row"><div class="k">N1 — decide, não comunica</div><div class="v">${esc(c.alcadas.n1)}</div></div>`;
+    h += `<div class="row"><div class="k">N2 — decide e informa</div><div class="v">${esc(c.alcadas.n2)}</div></div>`;
+    h += `<div class="row"><div class="k">N3 — consulta antes</div><div class="v">${esc(c.alcadas.n3)}</div></div>`;
+    h += `</div>`;
+  }
+
+  // KPIs
+  h += `<div class="c-sec"><span class="t">KPIs do cargo</span></div>`;
+  c.kpis.forEach((k,i)=>{
+    const p = PILL[k.tipo]||PILL.res;
+    h += `<div class="kpi"><div class="lab"><span class="id">KPI ${i+1}</span><span class="pill ${p[1]}">${p[0]}</span>`;
+    if(k.foco) h += `<span style="font-size:9.4px;color:var(--green);font-weight:700">· Foco: ${esc(k.foco)}</span>`;
+    if(k.proposta) h += `<span class="proposta">proposta</span>`;
+    h += `</div><div class="card"><div class="row"><div class="k">Nome</div><div class="v"><b>${esc(k.nome)}</b></div></div>
+      <div class="row"><div class="k">Meta · Frequência</div><div class="v">${esc(k.meta)} · ${esc(k.freq)}</div></div></div></div>`;
+  });
+
+  h += `<div class="quem" style="margin-top:16px"><b>Ocupa hoje:</b> ${esc(c.quem||'—')}</div>`;
+  h += `<div class="c-foot"><span>Cartão de Cargo · ${esc(c.cargo)} — Grupo Shrigma</span><span class="r">${c.status==='pronto'?'v1.0':'rascunho'} · ago/2026</span></div>`;
+  return h;
+}
+
+function openCartao(id){
+  document.getElementById('cpad').innerHTML = cartaoHTML(id);
+  const o=document.getElementById('overlay'); o.classList.add('on'); o.scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closeCartao(){ document.getElementById('overlay').classList.remove('on'); document.body.style.overflow=''; }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeCartao(); });
+
+renderTree();
+</script>
+</body></html>
