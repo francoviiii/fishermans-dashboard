@@ -5,6 +5,28 @@
    "sub": "Semana de 26/08–02/09",
    "tasks": [
     {
+     "p": "Marcela",
+     "nome": "fazer agenda",
+     "c": "Imprevisto",
+     "cron": 45,
+     "prog": 0,
+     "m": 45,
+     "src": "cron",
+     "ts": 1788363231609,
+     "url": "https://app.clickup.com/t/86akaearr"
+    },
+    {
+     "p": "Marcela",
+     "nome": "enviar pedidos aristocrata",
+     "c": "Rotina",
+     "cron": 30,
+     "prog": 0,
+     "m": 30,
+     "src": "cron",
+     "ts": 1788362120627,
+     "url": "https://app.clickup.com/t/86akae9qr"
+    },
+    {
      "p": "Sabrina",
      "nome": "Roteiros que faltaram para gravção",
      "c": "Projeto",
@@ -366,28 +388,6 @@
      "src": "cron",
      "ts": 1788134758666,
      "url": "https://app.clickup.com/t/86ak8ar98"
-    },
-    {
-     "p": "Jorge",
-     "nome": "[023.6] - [COMPRE E GANHE BONUS]",
-     "c": "Sem categoria",
-     "cron": 0,
-     "prog": 0,
-     "m": 0,
-     "src": "none",
-     "ts": 1788269902771,
-     "url": "https://app.clickup.com/t/86ak8aqcf"
-    },
-    {
-     "p": "Jorge",
-     "nome": "[023.5] - [ALGUÉM ERROU NA FISHERMANS]",
-     "c": "Sem categoria",
-     "cron": 0,
-     "prog": 0,
-     "m": 0,
-     "src": "none",
-     "ts": 1788269404203,
-     "url": "https://app.clickup.com/t/86ak8aq9n"
     }
    ]
   }
