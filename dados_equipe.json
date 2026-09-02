@@ -6,6 +6,105 @@
    "tasks": [
     {
      "p": "Sabrina",
+     "nome": "Roteiros que faltaram para gravção",
+     "c": "Projeto",
+     "cron": 60,
+     "prog": 0,
+     "m": 60,
+     "src": "cron",
+     "ts": 1788356381424,
+     "url": "https://app.clickup.com/t/86akabgj2"
+    },
+    {
+     "p": "Sabrina",
+     "nome": "Edição de vídeos que faltaram",
+     "c": "Projeto",
+     "cron": 90,
+     "prog": 0,
+     "m": 90,
+     "src": "cron",
+     "ts": 1788356335626,
+     "url": "https://app.clickup.com/t/86akabfu3"
+    },
+    {
+     "p": "Sabrina",
+     "nome": "Auxiliar Heloysa e Felipe",
+     "c": "Rotina",
+     "cron": 75,
+     "prog": 0,
+     "m": 75,
+     "src": "cron",
+     "ts": 1788356305382,
+     "url": "https://app.clickup.com/t/86akabf3p"
+    },
+    {
+     "p": "Sabrina",
+     "nome": "Ajudar todos",
+     "c": "Rotina",
+     "cron": 75,
+     "prog": 0,
+     "m": 75,
+     "src": "cron",
+     "ts": 1788356220097,
+     "url": "https://app.clickup.com/t/86akabd49"
+    },
+    {
+     "p": "Sabrina",
+     "nome": "Reunião Felipe Editor",
+     "c": "Reunião",
+     "cron": 30,
+     "prog": 0,
+     "m": 30,
+     "src": "cron",
+     "ts": 1788356124503,
+     "url": "https://app.clickup.com/t/86akabc6h"
+    },
+    {
+     "p": "Sabrina",
+     "nome": "Reunião Mkt aristo",
+     "c": "Reunião",
+     "cron": 60,
+     "prog": 0,
+     "m": 60,
+     "src": "cron",
+     "ts": 1788356099004,
+     "url": "https://app.clickup.com/t/86akabc0k"
+    },
+    {
+     "p": "Sabrina",
+     "nome": "Reunião liderança",
+     "c": "Reunião",
+     "cron": 45,
+     "prog": 0,
+     "m": 45,
+     "src": "cron",
+     "ts": 1788356077900,
+     "url": "https://app.clickup.com/t/86akabbfx"
+    },
+    {
+     "p": "Sabrina",
+     "nome": "Reunião Heloysa",
+     "c": "Reunião",
+     "cron": 30,
+     "prog": 0,
+     "m": 30,
+     "src": "cron",
+     "ts": 1788356048868,
+     "url": "https://app.clickup.com/t/86akabb8k"
+    },
+    {
+     "p": "Samuel",
+     "nome": "Criar Planilha para priorização de pedidos",
+     "c": "Projeto",
+     "cron": 4,
+     "prog": 0,
+     "m": 4,
+     "src": "cron",
+     "ts": 1788355894237,
+     "url": "https://app.clickup.com/t/86ak9gtpq"
+    },
+    {
+     "p": "Sabrina",
      "nome": "[144.3] - ANDERSON VENDAS GRUPO",
      "c": "Sem categoria",
      "cron": 0,
@@ -104,6 +203,17 @@
      "url": "https://app.clickup.com/t/86ak8u005"
     },
     {
+     "p": "Marcela",
+     "nome": "Pensar em uma forma de começar a traquear dados de influenciadores a partir de Setembro",
+     "c": "Compromisso",
+     "cron": 180,
+     "prog": 0,
+     "m": 180,
+     "src": "cron",
+     "ts": 1788357878022,
+     "url": "https://app.clickup.com/t/86ak8tz3u"
+    },
+    {
      "p": "Jorge",
      "nome": "Aula de COPYWRITING do Spencer",
      "c": "Estudo",
@@ -113,6 +223,39 @@
      "src": "cat",
      "ts": 1788202208694,
      "url": "https://app.clickup.com/t/86ak8tf1p"
+    },
+    {
+     "p": "Marcela",
+     "nome": "enviar roteiros jorge",
+     "c": "Rotina",
+     "cron": 0,
+     "prog": 0,
+     "m": 0,
+     "src": "cat",
+     "ts": 1788357842755,
+     "url": "https://app.clickup.com/t/86ak8rw96"
+    },
+    {
+     "p": "Marcela",
+     "nome": "atualizar pagamento aristocrata",
+     "c": "Rotina",
+     "cron": 90,
+     "prog": 0,
+     "m": 90,
+     "src": "cron",
+     "ts": 1788357820493,
+     "url": "https://app.clickup.com/t/86ak8rtzv"
+    },
+    {
+     "p": "Marcela",
+     "nome": "atualizar pagamento da fishermans",
+     "c": "Rotina",
+     "cron": 0,
+     "prog": 0,
+     "m": 0,
+     "src": "cat",
+     "ts": 1788357781789,
+     "url": "https://app.clickup.com/t/86ak8rtxq"
     },
     {
      "p": "Samuel",
@@ -245,50 +388,6 @@
      "src": "none",
      "ts": 1788269404203,
      "url": "https://app.clickup.com/t/86ak8aq9n"
-    },
-    {
-     "p": "Jorge",
-     "nome": "[023.4] - [MENOS PROBLEMAS NAS PRÓXIMAS 2 PESCARIAS]",
-     "c": "Sem categoria",
-     "cron": 0,
-     "prog": 0,
-     "m": 0,
-     "src": "none",
-     "ts": 1788295971574,
-     "url": "https://app.clickup.com/t/86ak8aq89"
-    },
-    {
-     "p": "Jorge",
-     "nome": "[023.3] - [CANSADO DE CABELEIRA?]",
-     "c": "Sem categoria",
-     "cron": 0,
-     "prog": 0,
-     "m": 0,
-     "src": "none",
-     "ts": 1788293433181,
-     "url": "https://app.clickup.com/t/86ak8aq74"
-    },
-    {
-     "p": "Jorge",
-     "nome": "Atualizar as PLANILHAS + NOMENCLATURA CLICKUP",
-     "c": "Projeto",
-     "cron": 150,
-     "prog": 0,
-     "m": 150,
-     "src": "cron",
-     "ts": 1788055330429,
-     "url": "https://app.clickup.com/t/86ak87k97"
-    },
-    {
-     "p": "Jorge",
-     "nome": "Revisar CRIATIVOS e atualizar eles",
-     "c": "Rotina",
-     "cron": 75,
-     "prog": 0,
-     "m": 75,
-     "src": "cron",
-     "ts": 1787949737623,
-     "url": "https://app.clickup.com/t/86ak80dr0"
     }
    ]
   }
