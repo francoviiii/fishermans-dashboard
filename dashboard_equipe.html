@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de Produtividade — Equipe</title>
+<style>
+:root{--bg:#0f1420;--card:#171d2b;--card2:#1e2536;--line:#2a3346;--txt:#e6eaf2;--mut:#8b95a8;--acc:#6ea8fe}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5;padding:30px 18px}
+.wrap{max-width:1080px;margin:0 auto}
+header h1{font-size:25px;font-weight:700;letter-spacing:-.3px}
+header .sub{color:var(--acc);font-weight:600;font-size:14px;margin-top:3px}
+header .meta{color:var(--mut);margin-top:5px;font-size:13px}
+h2.sec{font-size:13px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.7px;margin:30px 0 14px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.kpi .v{font-size:26px;font-weight:700;letter-spacing:-.5px}
+.kpi .l{color:var(--mut);font-size:12px;margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.panel h3{font-size:13px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-bottom:15px}
+.bar-row{display:grid;grid-template-columns:118px 1fr 62px;align-items:center;gap:10px;margin-bottom:10px}
+.bar-label{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{background:var(--card2);border-radius:6px;height:12px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px}
+.bar-val{font-size:12.5px;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums}
+.person-block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.person-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.person-head h3{font-size:17px}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}
+.pmeta{margin-left:auto;color:var(--mut);font-size:12.5px}
+.chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid}
+.top-cat{font-size:12.5px;color:var(--mut);margin:2px 0 12px}
+.top-cat b{color:var(--txt)}
+.daytitle{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin:14px 0 8px}
+.wk{display:flex;gap:7px}
+.wk .d{flex:1;text-align:center}
+.wk .stack{height:78px;display:flex;flex-direction:column-reverse;align-items:center;border-bottom:1px solid var(--line)}
+.wk .seg{width:64%;max-width:28px;min-height:1px}
+.wk .seg:last-child{border-radius:5px 5px 0 0}
+.wk .d.today .stack{outline:2px solid rgba(255,255,255,.18);outline-offset:2px;border-radius:3px}
+.wk .dl{font-size:10px;color:var(--mut);margin-top:5px}
+.wk .d.wend .dl{opacity:.5}
+.wk .dv{font-size:9.5px;color:var(--txt);height:13px;font-variant-numeric:tabular-nums}
+.daylegend{display:flex;flex-wrap:wrap;gap:8px 12px;margin-top:9px}
+.daylegend .lg{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--mut)}
+.daylegend .lg i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.pgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
+.waiting{color:var(--mut);font-size:13px;background:var(--card2);border:1px dashed var(--line);border-radius:10px;padding:14px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;font-size:12px;color:var(--mut)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.evo-wrap{overflow-x:auto}
+.note{color:var(--mut);font-size:12.5px;margin-top:14px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.note b{color:var(--txt)}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}}
+/* ===== Central de Governança · tema escuro + barra ===== */
+body{ background:
+  radial-gradient(38% 38% at 14% 4%, rgba(90,162,255,.12), transparent 60%),
+  radial-gradient(38% 38% at 88% 3%, rgba(169,139,255,.10), transparent 60%),
+  linear-gradient(180deg,#070c16,#0a1322 55%,#070c16) !important;
+  background-attachment:fixed !important; padding-top:66px !important; }
+.gv-top{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:13px;
+  padding:11px 18px;background:rgba(8,13,22,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08)}
+.gv-back{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#eaf0f8;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.15);padding:7px 14px;border-radius:22px;transition:.15s}
+.gv-back:hover{background:rgba(255,255,255,.12);border-color:rgba(216,185,120,.55);color:#fff}
+.gv-brand{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#9fb0c6;min-width:0}
+.gv-brand .cr{width:26px;height:26px;flex:none;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,#12233c,#0a1626);border:1px solid rgba(216,185,120,.35);color:#d8b978;font-family:Georgia,serif;font-weight:700;font-size:14px}
+.gv-brand b{color:#eaf0f8;font-weight:700} .gv-brand .pg{color:#d8b978;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.gv-brand .sys{display:none}}
+</style></head>
+<body>
+<div class="gv-top">
+  <a class="gv-back" href="index.html">← Central</a>
+  <div class="gv-brand"><span class="cr">S</span><span class="sys"><b>Central de Governança</b> · </span><span class="pg">Produtividade</span></div>
+</div>
+<div class="wrap">
+<header>
+<h1>Painel de Produtividade — Equipe</h1>
+<div class="sub">Rastreamento de tarefas no ClickUp · atualizado semanalmente</div>
+<div class="meta" id="metaline"></div>
+</header>
+<div id="app"></div>
+<div class="note" id="methodnote"></div>
+<footer id="foot"></footer>
+</div>
+<script>
+let WEEKS=[];
+const CATS = ["Rotina","Projeto","Reunião","Imprevisto","Estudo","Sem categoria"];
+const CATCOL = {"Rotina":"#2f9e6b","Projeto":"#e0a800","Reunião":"#3e7bfa","Imprevisto":"#f2660a","Estudo":"#cececa","Sem categoria":"#8b95a8"};
+const PEOPLE = ["Jorge","Sabrina","Marcela","Samuel","Uri","Leandro"];
+const PCOL = {"Jorge":"#3e7bfa","Sabrina":"#8b5cf6","Marcela":"#e0568a","Samuel":"#14b8a6","Uri":"#f59e0b","Leandro":"#ef4444"};
+
+function fmt(m){ if(m==null) return "—"; if(m===0) return "0m"; const h=Math.floor(m/60),mm=Math.round(m%60); return h&&mm?h+"h "+mm+"m":(h?h+"h":mm+"m"); }
+function esc(s){ return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+function sumTime(ts){ return ts.reduce((a,t)=>a+(t.m||0),0); }
+
+const PALETTE=["#2f9e6b","#e0a800","#3e7bfa","#f2660a","#a78bfa","#14b8a6","#e0568a","#f59e0b","#ef4444"];
+function catcol(c){ if(CATCOL[c]) return CATCOL[c]; let h=0; for(let i=0;i<(c||"").length;i++) h=(h*31+c.charCodeAt(i))>>>0; return PALETTE[h%PALETTE.length]; }
+function pcol(p){ return PCOL[p]||"#8b95a8"; }
+function catAgg(ts){ const o={}; CATS.forEach(c=>o[c]={n:0,m:0}); ts.forEach(t=>{ const c=(t.c==null||t.c==="")?"Sem categoria":t.c; if(!o[c]) o[c]={n:0,m:0}; o[c].n++; if(t.m) o[c].m+=t.m; }); return o; }
+function dayStack(ts){
+  // por tempo se a pessoa cronometrou TODAS as tarefas; senão, por nº de tarefas (conta todas)
+  const useTime = ts.length>0 && ts.every(t=>t.m>0);
+  const order=[1,2,3,4,5,6,0], labels=['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+  const cats = Array.from(new Set(ts.map(t=>(t.c==null||t.c==="")?"Sem categoria":t.c)));
+  const perDay={}; order.forEach(i=>perDay[i]={});
+  ts.forEach(t=>{ const wd=new Date(t.ts||Date.now()).getDay(); const c=(t.c==null||t.c==="")?"Sem categoria":t.c; const v=useTime?(t.m||0):1; perDay[wd][c]=(perDay[wd][c]||0)+v; });
+  const totals=order.map(i=>Object.values(perDay[i]).reduce((a,b)=>a+b,0));
+  const max=Math.max(1,...totals); const H=78; const todayWd=new Date().getDay();
+  const bars=order.map((i,k)=>{
+    const segs=cats.filter(c=>perDay[i][c]).map(c=>`<div class="seg" style="height:${(perDay[i][c]/max*H).toFixed(1)}px;background:${catcol(c)}" title="${c}: ${useTime?fmt(perDay[i][c]):perDay[i][c]}"></div>`).join('');
+    const tot=totals[k]; const lbl= tot>0?(useTime?fmt(tot):tot):'';
+    const cls='d'+((i===0||i===6)?' wend':'')+(i===todayWd?' today':'');
+    return `<div class="${cls}"><div class="dv">${lbl}</div><div class="stack">${segs}</div><div class="dl">${labels[k]}</div></div>`;
+  }).join('');
+  const leg=cats.map(c=>`<span class="lg"><i style="background:${catcol(c)}"></i>${c}</span>`).join('');
+  return { html:`<div class="wk">${bars}</div><div class="daylegend">${leg}</div>`, useTime };
+}
+function bars(rows, total, colorFn, valFn){
+  const max = Math.max(1, ...rows.map(r=>r.v));
+  return rows.map(r=>`<div class="bar-row"><span class="bar-label">${esc(r.label)}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(r.v/max*100)}%;background:${colorFn(r)}"></div></div><span class="bar-val">${valFn(r)}</span></div>`).join("");
+}
+
+function init(){
+if(!WEEKS || !WEEKS.length){ document.getElementById("app").innerHTML='<div class="note">Ainda não há dados desta semana. Assim que o robô (n8n) rodar, a produtividade aparece aqui automaticamente.</div>'; return; }
+const cur = WEEKS[WEEKS.length-1] || {tasks:[],sub:"",label:""};
+if(!cur.tasks) cur.tasks=[];
+document.getElementById("metaline").textContent = (cur.sub||"") + " · " + WEEKS.length + (WEEKS.length>1?" semanas registradas":" semana registrada");
+
+// ---------- KPIs (semana atual) ----------
+const curTasks = cur.tasks;
+const totalTasks = curTasks.length;
+const totalMin = sumTime(curTasks);
+const active = PEOPLE.filter(p=> curTasks.some(t=>t.p===p && t.m>0)).length;
+const cA = catAgg(curTasks);
+const ALLCATS = Array.from(new Set([...CATS, ...WEEKS.flatMap(w=>(w.tasks||[]).map(t=>(t.c==null||t.c==="")?"Sem categoria":t.c))]));
+let topCat="—", topMin=-1;
+Object.keys(cA).forEach(c=>{ if(c!=="Sem categoria" && cA[c].m>topMin){topMin=cA[c].m; topCat=c;} });
+const outliers = curTasks.filter(t=>t.m==null).length;
+
+let html = `<div class="kpis">
+<div class="kpi"><div class="v">${totalTasks}</div><div class="l">Tarefas concluídas</div></div>
+<div class="kpi"><div class="v">${fmt(totalMin)}</div><div class="l">Tempo registrado</div></div>
+<div class="kpi"><div class="v">${active}/6</div><div class="l">Pessoas com rastreamento</div></div>
+<div class="kpi"><div class="v" style="color:${catcol(topCat)}">${topCat}</div><div class="l">Categoria que mais pesou</div></div>
+</div>`;
+
+// ---------- Resumo por categoria e por pessoa ----------
+const catRows = Object.keys(cA).filter(c=>cA[c].n>0).map(c=>({label:c,v:cA[c].m,n:cA[c].n,c}));
+catRows.sort((a,b)=>b.v-a.v);
+const persRows = PEOPLE.map(p=>{const ts=curTasks.filter(t=>t.p===p);return{label:p,v:sumTime(ts),n:ts.length,p};}).filter(r=>r.n>0);
+persRows.sort((a,b)=>b.v-a.v);
+
+html += `<h2 class="sec">Resumo da semana</h2><div class="grid2">
+<div class="panel"><h3>Tempo por categoria</h3>${bars(catRows,totalMin,r=>catcol(r.c),r=>fmt(r.v))}</div>
+<div class="panel"><h3>Tempo por pessoa</h3>${bars(persRows,totalMin,r=>pcol(r.p),r=>fmt(r.v))}</div>
+</div>`;
+
+// ---------- Evolução semanal (SVG stacked por categoria) ----------
+html += `<h2 class="sec">Evolução semanal</h2><div class="panel"><div class="evo-wrap">${evolutionSVG()}</div>
+<div class="legend">${ALLCATS.map(c=>`<span><i style="background:${catcol(c)}"></i>${c}</span>`).join("")}</div></div>`;
+
+function evolutionSVG(){
+  const W=Math.max(520, WEEKS.length*140), H=230, padL=44, padB=42, padT=12, padR=12;
+  const plotH=H-padB-padT, plotW=W-padL-padR;
+  const weekMin = WEEKS.map(w=>{const a=catAgg(w.tasks);return ALLCATS.map(c=>(a[c]?a[c].m:0));});
+  const totals = weekMin.map(a=>a.reduce((x,y)=>x+y,0));
+  const maxT = Math.max(1,...totals);
+  // nice y ticks
+  const step = Math.ceil(maxT/60/4)*60 || 60; const yMax=Math.ceil(maxT/step)*step || step;
+  const bw = Math.min(70, plotW/WEEKS.length*0.5);
+  let g=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="inherit">`;
+  for(let i=0;i<=yMax/step;i++){const yv=i*step;const y=padT+plotH-(yv/yMax)*plotH;
+    g+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#2a3346" stroke-width="1"/>`;
+    g+=`<text x="${padL-8}" y="${y+4}" text-anchor="end" font-size="10" fill="#8b95a8">${Math.round(yv/60)}h</text>`;}
+  WEEKS.forEach((w,wi)=>{
+    const cx=padL+(wi+0.5)*(plotW/WEEKS.length); let acc=0;
+    ALLCATS.forEach((c,ci)=>{const v=weekMin[wi][ci]; if(!v) return;
+      const h=(v/yMax)*plotH; const y=padT+plotH-((acc+v)/yMax)*plotH;
+      g+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" fill="${catcol(c)}"><title>${c}: ${fmt(v)}</title></rect>`; acc+=v;});
+    const ytop=padT+plotH-(totals[wi]/yMax)*plotH;
+    g+=`<text x="${cx}" y="${ytop-6}" text-anchor="middle" font-size="10.5" fill="#c9d1da">${Math.round(totals[wi]/60)}h</text>`;
+    g+=`<text x="${cx}" y="${H-padB+18}" text-anchor="middle" font-size="11" fill="#e6eaf2">${w.label}</text>`;
+  });
+  g+=`</svg>`; return g;
+}
+
+// ---------- Detalhe por pessoa ----------
+html += `<h2 class="sec">Detalhe por pessoa</h2>`;
+PEOPLE.forEach(p=>{
+  const ts=curTasks.filter(t=>t.p===p);
+  if(!ts.length) return;
+  const t_time=sumTime(ts); const a=catAgg(ts); const tracked=ts.some(t=>t.m>0);
+  const rows=Object.keys(a).filter(c=>a[c].n>0).map(c=>({label:c+" ("+a[c].n+")",v:a[c].m,c})); rows.sort((x,y)=>y.v-x.v);
+  let top="—",tm=-1; Object.keys(a).forEach(c=>{if(a[c].m>tm){tm=a[c].m;top=c;}});
+  const outl=ts.filter(t=>t.m==null).length;
+  html+=`<div class="person-block"><div class="person-head"><span class="dot" style="background:${pcol(p)}"></span><h3>${p}</h3>
+    <span class="pmeta">${ts.length} tarefa${ts.length>1?"s":""} · ${fmt(t_time)} registrad${t_time===1?"o":"as"}${outl?" · "+outl+" outlier"+(outl>1?"s":""):""}</span></div>`;
+  if(!tracked){
+    html+=`<div class="waiting"><b style="color:#e6eaf2">Rastreamento ainda não iniciado.</b> ${ts.length} tarefa${ts.length>1?"s":""} concluída${ts.length>1?"s":""} no período, mas sem categoria e sem tempo lançado. Assim que ${p} começar a categorizar e cronometrar, os dados aparecem aqui automaticamente.</div>`;
+  } else {
+    html+=`<div class="top-cat">Categoria que mais consumiu tempo: <b style="color:${catcol(top)}">${top}</b> (${fmt(tm)})</div>`;
+    html+=`<div class="panel" style="background:var(--card2)"><h3>Tempo por categoria</h3>${bars(rows,t_time,r=>catcol(r.c),r=>fmt(r.v))}</div>`;
+  }
+  const ds=dayStack(ts);
+  html+=`<div class="daytitle">Por dia da semana · por categoria ${ds.useTime?'(tempo)':'(nº de tarefas)'}</div>${ds.html}`;
+  html+=`</div>`;
+});
+
+document.getElementById("app").innerHTML = html;
+
+document.getElementById("methodnote").innerHTML = `<b>Como o tempo é medido:</b> usa-se o cronômetro (time tracking) quando a pessoa registrou; na ausência dele, o tempo em que a tarefa ficou em “em progresso”. Tarefas que ficaram vários dias paradas em “em progresso” (outliers) entram na contagem de tarefas, mas não no tempo, para não inflar os totais. <b>Uri e Leandro</b> ainda não iniciaram o rastreamento — aparecem com as tarefas concluídas, sem tempo. Cada pessoa passa a ter dado 100% confiável quando cronometra todas as tarefas.`;
+document.getElementById("foot").textContent = "Fonte: ClickUp · via n8n (atualização semanal) · dados_equipe.json";
+}
+
+fetch("dados_equipe.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{WEEKS=(d&&d.weeks)?d.weeks:[]; try{ init(); }catch(err){ console.error(err); document.getElementById("app").innerHTML='<div class="note">Os dados chegaram, mas houve um detalhe ao montar a tela. Recarregue a página; se persistir, me avise. <br><small style="color:#8b95a8">'+(err&&err.message?err.message:'')+'</small></div>'; } }).catch(e=>{document.getElementById("app").innerHTML='<div class="note">Ainda não consegui ler o <b>dados_equipe.json</b> no repositório. Assim que o robô (n8n) rodar a 1ª vez, ele cria/atualiza esse arquivo e a tela aparece.</div>';});
+</script>
+</body></html>
