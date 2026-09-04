@@ -789,8 +789,8 @@
           "p": "Samuel",
           "nome": "Estudo de Organogramas eficientes em Ecommerce ",
           "c": "Estudo",
-          "m": 32,
-          "cron": 32,
+          "m": 55,
+          "cron": 55,
           "prog": 0,
           "src": "cron",
           "ts": 1788531300000,
@@ -806,6 +806,28 @@
           "src": "cron",
           "ts": 1788529153887,
           "url": "https://app.clickup.com/t/86ak33k1b"
+        },
+        {
+          "p": "Jorge",
+          "nome": "Desenvolver páginas da MONO e MULTI",
+          "c": "Projeto",
+          "m": 330,
+          "cron": 330,
+          "prog": 0,
+          "src": "cron",
+          "ts": 1788444000000,
+          "url": "https://app.clickup.com/t/86akc79dh"
+        },
+        {
+          "p": "Marcela",
+          "nome": "responder wpp",
+          "c": "Rotina",
+          "m": 110,
+          "cron": 110,
+          "prog": 0,
+          "src": "cron",
+          "ts": 1788528500823,
+          "url": "https://app.clickup.com/t/86akc7czt"
         }
       ]
     }
