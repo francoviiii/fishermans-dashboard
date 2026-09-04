@@ -103,7 +103,7 @@
   .metahead .acc{font-size:11px;color:var(--faint);font-family:ui-monospace,monospace}
 
   /* Shopify vendas */
-  .shop{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .shop{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   @media(max-width:900px){.shop{grid-template-columns:1fr}}
   .shopc{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px 16px 12px}
   .shopc .top{display:flex;gap:16px;flex-wrap:wrap}
@@ -150,7 +150,7 @@
   <div class="sec"><span class="line"></span>KPIs por área · histórico semanal</div>
   <div id="kpis"></div>
 
-  <div class="note"><b>Como ler:</b> cada área mostra de onde vêm os dados — <span class="bdg meta" style="display:inline-block">Meta ao vivo</span> puxado do gerenciador de anúncios (diário), <span class="bdg shop" style="display:inline-block">Shopify</span> vendas do site por atribuição, e as demais da <b>planilha de Histórico de KPIs</b> (semanal). O Criative (Jorge/Sabrina) tem os números de mídia puxados ao vivo da Meta; a "receita de cliente novo" e "vencedores" seguem da planilha (o time registra). Marketplace, B2B e os KPIs de conteúdo/influência continuam da planilha até ligarmos as fontes definitivas. No topo, o quanto o faturamento já chegou da <b>meta geral do mês</b> (projeção em amarelo = ritmo das últimas 4 semanas).</div>
+  <div class="note"><b>Como ler:</b> cada líder é medido pela fonte da meta dele. <b>Jorge (Fishermans) e Sabrina (Aristocrata)</b> — vendas no site vindas dos anúncios: <span class="bdg meta" style="display:inline-block">Meta ao vivo</span>, atribuição da própria Meta (conta todas as vendas do anúncio, com ou sem UTM). <b>Julia</b> — vendas no site no padrão de UTM: <span class="bdg shop" style="display:inline-block">Shopify</span> com utm_medium = social. <b>Marcela</b> — vendas por cupom de influenciador: <span class="bdg shop" style="display:inline-block">Shopify</span>. Marketplace, B2B e os KPIs de conteúdo seguem da <b>planilha de Histórico de KPIs</b> (semanal). No topo, o quanto o faturamento já chegou da <b>meta geral do mês</b> (projeção em amarelo = ritmo das últimas 4 semanas).</div>
   <footer id="foot">Dashboard de KPIs · Grupo Shrigma</footer>
 </div>
 
@@ -321,7 +321,7 @@ function renderMeta(brand){
     <div class="metapanel">${t}</div>`;
 }
 
-/* ---------- Shopify · 3 fluxos (anúncios / orgânico / cupom) ---------- */
+/* ---------- Shopify · 2 fluxos (orgânico Julia / cupom Marcela) ---------- */
 function miniChart(series,color,weeks){ const idx=[]; series.forEach((v,i)=>{ if(v!=null) idx.push(i); });
   if(!idx.length) return ''; const maxV=Math.max(1,...idx.map(i=>series[i]));
   const W=Math.max(240,idx.length*30),H=54,p=4,plotH=H-p*2, bw=Math.min(18,(W-p*2)/idx.length*0.6);
@@ -346,9 +346,8 @@ function shopCard(title,color,stream,weeks,note){
 function renderShopify(brand){
   const el=document.getElementById('shopify'); const sh=brand.shopify||{}; const weeks=brand.weeks||[];
   el.innerHTML=`<div class="shop">
-    ${shopCard('Vendas via anúncios (pago Meta)','#f2670a',sh.ads,weeks,'Vendas com UTM do gerenciador (ig/fb).')}
-    ${shopCard('Vendas orgânico (Instagram)','#5aa2ff',sh.organic,weeks,'Vendas do Instagram/Facebook sem UTM de anúncio pago.')}
-    ${shopCard('Vendas cupom influenciadores','#35c98a',sh.coupon,weeks,'Cuponagem de influenciadores (Shopify).')}
+    ${shopCard('Vendas orgânico · Julia','#5aa2ff',sh.organic,weeks,'Vendas do site com utm_medium = social (padrão de UTM). Meta da Julia.')}
+    ${shopCard('Vendas cupom · Marcela','#35c98a',sh.coupon,weeks,'Cupons de influenciadores (Shopify). Meta da Marcela.')}
   </div>`;
 }
 
